@@ -64,7 +64,6 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;co
 .shimmer{font-weight:900;line-height:1.05;letter-spacing:-.02em;font-size:clamp(34px,6vw,64px);
   background:linear-gradient(90deg,#fff 20%,#dbeafe 40%,#e0e7ff 60%,#fff 80%);background-size:250% 100%;
   -webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 4.2s ease-in-out infinite}
-@keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .hero p{max-width:680px;color:#dbeafe;font-size:18px;margin:18px 0 28px}
 
 /* CTA */
@@ -75,10 +74,8 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;co
 @keyframes btnshine{15%{transform:translateX(-100%)}45%{transform:translateX(120%)}100%{transform:translateX(120%)}}
 .btn:hover{transform:translateY(-1px)}
 
-/* Sections */
-.section.white{background:#f8fafc;color:#0f172a;border-radius:24px;padding:48px;margin-top:28px;
-  box-shadow:0 10px 30px rgba(0,0,0,.12), inset 0 0 0 1px rgba(15,23,42,.06)}
-.section.dark{margin:48px 0}
+/* Sections (global) */
+.section{margin:48px 0}
 .section h2{font-size:clamp(26px,3.2vw,40px);margin:0 0 16px}
 .lead{color:#d0dcff}
 
@@ -93,7 +90,7 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;co
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000,#000);
   -webkit-mask-composite:xor;mask-composite:exclude}
 .card::after{content:"";position:absolute;inset:-40% -10% auto -10%;height:80%;
-  background:radial-gradient(600px 160px at 20% 15%,rgba(255,255,255,.25),transparent 60%);
+  background:radial-gradient(600px 160px at 20% 15%,rgba(255,255,255,.18),transparent 60%);
   transform:translate3d(0,0,0);pointer-events:none;mix-blend:overlay;animation:sweep 8s ease-in-out infinite}
 .icon{width:48px;height:48px;border-radius:12px;margin-bottom:14px;display:grid;place-items:center;
   background:linear-gradient(180deg,#93c5fd,#60a5fa);color:#0b1021;font-weight:900;box-shadow:0 10px 20px #3b82f655}
@@ -119,6 +116,77 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;co
 .small{opacity:.85;font-size:.95rem}
 .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
 .badge{padding:6px 10px;border-radius:999px;background:#0f1a3b;border:1px solid rgba(255,255,255,.12);font-weight:700;font-size:.8rem;color:#cfe0ff}
+
+/* ---------- DARK “OUR FOCUS” (no white) ---------- */
+.focus{position:relative;overflow:hidden;border-radius:24px;padding:0}
+.focus-surface{
+  position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;
+  padding:40px;border-radius:24px;color:#e6eeff;
+  background:
+    radial-gradient(600px 200px at 10% 0%, #3b82f61f, transparent 60%),
+    radial-gradient(800px 260px at 100% 30%, #60a5fa17, transparent 70%),
+    linear-gradient(180deg,#0d1224,#0a0f22);
+  border:1px solid rgba(255,255,255,.08); box-shadow:0 18px 60px rgba(0,0,0,.55), inset 0 0 0 1px rgba(173,193,255,.06);
+}
+@media (max-width:980px){.focus-surface{grid-template-columns:1fr;padding:28px}}
+.focus-title{font-size:clamp(26px,3.2vw,40px);margin:0 0 10px;font-weight:900;letter-spacing:-.02em}
+.focus-sub{color:#c9d8ff;max-width:54ch}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;font-weight:800;font-size:.82rem;background:#0b1228;color:#e6eeff;border:1px solid #8ab4ff33;box-shadow:0 6px 18px rgba(11,18,40,.28)}
+.pill svg{width:14px;height:14px}
+.steps{display:grid;gap:12px;margin-top:18px}
+.step{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:12px;border-radius:14px;background:linear-gradient(180deg,#0f1730,#0b1228);border:1px solid #203266;box-shadow:inset 0 0 0 1px rgba(173,193,255,.06)}
+.dot{width:28px;height:28px;border-radius:12px;display:grid;place-items:center;font-weight:900;background:linear-gradient(180deg,#93c5fd,#60a5fa);color:#0b1021}
+.metrics{position:relative;height:100%;min-height:340px;border-radius:20px;padding:22px;background:linear-gradient(180deg,#0b1228,#0a0f22);color:#dbe4ff;border:1px solid rgba(255,255,255,.08);box-shadow:0 14px 40px rgba(0,0,0,.55);overflow:hidden}
+.metrics h3{margin:0 0 14px;font-weight:900}
+.metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.kpi{border-radius:14px;padding:14px;background:linear-gradient(180deg,#0f1730,#0b1228);border:1px solid #203266;box-shadow:inset 0 0 0 1px rgba(173,193,255,.06)}
+.kpi b{display:block;font-size:1.35rem;color:#fff}
+.kpi small{opacity:.85}
+.orbit{position:absolute;inset:auto -40% -40% -40%;height:75%;background:radial-gradient(500px 140px at 30% 20%,rgba(88,153,255,.28),transparent 60%);filter:blur(20px);opacity:.6;pointer-events:none;animation:orb 9s ease-in-out infinite}
+@keyframes orb{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.tick{display:flex;gap:8px;align-items:flex-start}
+.tick i{width:18px;height:18px;border-radius:6px;background:linear-gradient(180deg,#22c55e,#16a34a);display:inline-block;box-shadow:0 8px 18px rgba(34,197,94,.35)}
+.tick span{flex:1;color:#d6e2ff}
+
+/* ---------- DARK “OUR CORE PRODUCTS” (no white cards) ---------- */
+.products{position:relative;overflow:hidden}
+.prod-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
+.prod-title{margin:0;font-size:clamp(26px,3.2vw,40px);font-weight:900;letter-spacing:-.02em}
+.prod-chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{user-select:none;cursor:pointer;padding:8px 12px;border-radius:999px;font-weight:800;font-size:.85rem;color:#cfe0ff;background:#0f1a3b;border:1px solid #2a3a7a;transition:.25s}
+.chip:hover{transform:translateY(-1px)}
+.chip.is-active{color:#0b1228;background:#e6eeff;border-color:#6ea8ff}
+
+.prod-grid{--cols:3;display:grid;gap:18px;grid-template-columns:repeat(var(--cols),minmax(0,1fr));margin-top:18px}
+@media (max-width:980px){.prod-grid{--cols:2}}
+@media (max-width:640px){.prod-grid{--cols:1}}
+
+.prod{position:relative;border-radius:18px;padding:22px;color:#e6eeff;
+  background:
+    radial-gradient(600px 200px at 15% 0%, #3b82f61a, transparent 60%),
+    radial-gradient(600px 220px at 100% 30%, #60a5fa14, transparent 70%),
+    linear-gradient(180deg,#0f1730,#0b1228);
+  border:1px solid #203266;box-shadow:0 14px 40px rgba(0,0,0,.55), inset 0 0 0 1px rgba(173,193,255,.06);
+  transform-style:preserve-3d;transition:transform .2s ease}
+.prod[data-tilt="1"]:hover{transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.prod .shine{position:absolute;inset:0;border-radius:inherit;background:radial-gradient(600px 200px at var(--mx,0%) var(--my,0%),rgba(99,102,241,.18),transparent 60%);opacity:.0;transition:opacity .25s}
+.prod:hover .shine{opacity:.8}
+.prod h3{margin:0 0 6px;font-size:1.15rem}
+.prod p{margin:6px 0 12px;color:#c9d8ff}
+.prod-tags{display:flex;gap:8px;flex-wrap:wrap}
+.t{font-size:.74rem;font-weight:800;padding:6px 10px;border-radius:999px;border:1px solid #2a3a7a;background:#0f1a3b;color:#cfe0ff}
+.t.dark{background:#e6eeff;color:#0b1228;border-color:#6ea8ff}
+
+/* product icons */
+.picon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;margin-bottom:12px;
+  background:linear-gradient(180deg,#93c5fd,#60a5fa);box-shadow:0 8px 18px rgba(59,130,246,.28);color:#0b1021;font-weight:900}
+
+/* separators */
+.sep{height:1px;background:linear-gradient(90deg,#0000,#2b3b7a,#0000);opacity:.9;margin:12px 0}
+
+/* helper */
+[hidden]{display:none !important}
 </style>
 </head>
 <body>
@@ -135,6 +203,7 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;co
     <nav>
       <a href="#about">About</a>
       <a href="#services">Services</a>
+      <a href="#products">Products</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -158,131 +227,200 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;co
     </div>
   </section>
 
-  <!-- FOCUS -->
-  <section id="about" class="section white reveal">
-    <h2 class="m0">Our Focus</h2>
-    <p class="mt8 small">
-      To optimize the user experience for all consumers engaging with our funnels, driving the highest-intent leads and inbound calls
-      for each of our promoted verticals ensuring a seamless flow from beginning to end. :contentReference[oaicite:0]{index=0}
-    </p>
+  <!-- DARK “OUR FOCUS” -->
+  <section id="about" class="section focus reveal">
+    <div class="focus-surface">
+      <div>
+        <h2 class="focus-title m0">Our Focus</h2>
+        <p class="focus-sub mt8">
+          We engineer the full journey — from the first impression to conversion — so every click feels intuitive
+          and every handoff is seamless. The result? Higher intent, cleaner calls, and compounding revenue lift.
+        </p>
+
+        <div class="pill-row">
+          <span class="pill" title="Acquisition">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Acquisition
+          </span>
+          <span class="pill" title="Experience">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Experience
+          </span>
+          <span class="pill" title="Conversion">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1016 0 8 8 0 10-16 0zm4 0h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Conversion
+          </span>
+          <span class="pill" title="Retention">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1115.5 6.36L21 21M8 9h8v6H8z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Retention
+          </span>
+        </div>
+
+        <div class="steps">
+          <div class="step"><div class="dot">1</div><div class="tick"><i></i><span>Optimize every touchpoint to reduce friction and increase intent.</span></div></div>
+          <div class="step"><div class="dot">2</div><div class="tick"><i></i><span>Align media, creative, and CRO so traffic → qualified lead → inbound call.</span></div></div>
+          <div class="step"><div class="dot">3</div><div class="tick"><i></i><span>Instrument the journey with custom trackers for daily KPI decisions.</span></div></div>
+        </div>
+
+        <p class="mt16 small" style="color:#c9d8ff">
+          To optimize the user experience for all consumers engaging with our funnels, driving the highest-intent leads and inbound calls
+          for each of our promoted verticals ensuring a seamless flow from beginning to end.
+        </p>
+      </div>
+
+      <aside class="metrics">
+        <h3>Impact at a Glance</h3>
+        <div class="metric-grid">
+          <div class="kpi"><b>+38%</b><small>Lift in CVR after UX streamlining</small></div>
+          <div class="kpi"><b>-27%</b><small>Lower CPA via creative iteration</small></div>
+          <div class="kpi"><b>~2.3×</b><small>ROAS improvement month-over-month</small></div>
+          <div class="kpi"><b>+19%</b><small>Increase in qualified call rate</small></div>
+        </div>
+        <div class="mt16 small" style="opacity:.9">
+          <div class="tick"><i></i><span>Daily KPI monitoring with custom dashboards</span></div>
+          <div class="tick mt8"><i></i><span>Bilingual funnels for EN & ES audiences</span></div>
+          <div class="tick mt8"><i></i><span>Landing page variants auto-tested for scale</span></div>
+        </div>
+        <div class="orbit"></div>
+      </aside>
+    </div>
   </section>
 
-  <!-- IMPACT / SCALE / MEASURE -->
-  <section class="section dark reveal">
+  <!-- INTEGRATED GROWTH -->
+  <section class="section reveal">
     <h2 class="m0">Integrated Growth Framework</h2>
     <div class="grid mt16">
-      <article class="card">
-        <div class="icon">⚡</div>
-        <h3 class="m0">Drive Impact with Integrated Strategy</h3>
-        <p class="mt8">Experience a seamless marketing process from planning to execution and analysis. Our integrative strategies ensure maximum growth potential for your brand.</p>
-      </article>
-      <article class="card">
-        <div class="icon">🎯</div>
-        <h3 class="m0">Scale Revenue with Precise Targeting</h3>
-        <p class="mt8">We prioritize audience targeting to provide the most qualified leads. This approach ensures low CPAs and maximizes revenue.</p>
-      </article>
-      <article class="card">
-        <div class="icon">📈</div>
-        <h3 class="m0">Measure Results with Custom Trackers</h3>
-        <p class="mt8">We monitor KPIs daily with custom performance trackers to ensure the highest-quality leads and calls, making adjustments as needed.</p>
-      </article>
+      <article class="card"><div class="icon">⚡</div><h3 class="m0">Drive Impact with Integrated Strategy</h3><p class="mt8">Experience a seamless marketing process from planning to execution and analysis. Our integrative strategies ensure maximum growth potential for your brand.</p></article>
+      <article class="card"><div class="icon">🎯</div><h3 class="m0">Scale Revenue with Precise Targeting</h3><p class="mt8">We prioritize audience targeting to provide the most qualified leads. This approach ensures low CPAs and maximizes revenue.</p></article>
+      <article class="card"><div class="icon">📈</div><h3 class="m0">Measure Results with Custom Trackers</h3><p class="mt8">We monitor KPIs daily with custom performance trackers to ensure the highest-quality leads and calls, making adjustments as needed.</p></article>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="section dark reveal">
-    <h2 class="m0">Services</h2>
-    <div class="grid mt16">
-      <article class="card">
-        <div class="icon">↗</div>
-        <h3 class="m0">Performance Marketing</h3>
-        <ul class="ul">
-          <li>Large-scale pay-per-click campaigns tailored to maximize conversions.</li>
-          <li>Continuous testing and scaling of winning strategies.</li>
-        </ul>
-      </article>
-      <article class="card">
-        <div class="icon">⬛</div>
-        <h3 class="m0">Web Design & Development</h3>
-        <ul class="ul">
-          <li>Responsive websites, micro-sites, and landing pages.</li>
-          <li>Custom development projects for maximum results.</li>
-        </ul>
-      </article>
-      <article class="card">
-        <div class="icon">▶</div>
-        <h3 class="m0">Video Production</h3>
-        <ul class="ul">
-          <li>High-quality videos with in-house actors, editors, and designers.</li>
-          <li>Cinematic content tailored to each vertical.</li>
-        </ul>
-      </article>
+  <!-- DARK “OUR CORE PRODUCTS” -->
+  <section id="products" class="section products reveal">
+    <div class="prod-head">
+      <h2 class="prod-title">Our Core Products</h2>
+      <div class="prod-chips" id="prodChips">
+        <button class="chip is-active" data-filter="all">All</button>
+        <button class="chip" data-filter="insurance">Insurance</button>
+        <button class="chip" data-filter="legal">Legal</button>
+        <button class="chip" data-filter="finance">Finance</button>
+        <button class="chip" data-filter="home">Home</button>
+        <button class="chip" data-filter="commerce">Commerce</button>
+      </div>
     </div>
-    <p class="mt16 lead small">Plus: Social Media Marketing • SEO • Email • Branding • CRO. :contentReference[oaicite:1]{index=1}</p>
-  </section>
 
-  <!-- CORE PRODUCTS -->
-  <section class="section white reveal">
-    <h2 class="m0">Our Core Products</h2>
-    <div class="grid mt16" style="color:#0f172a">
-      <article class="card" style="background:#fff;border:1px solid #e5e7eb;color:#0f172a">
+    <div class="prod-grid" id="prodGrid">
+      <!-- Insurance -->
+      <article class="prod" data-cat="insurance" data-tilt="1">
+        <div class="shine"></div>
+        <div class="picon">🩺</div>
         <h3 class="m0">Medicare</h3>
-        <p class="mt8" style="color:#334155">Health insurance program for people 65+ and for younger individuals with disabilities.</p>
+        <p>Health insurance for people 65+ and qualified individuals with disabilities.</p>
+        <div class="sep"></div>
+        <div class="prod-tags">
+          <span class="t dark">Insurance</span><span class="t">AEP/OEP</span><span class="t">EN/ES</span>
+        </div>
       </article>
-      <article class="card" style="background:#fff;border:1px solid #e5e7eb;color:#0f172a">
+
+      <article class="prod" data-cat="legal" data-tilt="1">
+        <div class="shine"></div>
+        <div class="picon">⚖️</div>
         <h3 class="m0">Personal Injury</h3>
-        <p class="mt8" style="color:#334155">Connecting individuals seeking legal action for motor-vehicle and other injuries.</p>
+        <p>Connects qualified claimants to top-tier attorneys for motor-vehicle and other injuries.</p>
+        <div class="sep"></div>
+        <div class="prod-tags">
+          <span class="t dark">Legal</span><span class="t">MVA</span><span class="t">Intake</span>
+        </div>
       </article>
-      <article class="card" style="background:#fff;border:1px solid #e5e7eb;color:#0f172a">
+
+      <article class="prod" data-cat="insurance" data-tilt="1">
+        <div class="shine"></div>
+        <div class="picon">🌿</div>
         <h3 class="m0">Final Expense</h3>
-        <p class="mt8" style="color:#334155">Life insurance designed to cover end-of-life expenses.</p>
+        <p>Life insurance designed to cover end-of-life costs and protect families.</p>
+        <div class="sep"></div>
+        <div class="prod-tags">
+          <span class="t dark">Insurance</span><span class="t">Low CPA</span><span class="t">Nationwide</span>
+        </div>
       </article>
-      <article class="card" style="background:#fff;border:1px solid #e5e7eb;color:#0f172a">
+
+      <article class="prod" data-cat="home" data-tilt="1">
+        <div class="shine"></div>
+        <div class="picon">🏠</div>
         <h3 class="m0">Home Services</h3>
-        <p class="mt8" style="color:#334155">Windows, gutters, solar, roofing, and bath remodeling.</p>
+        <p>Windows, gutters, solar, roofing, and bath remodeling funnels tuned for local markets.</p>
+        <div class="sep"></div>
+        <div class="prod-tags">
+          <span class="t dark">Home</span><span class="t">Geo Target</span><span class="t">HV</span>
+        </div>
       </article>
-      <article class="card" style="background:#fff;border:1px solid #e5e7eb;color:#0f172a">
+
+      <article class="prod" data-cat="finance" data-tilt="1">
+        <div class="shine"></div>
+        <div class="picon">💳</div>
         <h3 class="m0">Debt Settlement</h3>
-        <p class="mt8" style="color:#334155">Reduce payments on credit card debt, loans, and medical bills.</p>
+        <p>Reduce payments on credit cards, loans, and medical bills through vetted partners.</p>
+        <div class="sep"></div>
+        <div class="prod-tags">
+          <span class="t dark">Finance</span><span class="t">High Intent</span><span class="t">Pre-Qual</span>
+        </div>
       </article>
-      <article class="card" style="background:#fff;border:1px solid #e5e7eb;color:#0f172a">
+
+      <article class="prod" data-cat="insurance" data-tilt="1">
+        <div class="shine"></div>
+        <div class="picon">🚗</div>
         <h3 class="m0">Auto Insurance</h3>
-        <p class="mt8" style="color:#334155">Helping drivers find affordable rates from top carriers.</p>
+        <p>Helps drivers discover competitive rates from leading carriers.</p>
+        <div class="sep"></div>
+        <div class="prod-tags">
+          <span class="t dark">Insurance</span><span class="t">Rate Check</span><span class="t">Multi-State</span>
+        </div>
       </article>
-      <article class="card" style="background:#fff;border:1px solid #e5e7eb;color:#0f172a">
+
+      <article class="prod" data-cat="finance" data-tilt="1">
+        <div class="shine"></div>
+        <div class="picon">💰</div>
         <h3 class="m0">Personal Loans</h3>
-        <p class="mt8" style="color:#334155">Linking people to financial solutions for diverse expenses.</p>
+        <p>Links consumers to flexible financing for diverse expenses.</p>
+        <div class="sep"></div>
+        <div class="prod-tags">
+          <span class="t dark">Finance</span><span class="t">Soft Pull</span><span class="t">Fast Flow</span>
+        </div>
       </article>
-      <article class="card" style="background:#fff;border:1px solid #e5e7eb;color:#0f172a">
+
+      <article class="prod" data-cat="insurance" data-tilt="1">
+        <div class="shine"></div>
+        <div class="picon">🛡️</div>
         <h3 class="m0">Life Insurance</h3>
-        <p class="mt8" style="color:#334155">Various policies to protect loved ones.</p>
+        <p>Protect loved ones with tailored coverage options and quick eligibility paths.</p>
+        <div class="sep"></div>
+        <div class="prod-tags">
+          <span class="t dark">Insurance</span><span class="t">Term/Whole</span><span class="t">EN/ES</span>
+        </div>
       </article>
-      <article class="card" style="background:#fff;border:1px solid #e5e7eb;color:#0f172a">
+
+      <article class="prod" data-cat="commerce" data-tilt="1">
+        <div class="shine"></div>
+        <div class="picon">🛒</div>
         <h3 class="m0">E-commerce</h3>
-        <p class="mt8" style="color:#334155">Connecting consumers with platforms for personal and business needs.</p>
+        <p>Performance funnels that connect shoppers with products for personal and business needs.</p>
+        <div class="sep"></div>
+        <div class="prod-tags">
+          <span class="t dark">Commerce</span><span class="t">CRO</span><span class="t">A/B</span>
+        </div>
       </article>
     </div>
-    <p class="mt16 small" style="color:#334155">Content adapted from Click Venture site sections. :contentReference[oaicite:2]{index=2}</p>
   </section>
 
   <!-- TEAMS / CONTENT / COMMUNICATION / PARTNERS -->
-  <section class="section dark reveal">
+  <section class="section reveal">
     <h2 class="m0">How We Operate</h2>
     <div class="grid mt16">
-      <article class="card"><div class="icon">👥</div>
-        <h3 class="m0">Diversified Teams</h3>
-        <p class="mt8">Bilingual, platform-specific teams deliver consistent, high-quality results across lead generation and inbound calls.</p>
-      </article>
-      <article class="card"><div class="icon">🎬</div>
-        <h3 class="m0">Content Creation</h3>
-        <p class="mt8">Editors, designers, and in-house actors produce tailored content overseen by a dedicated Content Director.</p>
-      </article>
-      <article class="card"><div class="icon">💬</div>
-        <h3 class="m0">Communication</h3>
-        <p class="mt8">Regular, organized communication ensures top-level attention and rapid iteration for each client.</p>
-      </article>
+      <article class="card"><div class="icon">👥</div><h3 class="m0">Diversified Teams</h3><p class="mt8">Bilingual, platform-specific teams deliver consistent, high-quality results across lead generation and inbound calls.</p></article>
+      <article class="card"><div class="icon">🎬</div><h3 class="m0">Content Creation</h3><p class="mt8">Editors, designers, and in-house actors produce tailored content overseen by a dedicated Content Director.</p></article>
+      <article class="card"><div class="icon">💬</div><h3 class="m0">Communication</h3><p class="mt8">Regular, organized communication ensures top-level attention and rapid iteration for each client.</p></article>
     </div>
-    <p class="mt16 lead small">Daily platform partnerships include Google, Meta, Hulu, TikTok, X, and Taboola. :contentReference[oaicite:3]{index=3}</p>
   </section>
 
   <!-- CTA -->
@@ -297,6 +435,7 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;co
     <div style="display:flex;gap:16px;flex-wrap:wrap">
       <a href="#about" style="color:#cdd5ff;text-decoration:none">About</a>
       <a href="#services" style="color:#cdd5ff;text-decoration:none">Services</a>
+      <a href="#products" style="color:#cdd5ff;text-decoration:none">Products</a>
       <a href="#contact" style="color:#cdd5ff;text-decoration:none">Contact</a>
     </div>
   </footer>
@@ -315,6 +454,48 @@ window.addEventListener('pointermove',e=>{
   const {innerWidth:w,innerHeight:h}=window;
   const rx=(e.clientX-w/2)/w, ry=(e.clientY-h/2)/h;
   blobs.forEach((b,i)=>{const s=(i+1)*6; b.style.transform=`translate(${rx*s}px,${ry*s}px)`;});
+});
+
+/* Core Products: filter + tilt/shine */
+const chips = document.querySelectorAll('#prodChips .chip');
+const cards = document.querySelectorAll('#prodGrid .prod');
+
+chips.forEach(ch => ch.addEventListener('click', () => {
+  chips.forEach(c=>c.classList.remove('is-active'));
+  ch.classList.add('is-active');
+  const f = ch.dataset.filter;
+  cards.forEach(card=>{
+    const cat = card.dataset.cat;
+    const show = f==='all' || cat===f;
+    card.hidden = !show;
+  });
+}));
+
+/* Tilt + shine effect on hover */
+function handlePointer(e, card){
+  const rect = card.getBoundingClientRect();
+  const cx = rect.left + rect.width/2;
+  const cy = rect.top + rect.height/2;
+  const dx = (e.clientX - cx) / (rect.width/2);
+  const dy = (e.clientY - cy) / (rect.height/2);
+  const rx = (dy * -6).toFixed(2);
+  const ry = (dx * 6).toFixed(2);
+  card.style.setProperty('--rx', rx+'deg');
+  card.style.setProperty('--ry', ry+'deg');
+  const mx = ((e.clientX - rect.left)/rect.width*100).toFixed(2);
+  const my = ((e.clientY - rect.top)/rect.height*100).toFixed(2);
+  card.style.setProperty('--mx', mx+'%');
+  card.style.setProperty('--my', my+'%');
+}
+cards.forEach(card=>{
+  if(card.dataset.tilt!=='1') return;
+  card.addEventListener('pointermove', (e)=>handlePointer(e, card));
+  card.addEventListener('pointerleave', ()=>{
+    card.style.removeProperty('--rx');
+    card.style.removeProperty('--ry');
+    card.style.removeProperty('--mx');
+    card.style.removeProperty('--my');
+  });
 });
 </script>
 </body>
