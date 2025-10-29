@@ -2,16 +2,6 @@
 <!-- HTML + CSS only version (no JavaScript) -->
 <html lang="en">
   <head>
-    <link
-      rel="stylesheet"
-      href="https://resources.landerlab.io/css/styles.css"
-      landerlab-styles=""
-    />
-    <link
-      rel="stylesheet"
-      href="https://landerlab-quiz.pages.dev/style.css"
-      landerlab-styles=""
-    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
@@ -21,10 +11,7 @@
       href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
       data-ll-fonts="Roboto"
     />
-    <link
-      rel="stylesheet"
-      href="https://partnerpartner.mylanderlabpage3.com/pre1/style.css"
-    />
+
     <title>Page</title>
     <link rel="icon" href="" type="image/x-icon" />
 
@@ -62,7 +49,7 @@
         font-weight: 400;
       }
 
-      #iwi9 {
+      #header-bar {
         background-color: rgb(0, 51, 102);
         color: rgb(255, 255, 255);
         padding-top: 10px;
@@ -72,60 +59,102 @@
         border-bottom-color: rgb(200, 0, 20);
       }
 
-      #ihj1 {
-        object-fit: contain;
-        object-position: center center;
-        width: 212px;
-        height: 37px;
+      /* Brand logo - text based */
+      #brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
       }
 
-      #is6i {
+      #brand-name {
+        font-weight: 900;
+        font-size: 28px;
+        color: #ffffff;
+        letter-spacing: 1px;
+      }
+
+      #brand-badge {
+        background: #ffffff;
+        color: rgb(0, 51, 102);
+        font-weight: 900;
+        font-size: 22px;
+        padding: 4px 14px;
+        border-radius: 6px;
+        letter-spacing: 0.5px;
+      }
+
+      #header-container {
         align-items: center;
         flex-direction: row;
-        padding-top: 0px;
-        padding-bottom: 0px;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px;
+        /* margin: 0 auto; */
+        padding: 0 24px;
       }
 
-      #izh7 {
-        align-items: flex-end;
+      #header-heading-wrapper {
+        align-items: center;
       }
 
-      #i3wb {
-        font-weight: 300;
-        font-size: 24px;
+      #header-subtitle {
+        font-weight: 400;
+        font-size: 20px;
+        color: #ffffff;
+        margin: 0;
       }
 
-      #irmea {
+      #hero-section {
         padding-top: 20px;
         padding-bottom: 40px;
       }
 
-      #ik7uw {
+      #hero-container {
         padding-left: 200px;
         padding-right: 200px;
         row-gap: 0px;
         column-gap: 0px;
       }
 
-      #ik7xz {
+      #hero-title {
         font-size: 32px;
         line-height: 40px;
         text-align: left;
       }
 
-      #i1nhq {
+      #hero-image {
         margin-top: 20px;
       }
 
-      #i0vqg {
-        margin-top: 8px;
+      /* Shared body text styles */
+      #hero-intro,
+      #hero-paragraph1,
+      #hero-paragraph2,
+      #step1-text,
+      #step2-text,
+      #step3-text {
         width: 100%;
         font-size: 20px;
         line-height: 28px;
         font-weight: 300;
       }
 
-      #ifzwt {
+      /* Spacing variants */
+      #hero-intro {
+        margin-top: 20px;
+      }
+      #hero-paragraph1,
+      #hero-paragraph2,
+      #step1-text,
+      #step2-text,
+      #step3-text {
+        margin-top: 8px;
+      }
+
+      /* Shared question/heading styles */
+      #hero-question1,
+      #hero-question2,
+      #hero-howto-title {
         margin-top: 20px;
         width: 100%;
         line-height: 32px;
@@ -133,196 +162,159 @@
         font-size: 24px;
       }
 
-      #iuux4 {
+      .shimmer {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .shimmer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        animation: shimmer-slide 2s ease-in-out infinite;
+      }
+
+      @keyframes shimmer-slide {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+
+      #cta-button {
         margin-top: 20px;
         width: 100%;
-        font-size: 20px;
-        line-height: 28px;
-        font-weight: 300;
-      }
-
-      #izf9h {
-        margin-top: 8px;
-        width: 100%;
-        font-size: 20px;
-        line-height: 28px;
-        font-weight: 300;
-      }
-
-      #ifrlh {
-        margin-top: 8px;
-        width: 100%;
-        font-size: 20px;
-        line-height: 28px;
-        font-weight: 300;
-      }
-
-      #iozsl {
-        margin-top: 8px;
-        width: 100%;
-        font-size: 20px;
-        line-height: 28px;
-        font-weight: 300;
-      }
-
-      #ichai {
-        margin-top: 20px;
-        width: 100%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
         background-color: rgb(40, 176, 43);
         font-size: 24px;
         line-height: 32px;
         height: 72px;
         font-weight: 500;
+        text-decoration: none;
+        text-align: center;
+        color: #ffffff;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        position: relative;
       }
 
-      #ica9d {
+      #footer {
         background-color: rgb(34, 34, 34);
         padding-top: 40px;
         padding-bottom: 40px;
       }
 
-      #ipphj {
+      #footer-links-heading {
         font-size: 20px;
         font-weight: 600;
       }
 
-      #i92fh {
+      #step1-label,
+      #step2-label,
+      #step3-label {
         font-weight: 600;
       }
 
-      #ii3am {
-        font-weight: 600;
-      }
-
-      #imk5o {
-        font-weight: 600;
-      }
-
-      #i5o7o {
+      #footer-container {
         padding-top: 0px;
         padding-bottom: 0px;
       }
 
-      #i2fgp {
+      #footer-link-privacy,
+      #footer-link-terms,
+      #footer-link-contact {
         color: rgb(38, 107, 245);
         font-weight: 400;
-        row-gap: 0px;
-        column-gap: 0px;
+        font-size: 16px;
+      }
+      #footer-link-privacy {
         margin-right: 17px;
-        font-size: 16px;
       }
-
-      #imuo2 {
-        color: rgb(38, 107, 245);
-        font-weight: 400;
-        font-size: 16px;
-      }
-
-      #iaszo {
-        color: rgb(38, 107, 245);
-        font-weight: 400;
+      #footer-link-terms {
         margin-right: 18px;
-        font-size: 16px;
       }
 
-      #ierjy {
+      #footer-links-wrapper {
         align-items: flex-start;
       }
 
-      #iggti {
+      #footer-disclaimer {
         font-size: 16px;
         font-weight: 100;
         line-height: 28px;
         color: rgb(255, 255, 255);
       }
 
-      #isfx1 {
-        margin-top: 8px;
-        width: 100%;
-        font-size: 20px;
-        line-height: 28px;
-        font-weight: 300;
-      }
-
-      #ihviy {
-        margin-top: 20px;
-        width: 100%;
-        line-height: 32px;
-        font-weight: 700;
-        font-size: 24px;
-      }
-
-      #ie4b7 {
-        margin-top: 20px;
-        width: 100%;
-        line-height: 32px;
-        font-weight: 700;
-        font-size: 24px;
-      }
+      /* (Removed duplicate individual blocks consolidated above) */
 
       @media (max-width: 992px) {
-        #ik7uw {
+        #hero-container {
           padding-left: 80px;
           padding-right: 80px;
         }
       }
 
       @media (max-width: 576px) {
-        #ik7uw {
+        #hero-container {
           padding-left: 10px;
           padding-right: 10px;
           padding-top: 0px;
         }
-        #ik7xz {
+        #hero-title {
           font-size: 24px;
           line-height: 32px;
         }
-        #iuux4 {
+        #hero-intro,
+        #hero-paragraph1,
+        #hero-paragraph2,
+        #step1-text,
+        #step2-text,
+        #step3-text {
           font-size: 18px;
         }
-        #ifzwt {
+        #hero-question1,
+        #hero-question2,
+        #hero-howto-title {
           font-size: 20px;
         }
-        #i0vqg {
-          font-size: 18px;
-        }
-        #izf9h {
-          font-size: 18px;
-        }
-        #iozsl {
-          font-size: 18px;
-        }
-        #ifrlh {
-          font-size: 18px;
-        }
-        #iggti {
+        #footer-disclaimer {
           font-size: 14px;
         }
-        #ihj1 {
-          width: 190px;
+        #brand-name {
+          font-size: 22px;
         }
-        #i3wb {
-          font-size: 20px;
+        #brand-badge {
+          font-size: 18px;
+          padding: 3px 10px;
         }
-        #isfx1 {
+        #header-subtitle {
           font-size: 18px;
         }
-        #ihviy {
-          font-size: 20px;
-        }
-        #iw55o {
+        #perfect-highlight {
           color: #08b420ff;
         }
-        #i5inl {
+        #seconds-highlight {
           color: #08b420ff;
         }
-        #ie4b7 {
-          font-size: 20px;
-        }
-        #i9kxj {
+        #hero-title-highlight {
           color: #08b420ff;
         }
-        #irmea {
+        #hero-section {
           padding-top: 14px;
         }
       }
@@ -330,32 +322,29 @@
   </head>
 
   <body class="">
-    <noscript landerlab-script landerlab-pixel>
-      <img
-        height="1"
-        width="1"
-        stype="display:none"
-        src="https://track.landerlab.io/cf/p/68fc98214a452a00123c915b?lander_id=0d2bb68b98bd5246fe99a698c9a3aa3e&uid=271f17707d8bfd2cd45f7e5182298703&variant_id=cd6aa55b460d9557c1d3f742a7b98261"
-      />
-    </noscript>
-
-    <section id="iwi9" data-gjs-type="section" class="ll-section empty-section">
+    <section
+      id="header-bar"
+      data-gjs-type="section"
+      class="ll-section empty-section"
+    >
       <div
-        id="is6i"
+        id="header-container"
         data-gjs-type="container"
         class="ll-container empty-section--container"
       >
-        <span id="iebp" data-gjs-type="text"> </span
-        ><img
-          id="ihj1"
-          data-gjs-type="image"
-          src="https://partnerpartner.mylanderlabpage3.com/pre1/a59a4467-151a-429a-07ec-ca47f62a2200.webp"
-          alt="Image"
-          class="ll-image"
-        />
-        <div id="izh7" data-gjs-type="div" class="ll-empty-block">
+        <div id="brand">
+          <img src="secc.png" alt="Logo" class="ll-image" />
+        </div>
+        <div
+          id="header-heading-wrapper"
+          data-gjs-type="div"
+          class="ll-empty-block"
+        >
           <h1
-            id="i3wb"
+            id="header-subtitle"
+            data-gjs-type="heading"
+            aria-readonly="false"
+            spellcheck="false"
             data-gjs-type="heading"
             aria-readonly="false"
             spellcheck="false"
@@ -367,17 +356,17 @@
       </div>
     </section>
     <section
-      id="irmea"
+      id="hero-section"
       data-gjs-type="section"
       class="ll-section empty-section"
     >
       <div
-        id="ik7uw"
+        id="hero-container"
         data-gjs-type="container"
         class="ll-container empty-section--container"
       >
         <h1
-          id="ik7xz"
+          id="hero-title"
           data-gjs-type="heading"
           aria-readonly="false"
           spellcheck="false"
@@ -385,7 +374,7 @@
         >
           Americans Over 50 Are Securing
           <span
-            id="i9kxj"
+            id="hero-title-highlight"
             data-gjs-type="style-block"
             styling-block-element="true"
             class=""
@@ -394,21 +383,20 @@
           So Their Loved Ones Never Have to Pay for Their Goodbye.
         </h1>
         <img
-          id="i1nhq"
+          id="hero-image"
           data-gjs-type="image"
           src="img1.webp"
           alt="Image"
           class="ll-image"
         />
-        <p id="iuux4" data-gjs-type="text" class="ll-default-text">
-          <i id="i179o" data-gjs-type="text"
+        <p id="hero-intro" class="ll-default-text">
+          <i id="i179o"
             >One simple step to make sure your family never has to worry about
             funeral costs.</i
           >
         </p>
         <p
-          id="ifzwt"
-          data-gjs-type="text"
+          id="hero-question1"
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
@@ -416,8 +404,7 @@
           Why Do I Need To Claim The $25,000 Funeral Benefit Coverage?
         </p>
         <p
-          id="i0vqg"
-          data-gjs-type="text"
+          id="hero-paragraph1"
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
@@ -435,15 +422,14 @@
           matters most.
         </p>
         <p
-          id="ihviy"
-          data-gjs-type="text"
+          id="hero-question2"
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
         >
           Why Is $25,000 Funeral Benefit Coverage the
           <span
-            id="iw55o"
+            id="perfect-highlight"
             data-gjs-type="style-block"
             styling-block-element="true"
             class=""
@@ -451,13 +437,7 @@
           >
           Solution?
         </p>
-        <p
-          id="isfx1"
-          data-gjs-type="text"
-          aria-readonly="false"
-          spellcheck="false"
-          class="ll-default-text"
-        >
+        <p id="hero-paragraph2" class="ll-default-text">
           Funeral Benefit Coverage is a simple type of life insurance that helps
           cover all final expenses — including funeral costs, medical bills, and
           unpaid debts.<br id="iutzf" data-gjs-type="default" /><br
@@ -471,7 +451,7 @@
           /><br id="iweos" data-gjs-type="default" />Most people qualify in
           <b id="io2sf" data-gjs-type="default"
             ><span
-              id="i5inl"
+              id="seconds-highlight"
               data-gjs-type="style-block"
               styling-block-element="true"
               class=""
@@ -489,8 +469,7 @@
           paying.
         </p>
         <p
-          id="ie4b7"
-          data-gjs-type="text"
+          id="hero-howto-title"
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
@@ -498,75 +477,63 @@
           How To Claim The $25,000 Funeral Benefit Coverage?
         </p>
         <p
-          id="izf9h"
-          data-gjs-type="text"
+          id="step1-text"
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
         >
-          <b id="i92fh" data-gjs-type="text">Step 1)</b> Click the button below
+          <b id="step1-label">Step 1)</b> Click the button below
         </p>
         <p
-          id="iozsl"
-          data-gjs-type="text"
+          id="step2-text"
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
         >
-          <b id="ii3am" data-gjs-type="text">Step 2)</b> Answer a few questions
+          <b id="step2-label">Step 2)</b> Answer a few questions
         </p>
-        <p
-          id="ifrlh"
-          data-gjs-type="text"
-          aria-readonly="false"
-          spellcheck="false"
-          class="ll-default-text"
-        >
-          <b id="imk5o" data-gjs-type="text">Step 3) </b>See if you are eligible
-        </p>
+        <p id="step3-text" class="ll-default-text">See if you are eligible</p>
         <a
-          id="ichai"
-          data-gjs-type="link"
-          href="https://landerlab.io"
-          class="ll-btn"
+          id="cta-button"
+          href="https://www.policybenefits.org/englf3"
+          class="ll-btn shimmer"
           >See If You Are Eligble</a
         >
       </div>
     </section>
     <section
-      id="ica9d"
+      id="footer"
       data-gjs-type="section"
       class="ll-section empty-section"
     >
       <div
-        id="i5o7o"
+        id="footer-container"
         data-gjs-type="container"
         class="ll-container empty-section--container"
       >
-        <div id="ierjy" data-gjs-type="div" class="ll-empty-block">
+        <div
+          id="footer-links-wrapper"
+          data-gjs-type="div"
+          class="ll-empty-block"
+        >
           <h1
-            id="ipphj"
+            id="footer-links-heading"
             data-gjs-type="heading"
             aria-readonly="false"
             spellcheck="false"
             class="ll-default-heading"
           >
-            <a
-              id="i2fgp"
-              data-gjs-type="link"
-              href="https://landerlab.io/"
-              class=""
+            <a id="footer-link-privacy" data-gjs-type="link" href="" class=""
               >Privacy And Policy</a
-            ><a id="iaszo" data-gjs-type="link" href="https://landerlab.io/"
+            ><a id="footer-link-terms" data-gjs-type="link" href=""
               >Terms of Use</a
-            ><a id="imuo2" data-gjs-type="link" href="https://landerlab.io/"
+            ><a id="footer-link-contact" data-gjs-type="link" href=""
               >Contact Us</a
             >
           </h1>
         </div>
         <p
-          id="iggti"
-          data-gjs-type="text"
+          id="footer-disclaimer"
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"

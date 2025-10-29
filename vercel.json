@@ -107,6 +107,10 @@
       {
         "source": "engtrk",
         "destination": "/newest.html"
+      },
+      {
+        "source": "/prelan1",
+        "destination": "/prelan1.html"
       }
     ]
   }
