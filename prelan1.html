@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<!-- HTML + CSS only version (no JavaScript) -->
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://resources.landerlab.io/css/styles.css"
+      landerlab-styles=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://landerlab-quiz.pages.dev/style.css"
+      landerlab-styles=""
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      data-ll-fonts="Roboto"
+    />
+    <link
+      rel="stylesheet"
+      href="https://partnerpartner.mylanderlabpage3.com/pre1/style.css"
+    />
+    <title>Page</title>
+    <link rel="icon" href="" type="image/x-icon" />
+
+    <style>
+      .empty-section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+
+      .empty-section--container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10px;
+        column-gap: 10px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+
+      * {
+        max-width: unset;
+      }
+
+      body {
+        font-family: Roboto !important;
+      }
+
+      [data-gjs-type="heading"] {
+        font-family: Roboto;
+        font-weight: 700;
+      }
+
+      [data-gjs-type="text"] {
+        font-family: Roboto;
+        font-weight: 400;
+      }
+
+      #iwi9 {
+        background-color: rgb(0, 51, 102);
+        color: rgb(255, 255, 255);
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        border-bottom-color: rgb(200, 0, 20);
+      }
+
+      #ihj1 {
+        object-fit: contain;
+        object-position: center center;
+        width: 212px;
+        height: 37px;
+      }
+
+      #is6i {
+        align-items: center;
+        flex-direction: row;
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+
+      #izh7 {
+        align-items: flex-end;
+      }
+
+      #i3wb {
+        font-weight: 300;
+        font-size: 24px;
+      }
+
+      #irmea {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      #ik7uw {
+        padding-left: 200px;
+        padding-right: 200px;
+        row-gap: 0px;
+        column-gap: 0px;
+      }
+
+      #ik7xz {
+        font-size: 32px;
+        line-height: 40px;
+        text-align: left;
+      }
+
+      #i1nhq {
+        margin-top: 20px;
+      }
+
+      #i0vqg {
+        margin-top: 8px;
+        width: 100%;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 300;
+      }
+
+      #ifzwt {
+        margin-top: 20px;
+        width: 100%;
+        line-height: 32px;
+        font-weight: 700;
+        font-size: 24px;
+      }
+
+      #iuux4 {
+        margin-top: 20px;
+        width: 100%;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 300;
+      }
+
+      #izf9h {
+        margin-top: 8px;
+        width: 100%;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 300;
+      }
+
+      #ifrlh {
+        margin-top: 8px;
+        width: 100%;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 300;
+      }
+
+      #iozsl {
+        margin-top: 8px;
+        width: 100%;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 300;
+      }
+
+      #ichai {
+        margin-top: 20px;
+        width: 100%;
+        background-color: rgb(40, 176, 43);
+        font-size: 24px;
+        line-height: 32px;
+        height: 72px;
+        font-weight: 500;
+      }
+
+      #ica9d {
+        background-color: rgb(34, 34, 34);
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      #ipphj {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      #i92fh {
+        font-weight: 600;
+      }
+
+      #ii3am {
+        font-weight: 600;
+      }
+
+      #imk5o {
+        font-weight: 600;
+      }
+
+      #i5o7o {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+
+      #i2fgp {
+        color: rgb(38, 107, 245);
+        font-weight: 400;
+        row-gap: 0px;
+        column-gap: 0px;
+        margin-right: 17px;
+        font-size: 16px;
+      }
+
+      #imuo2 {
+        color: rgb(38, 107, 245);
+        font-weight: 400;
+        font-size: 16px;
+      }
+
+      #iaszo {
+        color: rgb(38, 107, 245);
+        font-weight: 400;
+        margin-right: 18px;
+        font-size: 16px;
+      }
+
+      #ierjy {
+        align-items: flex-start;
+      }
+
+      #iggti {
+        font-size: 16px;
+        font-weight: 100;
+        line-height: 28px;
+        color: rgb(255, 255, 255);
+      }
+
+      #isfx1 {
+        margin-top: 8px;
+        width: 100%;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 300;
+      }
+
+      #ihviy {
+        margin-top: 20px;
+        width: 100%;
+        line-height: 32px;
+        font-weight: 700;
+        font-size: 24px;
+      }
+
+      #ie4b7 {
+        margin-top: 20px;
+        width: 100%;
+        line-height: 32px;
+        font-weight: 700;
+        font-size: 24px;
+      }
+
+      @media (max-width: 992px) {
+        #ik7uw {
+          padding-left: 80px;
+          padding-right: 80px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        #ik7uw {
+          padding-left: 10px;
+          padding-right: 10px;
+          padding-top: 0px;
+        }
+        #ik7xz {
+          font-size: 24px;
+          line-height: 32px;
+        }
+        #iuux4 {
+          font-size: 18px;
+        }
+        #ifzwt {
+          font-size: 20px;
+        }
+        #i0vqg {
+          font-size: 18px;
+        }
+        #izf9h {
+          font-size: 18px;
+        }
+        #iozsl {
+          font-size: 18px;
+        }
+        #ifrlh {
+          font-size: 18px;
+        }
+        #iggti {
+          font-size: 14px;
+        }
+        #ihj1 {
+          width: 190px;
+        }
+        #i3wb {
+          font-size: 20px;
+        }
+        #isfx1 {
+          font-size: 18px;
+        }
+        #ihviy {
+          font-size: 20px;
+        }
+        #iw55o {
+          color: #08b420ff;
+        }
+        #i5inl {
+          color: #08b420ff;
+        }
+        #ie4b7 {
+          font-size: 20px;
+        }
+        #i9kxj {
+          color: #08b420ff;
+        }
+        #irmea {
+          padding-top: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="">
+    <noscript landerlab-script landerlab-pixel>
+      <img
+        height="1"
+        width="1"
+        stype="display:none"
+        src="https://track.landerlab.io/cf/p/68fc98214a452a00123c915b?lander_id=0d2bb68b98bd5246fe99a698c9a3aa3e&uid=271f17707d8bfd2cd45f7e5182298703&variant_id=cd6aa55b460d9557c1d3f742a7b98261"
+      />
+    </noscript>
+
+    <section id="iwi9" data-gjs-type="section" class="ll-section empty-section">
+      <div
+        id="is6i"
+        data-gjs-type="container"
+        class="ll-container empty-section--container"
+      >
+        <span id="iebp" data-gjs-type="text"> </span
+        ><img
+          id="ihj1"
+          data-gjs-type="image"
+          src="https://partnerpartner.mylanderlabpage3.com/pre1/a59a4467-151a-429a-07ec-ca47f62a2200.webp"
+          alt="Image"
+          class="ll-image"
+        />
+        <div id="izh7" data-gjs-type="div" class="ll-empty-block">
+          <h1
+            id="i3wb"
+            data-gjs-type="heading"
+            aria-readonly="false"
+            spellcheck="false"
+            class="ll-default-heading"
+          >
+            Advertorial
+          </h1>
+        </div>
+      </div>
+    </section>
+    <section
+      id="irmea"
+      data-gjs-type="section"
+      class="ll-section empty-section"
+    >
+      <div
+        id="ik7uw"
+        data-gjs-type="container"
+        class="ll-container empty-section--container"
+      >
+        <h1
+          id="ik7xz"
+          data-gjs-type="heading"
+          aria-readonly="false"
+          spellcheck="false"
+          class="ll-default-heading"
+        >
+          Americans Over 50 Are Securing
+          <span
+            id="i9kxj"
+            data-gjs-type="style-block"
+            styling-block-element="true"
+            class=""
+            >$25,000 Funeral Benefit Coverage</span
+          >
+          So Their Loved Ones Never Have to Pay for Their Goodbye.
+        </h1>
+        <img
+          id="i1nhq"
+          data-gjs-type="image"
+          src="img1.webp"
+          alt="Image"
+          class="ll-image"
+        />
+        <p id="iuux4" data-gjs-type="text" class="ll-default-text">
+          <i id="i179o" data-gjs-type="text"
+            >One simple step to make sure your family never has to worry about
+            funeral costs.</i
+          >
+        </p>
+        <p
+          id="ifzwt"
+          data-gjs-type="text"
+          aria-readonly="false"
+          spellcheck="false"
+          class="ll-default-text"
+        >
+          Why Do I Need To Claim The $25,000 Funeral Benefit Coverage?
+        </p>
+        <p
+          id="i0vqg"
+          data-gjs-type="text"
+          aria-readonly="false"
+          spellcheck="false"
+          class="ll-default-text"
+        >
+          When someone passes, the emotional pain is only the beginning.<br
+            id="ik94q"
+            data-gjs-type="default"
+          />Within days, families are asked to pay $8,000 to $15,000 just to say
+          goodbye - often using credit cards, loans, or savings meant for
+          something else.<br id="ibzdg" data-gjs-type="default" /><br
+            id="ig7cd"
+            data-gjs-type="default"
+          />That’s exactly why so many Americans are now claiming their Funeral
+          Benefit Coverage - a plan built to take care of everything when it
+          matters most.
+        </p>
+        <p
+          id="ihviy"
+          data-gjs-type="text"
+          aria-readonly="false"
+          spellcheck="false"
+          class="ll-default-text"
+        >
+          Why Is $25,000 Funeral Benefit Coverage the
+          <span
+            id="iw55o"
+            data-gjs-type="style-block"
+            styling-block-element="true"
+            class=""
+            >PERFECT</span
+          >
+          Solution?
+        </p>
+        <p
+          id="isfx1"
+          data-gjs-type="text"
+          aria-readonly="false"
+          spellcheck="false"
+          class="ll-default-text"
+        >
+          Funeral Benefit Coverage is a simple type of life insurance that helps
+          cover all final expenses — including funeral costs, medical bills, and
+          unpaid debts.<br id="iutzf" data-gjs-type="default" /><br
+            id="ihbqd"
+            data-gjs-type="default"
+          />It’s specifically designed for adults 50 and older, and unlike
+          traditional insurance,<br id="imnx3" data-gjs-type="default" />there
+          are no medical exams, no long forms, and no waiting periods.<br
+            id="i7z1t"
+            data-gjs-type="default"
+          /><br id="iweos" data-gjs-type="default" />Most people qualify in
+          <b id="io2sf" data-gjs-type="default"
+            ><span
+              id="i5inl"
+              data-gjs-type="style-block"
+              styling-block-element="true"
+              class=""
+              >just 60 seconds</span
+            >,</b
+          >
+          and coverage can go up to $25,000, paid directly to your family — so
+          they never have to stress about money during a time of grief.<br
+            id="itqs8"
+            data-gjs-type="default"
+          /><br id="ije6h" data-gjs-type="default" />It’s not about money.<br
+            id="ifpgv"
+            data-gjs-type="default"
+          />It’s about making sure the people you love can focus on healing, not
+          paying.
+        </p>
+        <p
+          id="ie4b7"
+          data-gjs-type="text"
+          aria-readonly="false"
+          spellcheck="false"
+          class="ll-default-text"
+        >
+          How To Claim The $25,000 Funeral Benefit Coverage?
+        </p>
+        <p
+          id="izf9h"
+          data-gjs-type="text"
+          aria-readonly="false"
+          spellcheck="false"
+          class="ll-default-text"
+        >
+          <b id="i92fh" data-gjs-type="text">Step 1)</b> Click the button below
+        </p>
+        <p
+          id="iozsl"
+          data-gjs-type="text"
+          aria-readonly="false"
+          spellcheck="false"
+          class="ll-default-text"
+        >
+          <b id="ii3am" data-gjs-type="text">Step 2)</b> Answer a few questions
+        </p>
+        <p
+          id="ifrlh"
+          data-gjs-type="text"
+          aria-readonly="false"
+          spellcheck="false"
+          class="ll-default-text"
+        >
+          <b id="imk5o" data-gjs-type="text">Step 3) </b>See if you are eligible
+        </p>
+        <a
+          id="ichai"
+          data-gjs-type="link"
+          href="https://landerlab.io"
+          class="ll-btn"
+          >See If You Are Eligble</a
+        >
+      </div>
+    </section>
+    <section
+      id="ica9d"
+      data-gjs-type="section"
+      class="ll-section empty-section"
+    >
+      <div
+        id="i5o7o"
+        data-gjs-type="container"
+        class="ll-container empty-section--container"
+      >
+        <div id="ierjy" data-gjs-type="div" class="ll-empty-block">
+          <h1
+            id="ipphj"
+            data-gjs-type="heading"
+            aria-readonly="false"
+            spellcheck="false"
+            class="ll-default-heading"
+          >
+            <a
+              id="i2fgp"
+              data-gjs-type="link"
+              href="https://landerlab.io/"
+              class=""
+              >Privacy And Policy</a
+            ><a id="iaszo" data-gjs-type="link" href="https://landerlab.io/"
+              >Terms of Use</a
+            ><a id="imuo2" data-gjs-type="link" href="https://landerlab.io/"
+              >Contact Us</a
+            >
+          </h1>
+        </div>
+        <p
+          id="iggti"
+          data-gjs-type="text"
+          aria-readonly="false"
+          spellcheck="false"
+          class="ll-default-text"
+        >
+          *Not all plans or benefits are universally available. The availability
+          of carriers, products, and benefits is contingent on your resident zip
+          code. We recommend consulting a licensed insurance agent to identify
+          plans accessible in your area, keeping in mind that limitations and
+          exclusions may apply. Our advertisers do not offer every plan
+          available in your area. Any information, savings, benefits or price
+          quotations listed may not be applicable in your location or if certain
+          requirements are not met. Additionally, our advertisers may have
+          additional qualification requirements.<br
+            id="iht0g"
+            data-gjs-type="default"
+          /><br id="ib75z" data-gjs-type="default" />
+          Enrollment in the described plan type may be limited to certain times
+          of year unless you qualify for a special enrollment period.<br
+            id="ig9ol"
+            data-gjs-type="default"
+          /><br id="i59ab" data-gjs-type="default" />
+          This website is not affiliated with or endorsed by the United States
+          government or the federal Medicare program. Instead, it serves as a
+          platform providing referrals to representatives of licensed insurance
+          organizations. When completing the contact form, you will be directed
+          to a licensed insurance agent capable of addressing your queries and
+          providing information on Medicare Advantage plans. Importantly, there
+          is no obligation to enroll.
+          <br id="i78l2" data-gjs-type="default" /><br
+            id="isl7o"
+            data-gjs-type="default"
+          />
+          We do not offer every plan available in your area. Currently we
+          represent [73] organizations which offer [5110] products in your area.
+          Please contact Medicare.gov or 1-800-MEDICARE , or your local State
+          Health Insurance Program (SHIP) to get information on all of your
+          options. Please note that these numbers provided are not specific to
+          your area but rather represent the number of organizations and the
+          number of products available on a national basis. We will connect you
+          with licensed insurance agents who can provide information about the
+          number of organizations they represent and the number of products they
+          offer in your service area.<br
+            id="iw489"
+            data-gjs-type="default"
+          /><br id="iuq69" data-gjs-type="default" />
+          For comprehensive information on all your options, we recommend
+          contacting Medicare.gov at 1-800-MEDICARE or your local State Health
+          Insurance Program. To address any complaints with Medicare, call
+          1-800-MEDICARE (TTY users should call 1-877-486-2048), available 24/7.
+          If your grievance involves a broker or agent, please include their
+          name when filing your complaint.By utilizing this webpage, you confirm
+          that you have read and agree to the Terms of Use and Privacy Policy
+          outlined herein.
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
