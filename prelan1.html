@@ -39,12 +39,12 @@
         font-family: Roboto !important;
       }
 
-      [data-gjs-type="heading"] {
+      [font-family="heading"] {
         font-family: Roboto;
         font-weight: 700;
       }
 
-      [data-gjs-type="text"] {
+      [font-family="text"] {
         font-family: Roboto;
         font-weight: 400;
       }
@@ -66,21 +66,9 @@
         gap: 12px;
       }
 
-      #brand-name {
-        font-weight: 900;
-        font-size: 28px;
-        color: #ffffff;
-        letter-spacing: 1px;
-      }
-
-      #brand-badge {
-        background: #ffffff;
-        color: rgb(0, 51, 102);
-        font-weight: 900;
-        font-size: 22px;
-        padding: 4px 14px;
-        border-radius: 6px;
-        letter-spacing: 0.5px;
+      #brand img {
+        height: 36px;
+        width: auto;
       }
 
       #header-container {
@@ -275,6 +263,9 @@
           padding-right: 10px;
           padding-top: 0px;
         }
+        #brand img {
+          height: 28px;
+        }
         #hero-title {
           font-size: 24px;
           line-height: 32px;
@@ -333,7 +324,7 @@
         class="ll-container empty-section--container"
       >
         <div id="brand">
-          <img src="secc.png" alt="Logo" class="ll-image" />
+          <img src="pblogo.png" alt="Logo" class="ll-image" />
         </div>
         <div
           id="header-heading-wrapper"
@@ -349,6 +340,7 @@
             aria-readonly="false"
             spellcheck="false"
             class="ll-default-heading"
+            font-family="heading"
           >
             Advertorial
           </h1>
@@ -371,6 +363,7 @@
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-heading"
+          font-family="heading"
         >
           Americans Over 50 Are Securing
           <span
@@ -389,7 +382,7 @@
           alt="Image"
           class="ll-image"
         />
-        <p id="hero-intro" class="ll-default-text">
+        <p id="hero-intro" class="ll-default-text" font-family="text">
           <i id="i179o"
             >One simple step to make sure your family never has to worry about
             funeral costs.</i
@@ -400,6 +393,7 @@
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
+          font-family="heading"
         >
           Why Do I Need To Claim The $25,000 Funeral Benefit Coverage?
         </p>
@@ -408,6 +402,7 @@
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
+          font-family="text"
         >
           When someone passes, the emotional pain is only the beginning.<br
             id="ik94q"
@@ -437,7 +432,7 @@
           >
           Solution?
         </p>
-        <p id="hero-paragraph2" class="ll-default-text">
+        <p id="hero-paragraph2" class="ll-default-text" font-family="text">
           Funeral Benefit Coverage is a simple type of life insurance that helps
           cover all final expenses — including funeral costs, medical bills, and
           unpaid debts.<br id="iutzf" data-gjs-type="default" /><br
@@ -473,6 +468,7 @@
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
+          font-family="heading"
         >
           How To Claim The $25,000 Funeral Benefit Coverage?
         </p>
@@ -481,6 +477,7 @@
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
+          font-family="text"
         >
           <b id="step1-label">Step 1)</b> Click the button below
         </p>
@@ -489,10 +486,13 @@
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
+          font-family="text"
         >
           <b id="step2-label">Step 2)</b> Answer a few questions
         </p>
-        <p id="step3-text" class="ll-default-text">See if you are eligible</p>
+        <p id="step3-text" class="ll-default-text" font-family="text">
+          See if you are eligible
+        </p>
         <a
           id="cta-button"
           href="https://www.policybenefits.org/englf3"
@@ -522,6 +522,7 @@
             aria-readonly="false"
             spellcheck="false"
             class="ll-default-heading"
+            font-family="heading"
           >
             <a id="footer-link-privacy" data-gjs-type="link" href="" class=""
               >Privacy And Policy</a
@@ -537,6 +538,7 @@
           aria-readonly="false"
           spellcheck="false"
           class="ll-default-text"
+          font-family="text"
         >
           *Not all plans or benefits are universally available. The availability
           of carriers, products, and benefits is contingent on your resident zip
