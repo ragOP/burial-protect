@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClickVS — Automate, Analyze, Accelerate</title>
+    <meta
+      name="description"
+      content="ClickVS: Modern platform to automate workflows, analyze performance, and accelerate growth with AI-driven insights."
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root{
+        /* Light palette */
+        --bg: #f7fafc;                  /* page background */
+        --bg-soft:#ffffff;              /* surfaces */
+        --card:#ffffff;
+        --text:#0f172a;                 /* slate-900 */
+        --muted:#64748b;                /* slate-500 */
+        --brand:#3a97ff;                /* requested */
+        --brand-2:#79c1ff;              /* supporting tint */
+        --accent:#12b981;               /* green tick */
+        --danger:#ff5470;
+
+        --glass: rgba(58,151,255,0.06);
+        --glass-stroke: rgba(15,23,42,0.08);
+        --shadow: 0 10px 30px rgba(2,6,23,0.08);
+        --shadow-strong: 0 16px 40px rgba(2,6,23,0.12);
+
+        --radius: 18px;
+        --radius-lg: 26px;
+        --radius-sm: 12px;
+        --maxw: 1200px;
+      }
+
+      *{ box-sizing:border-box; }
+      html,body{
+        margin:0; padding:0;
+        background:var(--bg);
+        color:var(--text);
+        font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+        scroll-behavior:smooth;
+      }
+      a{ color:inherit; text-decoration:none; }
+      img{ max-width:100%; display:block; }
+      .container{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 20px; }
+
+      /* Light gradient background */
+      .page-bg{
+        position:fixed; inset:0; z-index:-2;
+        background:
+          radial-gradient(1200px 600px at 70% -10%, rgba(58,151,255,0.18), transparent 60%),
+          radial-gradient(900px 600px at -10% 10%, rgba(121,193,255,0.18), transparent 60%),
+          radial-gradient(900px 600px at 100% 90%, rgba(18,185,129,0.10), transparent 60%),
+          linear-gradient(180deg, #f9fbff 0%, #f7fafc 40%, #f7fafc 100%);
+        filter:saturate(1.05);
+      }
+
+      /* Floating blobs (very soft for light UI) */
+      .blob{
+        position:fixed; z-index:-1; border-radius:50%; filter:blur(60px);
+        opacity:.6; pointer-events:none; animation:float 20s ease-in-out infinite; mix-blend-mode:multiply;
+      }
+      .blob.b1{ width:420px; height:420px; background:#a1cfff; top:10vh; left:5vw; animation-delay:0s; }
+      .blob.b2{ width:360px; height:360px; background:#d1ecff; bottom:10vh; right:8vw; animation-delay:2s; }
+      .blob.b3{ width:300px; height:300px; background:#c9ffe9; top:55vh; left:40vw; animation-delay:4s; }
+      @keyframes float{ 0%,100%{transform:translateY(0) translateX(0);} 50%{transform:translateY(-25px) translateX(15px);} }
+
+      /* Navbar (light glass) */
+      .nav{
+        position:sticky; top:0; z-index:50;
+        backdrop-filter: blur(14px);
+        background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(255,255,255,0.66));
+        border-bottom:1px solid var(--glass-stroke);
+      }
+      .nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:68px; }
+      .brand{ display:flex; gap:12px; align-items:center; font-weight:800; letter-spacing:.2px; }
+      .brand .logo img{ height:34px; width:auto; object-fit:contain; display:block; }
+      .nav-links{ display:flex; gap:18px; align-items:center; }
+      .nav-links a{ color:var(--muted); font-weight:600; }
+      .nav-links a:hover{ color:var(--text); }
+
+      .btn{
+        display:inline-flex; align-items:center; justify-content:center; gap:10px;
+        padding:12px 18px; border-radius:14px; font-weight:800; border:1px solid transparent;
+        transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+        cursor:pointer; user-select:none;
+      }
+      .btn:hover{ transform:translateY(-1px); }
+      .btn:active{ transform:translateY(0); }
+      .btn-primary{
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        color:#fff; border-color: rgba(58,151,255,0.28); box-shadow: var(--shadow-strong);
+      }
+      .btn-ghost{
+        background:#ffffff; border-color:var(--glass-stroke); color:var(--text);
+      }
+      .btn-ghost:hover{ background:#f1f5f9; }
+
+      /* Hero */
+      .hero{ padding:88px 0 40px; position:relative; overflow:hidden; }
+      .hero-grid{ display:grid; grid-template-columns: 1.2fr 1fr; gap:40px; align-items:center; }
+      .title{ font-size:clamp(36px,6vw,64px); line-height:1.05; margin:14px 0 12px; font-weight:900; letter-spacing:-.02em; }
+      .subtitle{ font-size:clamp(16px,2.4vw,19px); color:#334155; max-width:56ch; }
+      .badges{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+      .badge{
+        padding:6px 10px; border-radius:30px; background:rgba(58,151,255,0.10);
+        border:1px solid rgba(58,151,255,0.28); color:#0f172a; font-weight:700; font-size:12px;
+      }
+
+      /* Sections + cards */
+      .section{ padding:80px 0; }
+      .kicker{
+        color:var(--muted); text-align:center; font-weight:900; letter-spacing:.14em;
+        text-transform:uppercase; font-size:28px;
+      }
+      .h2{ font-size:clamp(24px,4.5vw,32px); text-align:center; line-height:1.15; margin:6px 0 10px; font-weight:900; }
+      .lead{ color:#334155; max-width:68ch; }
+
+      .grid{ display:grid; gap:20px; }
+      .grid.cols-3{ grid-template-columns: repeat(3,1fr); }
+      .grid.cols-4{ grid-template-columns: repeat(4,1fr); }
+
+      .card{
+        background: linear-gradient(180deg, #ffffff, #ffffff);
+        border:1px solid var(--glass-stroke);
+        border-radius:var(--radius);
+        padding:22px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+      }
+      .card .icon{
+        width:44px; height:44px; border-radius:12px; display:grid; place-items:center; margin-bottom:10px;
+        background:linear-gradient(135deg, rgba(58,151,255,0.18), rgba(121,193,255,0.18));
+        border:1px solid rgba(58,151,255,0.25); color:#0f172a;
+      }
+      .card h3{ margin:6px 0 8px; font-size:18px; }
+      .card p{ color:#475569; font-size:14px; line-height:1.65; }
+      .card:hover{ border-color:rgba(58,151,255,0.35); box-shadow: var(--shadow-strong); }
+      .tick{ color:var(--accent); margin-right:8px; }
+
+      /* Mockpiece */
+      .mock{
+        border-radius:var(--radius-lg);
+        background:#ffffff;
+        border:1px solid var(--glass-stroke);
+        box-shadow:var(--shadow-strong); overflow:hidden;
+      }
+      .mock-top{
+        display:flex; align-items:center; gap:10px; padding:12px 16px;
+        border-bottom:1px solid var(--glass-stroke); background:linear-gradient(180deg,#f8fbff,#f1f7ff);
+      }
+      .dot{ width:10px; height:10px; border-radius:50%; background:#ef4444; }
+      .dot.y{ background:#f59e0b; }
+      .dot.g{ background:#10b981; }
+      .mock-body{ display:grid; grid-template-columns:1fr 1fr; min-height:340px; }
+      .mock-side{ padding:16px; border-right:1px solid var(--glass-stroke); }
+      .mock-kpi{ display:flex; align-items:center; justify-content:space-between; border-bottom:1px dashed rgba(15,23,42,0.18); padding:12px 6px; }
+      .mock-chart{ padding:16px; }
+      .spark{
+        height:120px; border-radius:12px; background:linear-gradient(180deg,#ffffff,#f8fbff);
+        border:1px solid var(--glass-stroke); position:relative; overflow:hidden;
+      }
+      .spark canvas{ position:absolute; inset:0; }
+
+      /* Integrations */
+      .integrations{ display:grid; grid-template-columns: repeat(5,1fr); gap:14px; }
+      .logo-tile{
+        display:grid; place-items:center; padding:18px; border-radius:16px; background:#ffffff;
+        border:1px solid var(--glass-stroke); height:86px; box-shadow:var(--shadow);
+      }
+      .logo-tile img{ height:40px; opacity:.9; }
+
+      /* Pricing grid reused as "Products" list */
+      .pricing{ display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+      .price-card{ position:relative; overflow:hidden; }
+      .pill{
+        display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:30px;
+        border:1px solid var(--glass-stroke); background:rgba(58,151,255,0.08); font-size:16px; color:#0f172a; font-weight:800;
+      }
+
+      /* Carousel */
+      .carousel{ display:flex; gap:16px; overflow:auto; scroll-snap-type:x mandatory; padding-bottom:6px; }
+      .carousel .card{ min-width:320px; scroll-snap-align:start; }
+
+      /* FAQ */
+      .faq-item{ border:1px solid var(--glass-stroke); border-radius:16px; margin:10px 0; overflow:hidden; background:#ffffff; box-shadow:var(--shadow); }
+      .faq-q{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:16px; cursor:pointer; }
+      .faq-a{ padding:0 16px 16px; display:none; color:#475569; }
+
+      /* Forms */
+      form{ display:grid; gap:12px; }
+      input, textarea{
+        width:100%; padding:14px 14px; border-radius:12px; border:1px solid var(--glass-stroke);
+        background:#ffffff; color:var(--text); outline:none;
+      }
+      input:focus, textarea:focus{ border-color: rgba(58,151,255,0.6); box-shadow: 0 0 0 4px rgba(58,151,255,0.15); }
+      textarea{ min-height:120px; resize:vertical; }
+      .note{ color:#64748b; font-size:13px; }
+
+      /* Footer (light) */
+      .footer{
+        padding:40px 0; border-top:1px solid var(--glass-stroke);
+        background:linear-gradient(180deg,#ffffff 0%, #f7fafc 100%);
+      }
+      .cols{ display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:20px; }
+      .cols ul{ list-style:none; padding:0; margin:0; }
+      .cols li{ margin:10px 0; color:#475569; }
+      .foot-bottom{ display:flex; justify-content:space-between; align-items:center; margin-top:22px; color:#64748b; font-size:14px; }
+
+      /* Utilities + responsive */
+      .mt-8{ margin-top:8px; } .mt-12{ margin-top:12px; } .mt-16{ margin-top:16px; } .mt-20{ margin-top:20px; } .mt-30{ margin-top:30px; }
+      .center{ text-align:center; }
+      .hide-mobile{ display:block; } .show-mobile{ display:none; }
+
+      @media (max-width:1024px){
+        .hero-grid{ grid-template-columns:1fr; }
+        .mock-body{ grid-template-columns:1fr; }
+        .grid.cols-3{ grid-template-columns:1fr 1fr; }
+        .grid.cols-4{ grid-template-columns:1fr 1fr; }
+        .pricing{ grid-template-columns:1fr; gap:16px; }
+        .integrations{ grid-template-columns:repeat(3,1fr); }
+        .cols{ grid-template-columns:1fr 1fr; }
+      }
+      @media (max-width:640px){
+        .integrations{ grid-template-columns:repeat(2,1fr); }
+        .grid.cols-3, .grid.cols-4{ grid-template-columns:1fr; }
+        .hide-mobile{ display:none; } .show-mobile{ display:block; }
+        .nav .wrap{ height:64px; }
+        .hero{ padding-top:72px; }
+      }
+
+      /* Reveal on scroll */
+      .reveal{ opacity:0; transform:translateY(14px);
+        transition: all .7s cubic-bezier(.2,.65,.2,1);
+      }
+      .reveal.show{ opacity:1; transform:none; }
+    </style>
+  </head>
+  <body>
+    <div class="page-bg"></div>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="container wrap">
+        <a href="#" class="brand">
+          <span class="logo"><img src="biglogo-removebg-preview.png" alt="ClickVS logo"/></span>
+        </a>
+        <nav class="nav-links hide-mobile">
+          <a href="#features">Features</a>
+          <a href="#integrations">Integrations</a>
+          <a href="#pricing">Products</a>
+          <a href="#testimonials">Stories</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <div class="hide-mobile">
+          <a class="btn btn-ghost" href="#contact"><i class="fa-regular fa-paper-plane"></i> Contact</a>
+          <a class="btn btn-primary" href="#pricing"><i class="fa-solid fa-rocket"></i> Get Started</a>
+        </div>
+        <a class="btn btn-ghost show-mobile" href="#menu" id="menuToggle"><i class="fa-solid fa-bars"></i></a>
+      </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" style="display:none; border-bottom:1px solid var(--glass-stroke); background:rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
+      <div class="container" style="padding:14px 0; display:grid; gap:10px">
+        <a href="#features">Features</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#pricing">Products</a>
+        <a href="#testimonials">Stories</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary" href="#pricing"><i class="fa-solid fa-rocket"></i> Get Started</a>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid reveal">
+        <div>
+          <h1 class="title">Digital Marketing Experts</h1>
+          <p class="subtitle">
+            We accelerate and scale brands to new heights using our proprietary
+            technology and world-class marketing team.
+          </p>
+
+          <div class="badges">
+            <span class="badge">Paid</span>
+            <span class="badge">Creative</span>
+            <span class="badge">SEO</span>
+            <span class="badge">Email</span>
+            <span class="badge">CRO</span>
+            <span class="badge">Social</span>
+            <span class="badge">Branding</span>
+          </div>
+          <div class="hero-cta" style="margin-top:22px; display:flex; gap:14px; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="#contact"><i class="fa-solid fa-calendar-check"></i> Book a Demo</a>
+            <a class="btn btn-ghost" href="#features"><i class="fa-solid fa-circle-play"></i> See how it works</a>
+          </div>
+        </div>
+        <img src="digital marketing.png" alt="Digital marketing illustration">
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="head">
+          <div style="margin:0 auto; text-align:center;">
+            <div class="kicker">Why ClickVS</div>
+            <h2 class="h2">
+              To optimize the user experience for all consumers engaging with
+              our funnels, driving the highest-intent leads and inbound calls
+              for each of our promoted verticals ensuring a seamless flow from
+              beginning to end.
+            </h2>
+          </div>
+        </div>
+
+        <div class="grid cols-3">
+          <div class="card reveal">
+            <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+            <h3>9 figures+ Generated</h3>
+            <p>
+              Through precision marketing, advanced analytics, and conversion
+              optimization, we’ve helped businesses scale beyond 9 figures in
+              total revenue — and we’re just getting started.
+            </p>
+            <p class="mt-12">
+              <i class="fa-solid fa-check tick"></i> Proven revenue growth<br/>
+              <i class="fa-solid fa-check tick"></i> Data-driven success
+            </p>
+          </div>
+          <div class="card reveal">
+            <div class="icon"><i class="fa-solid fa-globe"></i></div>
+            <h3>Spanish and English Leads</h3>
+            <p>
+              We generate high-quality leads in both Spanish and English to meet
+              the diverse needs of our clients across different markets. Whether
+              your audience speaks English or Español, we help you connect,
+              engage, and convert with precision.
+            </p>
+            <p class="mt-12">
+              <i class="fa-solid fa-check tick"></i> Global audience reach<br/>
+              <i class="fa-solid fa-check tick"></i> Multilingual experts
+            </p>
+          </div>
+          <div class="card reveal">
+            <div class="icon"><i class="fa-solid fa-users"></i></div>
+            <h3>40+ Team Members</h3>
+            <p>
+              Our 40+ member team brings together creative minds, data-driven
+              thinkers, and problem solvers — all dedicated to helping your
+              business grow smarter and faster.
+            </p>
+            <p class="mt-12">
+              <i class="fa-solid fa-check tick"></i> Expert creatives<br/>
+              <i class="fa-solid fa-check tick"></i> Diverse professionals
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOWPIECE -->
+    <section class="section">
+      <div class="container">
+        <div class="mock reveal">
+          <div class="mock-top">
+            <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
+            <strong style="margin-left:10px; color:#334155">Social Revenue</strong>
+          </div>
+
+          <div class="mock-body">
+            <div class="mock-side">
+              <div class="mock-kpi"><span>Active Campaigns</span><strong id="kpi1">0</strong></div>
+              <div class="mock-kpi"><span>Daily Spend</span><strong id="kpi2">$0</strong></div>
+              <div class="mock-kpi"><span>CTR</span><strong id="kpi3">0%</strong></div>
+              <div class="mock-kpi"><span>QoQ Growth</span><strong id="kpi4">0</strong></div>
+            </div>
+            <div class="mock-chart">
+              <div class="spark"><canvas id="spark"></canvas></div>
+              <div class="grid cols-4" style="margin-top:14px">
+                <div class="card"><strong>Precise Audience Targeting</strong><p class="mt-8">We prioritize audience targeting to provide the most qualified leads to our clients. This approach ensures low CPAs and maximizes revenue.</p></div>
+                <div class="card"><img src="Screenshot 2025-10-14 154837.png" alt="Dashboard screenshot"></div>
+                <div class="card"><strong>Creative Iteration</strong><p class="mt-8">Rapid testing framework to find winners faster and scale with confidence.</p></div>
+                <div class="card"><strong>Attribution Clarity</strong><p class="mt-8">Custom trackers unify signals across ads, web, and calls for clean decisioning.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTEGRATIONS -->
+    <section id="integrations" class="section">
+      <div class="container">
+        <div class="head">
+          <div style="margin:0 auto; text-align:center;">
+            <div class="kicker">Connect in minutes</div>
+            <h2 class="h2">Plays nicely with your stack.</h2>
+            <p class="lead">
+              Plug into your ad platforms, CRMs, and call centers. If it has an
+              API, we probably support it.
+            </p>
+          </div>
+        </div>
+        <div class="integrations reveal">
+          <div class="logo-tile"><img alt="Google Ads" src="Google_2015_logo.svg.webp" /></div>
+          <div class="logo-tile"><img alt="Meta" src="Meta-Logo.png" /></div>
+          <div class="logo-tile"><img alt="TikTok" src="TikTok_logo.svg.png" /></div>
+          <div class="logo-tile"><img alt="Hulu" src="Hulu-Logo.wine.png" /></div>
+          <div class="logo-tile"><img alt="X" src="download.jpeg" /></div>
+          <div class="logo-tile"><img alt="Taboola" src="images.png" /></div>
+          <div class="logo-tile"><img alt="Pinterest" src="download.png" /></div>
+          <div class="logo-tile"><img alt="Snapchat" src="sm_5b321c9cb2d25.jpg" /></div>
+          <div class="logo-tile"><img alt="Newsbreak" src="NewsBreak_logo.png" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS (Pricing grid layout) -->
+    <section id="pricing" class="section">
+      <div class="container">
+        <div><h2 class="h2">Our Core Products.</h2></div>
+
+        <div class="pricing">
+          <div class="card price-card reveal">
+            <div class="pill">Medicare</div>
+            <div class="mt-12"><p>A health insurance program for people aged 65 or older, and for younger individuals with disabilities.</p></div>
+          </div>
+
+          <div class="card price-card reveal">
+            <div class="pill">Personal Injury</div>
+            <div class="mt-12"><p>Connecting individuals seeking legal action for personal injuries, particularly related to motor vehicle accidents.</p></div>
+          </div>
+
+          <div class="card price-card reveal">
+            <div class="pill">Final Expense</div>
+            <div class="mt-12"><p>A life insurance policy designed to cover end-of-life expenses for beneficiaries.</p></div>
+          </div>
+
+          <div class="card price-card reveal">
+            <div class="pill">Home Services</div>
+            <div class="mt-12"><p>Windows, gutters, solar, roofing, and bath remodeling with vetted partners.</p></div>
+          </div>
+
+          <div class="card price-card reveal">
+            <div class="pill">Debt Settlement</div>
+            <div class="mt-12"><p>Negotiations with collectors to reduce payments for credit cards, loans, and medical bills.</p></div>
+          </div>
+
+          <div class="card price-card reveal">
+            <div class="pill">Auto Insurance</div>
+            <div class="mt-12"><p>We help millions of drivers each year find the most affordable rates for coverage from top carriers.</p></div>
+          </div>
+
+          <div class="card price-card reveal">
+            <div class="pill">Personal Loans</div>
+            <div class="mt-12"><p>Linking people to financial solutions that cover a variety of personal expenses.</p></div>
+          </div>
+
+          <div class="card price-card reveal">
+            <div class="pill">Life Insurance</div>
+            <div class="mt-12"><p>Displaying various policies for consumers to insure one’s life.</p></div>
+          </div>
+
+          <div class="card price-card reveal">
+            <div class="pill">E-commerce</div>
+            <div class="mt-12"><p>Connecting consumers with platforms offering a wide range of products for personal and business needs.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="section">
+      <div class="container">
+        <div class="head">
+          <div style="margin:0 auto; text-align:center;">
+            <div class="kicker">Measure results</div>
+            <h2 class="h2">With Custom Performance Tracker</h2>
+            <p class="lead">
+              To ensure the highest-quality leads and calls, we use custom trackers to monitor KPIs daily and make necessary adjustments.
+            </p>
+          </div>
+        </div>
+
+        <div class="carousel">
+          <div class="card reveal">
+            <div class="mt-16"><strong>Paid Search</strong></div>
+            <p>We manage large-scale pay-per-click campaigns for clients in highly competitive industries.</p>
+          </div>
+
+          <div class="card reveal">
+            <div class="mt-16"><strong>Social Media Marketing</strong></div>
+            <p>From building pillars to leveraging paid social for lead generation and sales.</p>
+          </div>
+
+          <div class="card reveal">
+            <div class="mt-16"><strong>Web Design & Development</strong></div>
+            <p>We create responsive websites, microsites, and landing pages. Custom builds for maximum results.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="head">
+          <div style="margin:0 auto; text-align:center;">
+            <div class="kicker">You’re wondering</div>
+            <h2 class="h2">Social media marketing FAQs.</h2>
+            <p class="lead">Straightforward answers about strategy, content, ads, and how we scale results.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-q">
+            <strong>How do you build a winning social strategy?</strong><i class="fa-solid fa-plus"></i>
+          </div>
+          <div class="faq-a">
+            We audit your brand, audience, and competitors, then define content pillars,
+            posting cadence, and KPI targets. We align organic and paid for compounding growth.
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-q">
+            <strong>Do you create content or just run ads?</strong><i class="fa-solid fa-plus"></i>
+          </div>
+          <div class="faq-a">
+            Both. We handle strategy, creative production (short-form video, statics, carousels),
+            community management, and full-funnel paid social across Meta, TikTok, and more.
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-q">
+            <strong>How soon can we see results?</strong><i class="fa-solid fa-plus"></i>
+          </div>
+          <div class="faq-a">
+            Expect early signal in 2–4 weeks as we test creatives and audiences. Clear, scalable
+            performance typically emerges by weeks 6–10 once winners are validated and scaled.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="head">
+          <div style="margin:0 auto; text-align:center;">
+            <div class="kicker">Get in touch</div>
+            <h2 class="h2">Book a demo or ask anything.</h2>
+            <p class="lead">Tell us about your goals. We’ll tailor a plan and share a live walkthrough.</p>
+          </div>
+        </div>
+
+        <div class="grid cols-3">
+          <div class="card reveal" style="grid-column: span 2">
+            <form id="contactForm">
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+                <input required type="text" name="name" placeholder="Your name" />
+                <input required type="email" name="email" placeholder="Email address" />
+              </div>
+              <input type="text" name="company" placeholder="Company" />
+              <textarea required name="message" placeholder="Tell us about your use case…"></textarea>
+              <button class="btn btn-primary" type="submit"><i class="fa-regular fa-paper-plane"></i> Send message</button>
+              <div id="formNote" class="note"></div>
+            </form>
+          </div>
+
+          <div class="card reveal">
+            <h3>Sales & Support</h3>
+            <p class="mt-12"><i class="fa-solid fa-envelope"></i> hello@clickvs.com</p>
+            <p class="mt-8"><i class="fa-brands fa-slack"></i> Slack Connect for Enterprise</p>
+            <p class="mt-8"><i class="fa-solid fa-shield-halved"></i> SOC 2 on request</p>
+            <p class="mt-20 note">Office: Mumbai • Delhi • Remote</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="cols">
+          <div>
+            <div class="brand">
+              <span class="logo"><img src="biglogo-removebg-preview.png" alt="ClickVS"/></span>
+            </div>
+            <p class="mt-12" style="color:#475569; max-width:50ch">
+              Modern attribution and call intelligence for performance teams who
+              want clarity and control.
+            </p>
+          </div>
+          <div>
+            <strong>Product</strong>
+            <ul class="mt-12">
+              <li><a href="#features">Features</a></li>
+              <li><a href="#integrations">Integrations</a></li>
+              <li><a href="#pricing">Products</a></li>
+            </ul>
+          </div>
+          <div>
+            <strong>Company</strong>
+            <ul class="mt-12">
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <strong>Legal</strong>
+            <ul class="mt-12">
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Security</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="foot-bottom">
+          <div>© <span id="year"></span> ClickVS, Inc.</div>
+          <div>
+            <a href="#" style="margin-right:12px"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" style="margin-right:12px"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu
+      document.getElementById("menuToggle")?.addEventListener("click", () => {
+        const m = document.getElementById("mobileMenu");
+        m.style.display = (m.style.display === "none" || !m.style.display) ? "block" : "none";
+      });
+
+      // Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Reveal on scroll
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach((e)=>{ if(e.isIntersecting){ e.target.classList.add("show"); io.unobserve(e.target);} });
+      },{threshold:0.18});
+      document.querySelectorAll(".reveal").forEach((el)=>io.observe(el));
+
+      // KPI counters
+      const nice=(n)=>n.toLocaleString();
+      const animateNumber=(el,to,prefix="",suffix="")=>{
+        const start=0,dur=1100,t0=performance.now();
+        const step=(t)=>{
+          const p=Math.min(1,(t-t0)/dur);
+          const val=Math.floor(start+(to-start)*p);
+          el.textContent=`${prefix}${nice(val)}${suffix}`;
+          if(p<1) requestAnimationFrame(step);
+        }; requestAnimationFrame(step);
+      };
+      setTimeout(()=>{ animateNumber(document.getElementById("kpi1"),342);
+        animateNumber(document.getElementById("kpi2"),42,"$");
+        animateNumber(document.getElementById("kpi3"),18,"","%");
+        animateNumber(document.getElementById("kpi4"),92);
+      },600);
+
+      // Sparkline (blue gradient)
+      (function(){
+        const c=document.getElementById("spark"); if(!c) return;
+        const dpr=Math.max(1,window.devicePixelRatio||1);
+        const w=c.clientWidth,h=c.clientHeight; c.width=w*dpr; c.height=h*dpr;
+        const ctx=c.getContext("2d"); ctx.scale(dpr,dpr);
+        const N=48;
+        let pts=Array.from({length:N},(_,i)=>[(i/(N-1))*w, h*0.55 + Math.sin(i*0.35)*18 - Math.cos(i*0.12)*14 ]);
+        const grad=ctx.createLinearGradient(0,0,w,0);
+        grad.addColorStop(0,"#3a97ff"); grad.addColorStop(1,"#79c1ff");
+        ctx.lineWidth=2; ctx.strokeStyle=grad; ctx.fillStyle="rgba(58,151,255,0.14)";
+        const draw=()=>{
+          ctx.clearRect(0,0,w,h);
+          ctx.beginPath(); pts.forEach(([x,y],i)=>{ i?ctx.lineTo(x,y):ctx.moveTo(x,y); });
+          ctx.lineTo(w,h); ctx.lineTo(0,h); ctx.closePath(); ctx.fill();
+          ctx.beginPath(); pts.forEach(([x,y],i)=>{ i?ctx.lineTo(x,y):ctx.moveTo(x,y); }); ctx.stroke();
+        };
+        draw();
+        let t=0; function tick(){ t+=.02;
+          pts=pts.map(([x,_y],i)=>[x, h*0.55 + Math.sin(i*0.35+t)*18 - Math.cos(i*0.12+t*0.6)*14 ]);
+          draw(); requestAnimationFrame(tick);
+        } tick();
+      })();
+
+      // FAQ accordion
+      document.querySelectorAll(".faq-item").forEach((item)=>{
+        const q=item.querySelector(".faq-q"); const a=item.querySelector(".faq-a");
+        q.addEventListener("click", ()=>{
+          const on=a.style.display==="block";
+          document.querySelectorAll(".faq-a").forEach((x)=>x.style.display="none");
+          a.style.display = on ? "none" : "block";
+          q.querySelector("i").className = on ? "fa-solid fa-plus" : "fa-solid fa-minus";
+        });
+      });
+
+      // Contact form (demo only)
+      document.getElementById("contactForm")?.addEventListener("submit",(e)=>{
+        e.preventDefault();
+        const note=document.getElementById("formNote");
+        note.textContent="Thanks! We’ll get back to you within 1 business day.";
+        e.target.reset();
+      });
+
+      // Parallax blobs (subtle)
+      window.addEventListener("pointermove",(e)=>{
+        const {innerWidth:w, innerHeight:h}=window;
+        const x=(e.clientX/w-0.5)*12, y=(e.clientY/h-0.5)*12;
+        document.querySelectorAll(".blob").forEach((b,i)=>{ b.style.transform=`translate(${(x*(i+1))/3}px, ${(y*(i+1))/3}px)`; });
+      });
+    </script>
+  </body>
+</html>
