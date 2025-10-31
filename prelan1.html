@@ -88,7 +88,7 @@
       #header-container {
         align-items: center;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         width: 100%;
         max-width: 1200px;
         padding: 0 24px;
@@ -101,7 +101,7 @@
 
       #header-subtitle {
         font-weight: 400;
-        font-size: 24px;
+        font-size: 29px;
         color: #ffffff;
         margin: 0;
       }
@@ -122,13 +122,13 @@
       }
 
       #hero-title {
-        font-size: clamp(22px, 3.2vw, 36px);
-        line-height: clamp(28px, 3.8vw, 44px);
+        font-size: clamp(26px, 3.8vw, 44px);
+        line-height: clamp(31px, 4.6vw, 53px);
         text-align: left;
       }
 
       #hero-image {
-        margin-top: 20px;
+        /* margin-top: 10px; */
         width: 100%;
         height: auto;
         display: block;
@@ -142,8 +142,8 @@
       #step2-text,
       #step3-text {
         width: 100%;
-        font-size: clamp(16px, 2.2vw, 20px);
-        line-height: clamp(24px, 3vw, 30px);
+        font-size: clamp(21px, 2.9vw, 26px);
+        line-height: clamp(31px, 3.9vw, 39px);
         font-weight: 300;
       }
 
@@ -165,9 +165,9 @@
       #hero-howto-title {
         margin-top: 20px;
         width: 100%;
-        line-height: clamp(26px, 3.2vw, 36px);
+        line-height: clamp(31px, 3.8vw, 43px);
         font-weight: 700;
-        font-size: clamp(18px, 2.6vw, 28px);
+        font-size: clamp(22px, 3.1vw, 34px);
       }
 
       .shimmer {
@@ -208,27 +208,27 @@
         justify-content: center;
         display: flex;
         background-color: rgb(40, 176, 43);
-        font-size: clamp(18px, 2.4vw, 24px);
+        font-size: clamp(23px, 3.1vw, 31px);
         line-height: 1.2;
         height: clamp(56px, 8.2vw, 72px);
         font-weight: 500;
         text-decoration: none;
         text-align: center;
         color: #ffffff;
-        border-radius: 10px;
+        border-radius: 30px;
         border: none;
         cursor: pointer;
         position: relative;
       }
 
       #footer {
-        background-color: rgb(34, 34, 34);
+        background: linear-gradient(180deg, #f6f7fb 0%, #ffffff 100%);
         padding-top: 40px;
         padding-bottom: 40px;
       }
 
       #footer-links-heading {
-        font-size: clamp(16px, 2.2vw, 20px);
+        font-size: clamp(19px, 2.6vw, 24px);
         font-weight: 600;
       }
 
@@ -248,7 +248,7 @@
       #footer-link-contact {
         color: rgb(38, 107, 245);
         font-weight: 400;
-        font-size: clamp(14px, 2vw, 16px);
+        font-size: clamp(18px, 2.6vw, 21px);
       }
       #footer-link-privacy {
         margin-right: 17px;
@@ -258,18 +258,24 @@
       }
 
       #footer-links-wrapper {
-        align-items: flex-start;
+        align-items: center;
+        justify-content: center;
         display: flex;
         flex-wrap: wrap;
         gap: 10px 18px;
+        text-align: center;
       }
 
       #footer-disclaimer {
-        font-size: clamp(14px, 2vw, 16px);
-        font-weight: 100;
-        line-height: clamp(22px, 3vw, 28px);
-        color: rgb(255, 255, 255);
+        font-size: clamp(18px, 2.6vw, 20px);
+        font-weight: 300;
+        line-height: clamp(29px, 3.9vw, 36px);
+        color: rgb(51, 51, 51);
         word-wrap: break-word;
+        text-align: center;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       /* (Removed duplicate individual blocks consolidated above) */
@@ -284,7 +290,7 @@
         #header-container {
           flex-direction: row;
           align-items: center;
-          justify-content: flex-start;
+          justify-content: center;
           column-gap: 12px;
           row-gap: 0;
         }
@@ -305,31 +311,7 @@
         #hero-title {
           text-align: left;
         }
-        #hero-intro,
-        #hero-paragraph1,
-        #hero-paragraph2,
-        #step1-text,
-        #step2-text,
-        #step3-text {
-          /* sizes handled by clamp */
-        }
-        #hero-question1,
-        #hero-question2,
-        #hero-howto-title {
-          /* sizes handled by clamp */
-        }
-        #footer-disclaimer {
-          /* size handled by clamp */
-        }
-        #brand-name {
-          /* size handled by clamp */
-        }
-        #brand-badge {
-          /* resized by clamp and spacing */
-        }
-        #header-subtitle {
-          /* size handled by clamp */
-        }
+
         #perfect-highlight {
           color: #08b420ff;
         }
@@ -359,22 +341,6 @@
       >
         <div id="brand">
           <img src="pblogo.png" alt="Logo" class="ll-image" />
-        </div>
-        <div
-          id="header-heading-wrapper"
-          data-gjs-type="div"
-          class="ll-empty-block"
-        >
-          <h1
-            id="header-subtitle"
-            data-gjs-type="heading"
-            aria-readonly="false"
-            spellcheck="false"
-            class="ll-default-heading"
-            font-family="heading"
-          >
-            Advertorial
-          </h1>
         </div>
       </div>
     </section>
@@ -522,13 +488,14 @@
           <b id="step2-label">Step 2)</b> Answer a few questions
         </p>
         <p id="step3-text" class="ll-default-text" font-family="text">
+          <b id="step3-label">Step 3)</b>
           See if you are eligible
         </p>
         <a
           id="cta-button"
           href="https://www.policybenefits.org/englf3"
           class="ll-btn shimmer"
-          >See If You Are Eligble</a
+          >See If You Are Eligible</a
         >
       </div>
     </section>
@@ -542,6 +509,18 @@
         data-gjs-type="container"
         class="ll-container empty-section--container"
       >
+        <p
+          id="footer-disclaimer"
+          aria-readonly="false"
+          spellcheck="false"
+          class="ll-default-text"
+          font-family="text"
+        >
+          Beware of other fraudulent & similar-looking websites that might look
+          exactly like ours, we have no affiliation with them. This is the only
+          official website to claim your Final Expense Benefit with the domain
+          name policybenefits.org
+        </p>
         <div
           id="footer-links-wrapper"
           data-gjs-type="div"
@@ -555,72 +534,19 @@
             class="ll-default-heading"
             font-family="heading"
           >
-            <a id="footer-link-privacy" data-gjs-type="link" href="" class=""
-              >Privacy And Policy</a
-            ><a id="footer-link-terms" data-gjs-type="link" href=""
-              >Terms of Use</a
-            ><a id="footer-link-contact" data-gjs-type="link" href=""
-              >Contact Us</a
+            <a id="footer-link-terms" data-gjs-type="link" href="terms.html"
+              >Terms &amp; Conditions</a
+            >
+            |
+            <a
+              id="footer-link-privacy"
+              data-gjs-type="link"
+              href="privacy.html"
+              class=""
+              >Privacy Policy</a
             >
           </h1>
         </div>
-        <p
-          id="footer-disclaimer"
-          aria-readonly="false"
-          spellcheck="false"
-          class="ll-default-text"
-          font-family="text"
-        >
-          *Not all plans or benefits are universally available. The availability
-          of carriers, products, and benefits is contingent on your resident zip
-          code. We recommend consulting a licensed insurance agent to identify
-          plans accessible in your area, keeping in mind that limitations and
-          exclusions may apply. Our advertisers do not offer every plan
-          available in your area. Any information, savings, benefits or price
-          quotations listed may not be applicable in your location or if certain
-          requirements are not met. Additionally, our advertisers may have
-          additional qualification requirements.<br
-            id="iht0g"
-            data-gjs-type="default"
-          /><br id="ib75z" data-gjs-type="default" />
-          Enrollment in the described plan type may be limited to certain times
-          of year unless you qualify for a special enrollment period.<br
-            id="ig9ol"
-            data-gjs-type="default"
-          /><br id="i59ab" data-gjs-type="default" />
-          This website is not affiliated with or endorsed by the United States
-          government or the federal Medicare program. Instead, it serves as a
-          platform providing referrals to representatives of licensed insurance
-          organizations. When completing the contact form, you will be directed
-          to a licensed insurance agent capable of addressing your queries and
-          providing information on Medicare Advantage plans. Importantly, there
-          is no obligation to enroll.
-          <br id="i78l2" data-gjs-type="default" /><br
-            id="isl7o"
-            data-gjs-type="default"
-          />
-          We do not offer every plan available in your area. Currently we
-          represent [73] organizations which offer [5110] products in your area.
-          Please contact Medicare.gov or 1-800-MEDICARE , or your local State
-          Health Insurance Program (SHIP) to get information on all of your
-          options. Please note that these numbers provided are not specific to
-          your area but rather represent the number of organizations and the
-          number of products available on a national basis. We will connect you
-          with licensed insurance agents who can provide information about the
-          number of organizations they represent and the number of products they
-          offer in your service area.<br
-            id="iw489"
-            data-gjs-type="default"
-          /><br id="iuq69" data-gjs-type="default" />
-          For comprehensive information on all your options, we recommend
-          contacting Medicare.gov at 1-800-MEDICARE or your local State Health
-          Insurance Program. To address any complaints with Medicare, call
-          1-800-MEDICARE (TTY users should call 1-877-486-2048), available 24/7.
-          If your grievance involves a broker or agent, please include their
-          name when filing your complaint.By utilizing this webpage, you confirm
-          that you have read and agree to the Terms of Use and Privacy Policy
-          outlined herein.
-        </p>
       </div>
     </section>
   </body>
