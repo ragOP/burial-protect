@@ -211,9 +211,9 @@
         justify-content: center;
         display: flex;
         background-color: rgb(40, 176, 43);
-        font-size: clamp(23px, 3.1vw, 31px);
+        font-size: clamp(27px, 3.1vw, 31px);
         line-height: 1.2;
-        height: clamp(56px, 8.2vw, 72px);
+        height: clamp(86px, 8.2vw, 72px);
         font-weight: 500;
         text-decoration: none;
         text-align: center;
@@ -390,7 +390,7 @@
           class="ll-image"
           style="border-radius: 14px;"
         />
-        />
+       
         <p id="hero-intro" class="ll-default-text" font-family="text">
           <i id="i179o"
             >One simple step to make sure your family never has to worry about
@@ -465,7 +465,7 @@
             ><span
               id="seconds-highlight"
               data-gjs-type="style-block"
-              styling-block-element="true"
+              styling-block-element="true" style="font-weight:700;"
               class=""
               >just 60 seconds</span
             >,</b
@@ -518,56 +518,154 @@
           >See If You Are Eligible</a
         >
       </div>
-    </section>
-    <section
-      id="footer"
-      data-gjs-type="section"
-      class="ll-section empty-section"
+
+</section>
+
+<!-- Live activity bar -->
+<section id="live-bar" class="ll-section" aria-hidden="false">
+  <div class="ll-container empty-section--container" style="padding-top:12px; padding-bottom:12px;">
+    <div class="live-pill" role="status" aria-live="polite" aria-atomic="true">
+      <span class="live-icon" aria-hidden="true"></span>
+      <span class="live-text"><span id="live-count">73</span> People Are Claiming Right Now!</span>
+    </div>
+  </div>
+
+  <style>
+    /* Live bar styles */
+    #live-bar .ll-container { justify-content:center; }
+    .live-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      background: linear-gradient(90deg,#fffbf5,#fff7f2);
+      border: 1px solid rgba(0,0,0,0.06);
+      padding:10px 16px;
+      border-radius:999px;
+      box-shadow: 0 6px 18px rgba(12,24,40,0.06);
+      font-weight:600;
+      color:#1f2937;
+      font-size: clamp(15px,2.2vw,18px);
+      overflow:visible;
+    }
+
+    .live-icon{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:rgb(40, 176, 43); /* red live dot */
+      position:relative;
+      box-shadow: 0 0 0 rgba(239,68,68,0.6);
+    }
+    .live-icon::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:50%;
+      animation: live-pulse 2s infinite;
+      background: radial-gradient(circle at center, rgba(239,68,68,0.18), transparent 40%);
+      z-index:-1;
+    }
+    @keyframes live-pulse{
+      0% { transform: scale(0.9); opacity: .9; }
+      70% { transform: scale(2.2); opacity: 0; }
+      100% { transform: scale(0.9); opacity: 0; }
+    }
+
+    /* small pop when number updates */
+    #live-count {
+      display:inline-block;
+      transition: transform 200ms ease, color 200ms;
+      color: #0b5646;
+    }
+    #live-count.pulse {
+      transform: scale(1.14);
+      color: #0a7a5b;
+    }
+
+    /* responsive spacing */
+    @media (max-width:576px){
+      .live-pill{ gap:8px; padding:8px 12px; font-size:15px; }
+      .live-icon{ width:10px; height:10px; }
+    }
+  </style>
+
+  <script>
+    (function(){
+      const el = document.getElementById('live-count');
+      if(!el) return;
+      let count = parseInt(el.textContent,10) || 73;
+
+      // increment periodically to simulate "live" activity
+      const minInterval = 2500; // ms
+      const maxInterval = 6000; // ms
+
+      function randomBetween(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
+
+      function tick(){
+        // small chance to add a slightly larger jump
+        const jump = Math.random() < 0.12 ? randomBetween(2,6) : randomBetween(1,2);
+        count += jump;
+        el.textContent = count.toLocaleString();
+        // brief visual pulse
+        el.classList.add('pulse');
+        setTimeout(()=> el.classList.remove('pulse'), 300);
+        // schedule next tick
+        setTimeout(tick, randomBetween(minInterval, maxInterval));
+      }
+
+      // start after a small delay so page load feels natural
+      setTimeout(tick, 1200);
+    })();
+  </script>
+</section>
+
+<section
+  id="footer"
+  data-gjs-type="section"
+  class="ll-section empty-section"
+>
+  <div
+    id="footer-container"
+    data-gjs-type="container"
+    class="ll-container empty-section--container"
+  >
+    <p
+      id="footer-disclaimer"
+      aria-readonly="false"
+      spellcheck="false"
+      class="ll-default-text"
+      font-family="text"
     >
-      <div
-        id="footer-container"
-        data-gjs-type="container"
-        class="ll-container empty-section--container"
+      Beware of other fraudulent & similar-looking websites that might look
+      exactly like ours, we have no affiliation with them. This is the only
+      official website to claim your Final Expense Benefit with the domain
+      name policybenefits.org
+    </p>
+    <div
+      id="footer-links-wrapper"
+      data-gjs-type="div"
+      class="ll-empty-block"
+    >
+      <h1
+        id="footer-links-heading"
+        data-gjs-type="heading"
+        aria-readonly="false"
+        spellcheck="false"
+        class="ll-default-heading"
+        font-family="heading"
       >
-        <p
-          id="footer-disclaimer"
-          aria-readonly="false"
-          spellcheck="false"
-          class="ll-default-text"
-          font-family="text"
+        <a id="footer-link-terms" data-gjs-type="link" href="terms.html"
+          >Terms &amp; Conditions</a
         >
-          Beware of other fraudulent & similar-looking websites that might look
-          exactly like ours, we have no affiliation with them. This is the only
-          official website to claim your Final Expense Benefit with the domain
-          name policybenefits.org
-        </p>
-        <div
-          id="footer-links-wrapper"
-          data-gjs-type="div"
-          class="ll-empty-block"
+        |
+        <a
+          id="footer-link-privacy"
+          data-gjs-type="link"
+          href="privacy.html"
+          class=""
+          >Privacy Policy</a
         >
-          <h1
-            id="footer-links-heading"
-            data-gjs-type="heading"
-            aria-readonly="false"
-            spellcheck="false"
-            class="ll-default-heading"
-            font-family="heading"
-          >
-            <a id="footer-link-terms" data-gjs-type="link" href="terms.html"
-              >Terms &amp; Conditions</a
-            >
-            |
-            <a
-              id="footer-link-privacy"
-              data-gjs-type="link"
-              href="privacy.html"
-              class=""
-              >Privacy Policy</a
-            >
-          </h1>
-        </div>
-      </div>
-    </section>
-  </body>
-</html>
+      </h1>
+    </div>
+  </div>
+</section>
