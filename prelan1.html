@@ -11,8 +11,8 @@
       href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
       data-ll-fonts="Roboto"
     />
-
-    <title>Medi</title>
+<script src=//b-js.ringba.com/CAfdb7eb5bdaa24fb8a155f293ece397ae async></script>
+    <title>P$25,000 Funeral Benefit Coverage</title>
     <link rel="icon" href="" type="image/x-icon" />
 
     <style>
@@ -517,7 +517,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           class="ll-default-text"
           font-family="text"
         >
-          <b id="step2-label">Step 2)</b> Answer a few questions
+          <b id="step2-label">Step 2)</b> Answer a few questions on the call
         </p>
         <p id="step3-text" class="ll-default-text" font-family="text">
           <b id="step3-label">Step 3)</b>
@@ -525,9 +525,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </p>
         <a
           id="cta-button"
-          href="https://www.policybenefits.org/englf3"
+          href="tel:+13214858035" role="button" aria-label="Call +1 (321) 485-8035" title="Call +1 (321) 485-8035"
           class="ll-btn shimmer"
-          >See If You Are Eligible</a
+          >(321) 485-8035</a
         >
       </div>
     </section>
@@ -637,7 +637,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         (function () {
           const el = document.getElementById("live-count");
           if (!el) return;
-          let count = parseInt(el.textContent, 10) || 73;
+          const MAX_COUNT = 97;
+          let count = Math.min(parseInt(el.textContent, 10) || 73, MAX_COUNT);
 
           // increment periodically to simulate "live" activity
           const minInterval = 2500; // ms
@@ -651,11 +652,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             // small chance to add a slightly larger jump
             const jump =
               Math.random() < 0.12 ? randomBetween(2, 6) : randomBetween(1, 2);
-            count += jump;
+            const next = Math.min(count + jump, MAX_COUNT);
+            count = next;
             el.textContent = count.toLocaleString();
             // brief visual pulse
             el.classList.add("pulse");
             setTimeout(() => el.classList.remove("pulse"), 300);
+            // stop scheduling when we've reached the max
+            if (count >= MAX_COUNT) {
+              return;
+            }
             // schedule next tick
             setTimeout(tick, randomBetween(minInterval, maxInterval));
           }
