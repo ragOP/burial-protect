@@ -11,7 +11,12 @@
       href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
       data-ll-fonts="Roboto"
     />
-<script src=//b-js.ringba.com/CAfdb7eb5bdaa24fb8a155f293ece397ae async></script>
+    <!-- Font Awesome for phone icon (same as your other page) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src=//b-js.ringba.com/CAfdb7eb5bdaa24fb8a155f293ece397ae async></script>
     <title>25,000 Funeral Benefit Coverage</title>
     <link rel="icon" href="" type="image/x-icon" />
 
@@ -209,7 +214,8 @@
         width: 100%;
         align-items: center;
         justify-content: center;
-        display: flex;
+        display: inline-flex; /* enable icon + text inline */
+        gap: 14px;            /* space between icon and text */
         background-color: rgb(40, 176, 43);
         font-size: clamp(27px, 3.1vw, 31px);
         line-height: 1.2;
@@ -222,6 +228,15 @@
         border: none;
         cursor: pointer;
         position: relative;
+      }
+
+      /* Phone icon styling on CTA */
+      #cta-button i {
+        font-size: 1.2em;         /* make icon nicely sized */
+      }
+      /* Make Font Awesome fade animation a bit slower like your other page */
+      .fa-fade {
+        animation-duration: 4s !important;
       }
 
       #footer {
@@ -336,20 +351,28 @@
         }
       }
     </style>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KCQF5XNR');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-KCQF5XNR');
+    </script>
+    <!-- End Google Tag Manager -->
   </head>
 
   <body class="">
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCQF5XNR"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KCQF5XNR"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <section
       id="header-bar"
       data-gjs-type="section"
@@ -523,12 +546,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <b id="step3-label">Step 3)</b>
           Check if you're eligible
         </p>
+        <!-- CTA with phone icon added -->
         <a
           id="cta-button"
-          href="tel:+13214858035" role="button" aria-label="Call +1 (321) 485-8035" title="Call +1 (321) 485-8035"
+          href="tel:+13214858035"
+          role="button"
+          aria-label="Call +1 (321) 485-8035"
+          title="Call +1 (321) 485-8035"
           class="ll-btn shimmer"
-          >(321) 485-8035</a
         >
+          <i class="fa-solid fa-phone fa-fade" aria-hidden="true"></i>
+          (321) 485-8035
+        </a>
       </div>
     </section>
 
