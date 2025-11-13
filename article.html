@@ -454,7 +454,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <div class="article-container">
-        <h1 class="headline">Her Husband's Funeral Wiped Out Her Life Savings in 3 Days. This Coverage Pays $15,000 in 24 Hours - Which Could Have Saved Her & Most Seniors Don't Know It Exists.</h1>
+        <h1 class="headline" id="main-headline">
+          Her Husband's Funeral Wiped Out Her Life Savings in 3 Days. This Coverage Pays $15,000 in 24 Hours - Which Could Have Saved Her &amp; Most Seniors Don't Know It Exists.
+        </h1>
         
         <p class="subheadline">If you're worried about burdening your children with funeral costs, there's a solution. It pays in 24 hours, requires no medical exam, and costs less than cable TV.</p>
         
@@ -658,5 +660,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
        
     </div>
+
+    <!-- 🔁 Dynamic UTM heading logic -->
+    <script>
+      (function () {
+        // base / default headline (also used when no utm or invalid)
+        var defaultHeadline = "Her Husband's Funeral Wiped Out Her Life Savings in 3 Days. This Coverage Pays $15,000 in 24 Hours - Which Could Have Saved Her & Most Seniors Don't Know It Exists.";
+
+        // Map utm_heading -> headline text
+        var headlineMap = {
+          h1: defaultHeadline,
+          h2: "Wah Aman Bhaiyya",
+          h3: "Wah Raghib Bhai",
+          h4: "This Simple Call Could Protect Your Family From Funeral Debt."
+        };
+
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var rawKey = params.get("utm_heading");
+          var key = rawKey ? rawKey.toLowerCase() : "";
+
+          var newHeadline = headlineMap[key] || defaultHeadline;
+
+          var h1 = document.getElementById("main-headline");
+          if (h1) {
+            h1.textContent = newHeadline;
+          }
+
+          // Also sync <title> with chosen headline
+          if (document && document.title) {
+            document.title = newHeadline;
+          }
+        } catch (e) {
+          // fail-safe: if anything breaks, keep default headline
+          console.warn("UTM heading script error:", e);
+        }
+      })();
+    </script>
 </body>
 </html>
