@@ -38,17 +38,31 @@
             margin: 0 auto;
             padding: 20px 16px;
         }
-            .div1 {
-  background: linear-gradient(90deg, #003f91, #006cb8);
-  color: white;
-  text-align: center;
-  padding: 0.8em;
-  font-size: 1.2em;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+      .div1 {
+  background: #205192;
   width: 100%;
+  padding: 14px 0;
   border-top: 0.2em solid #1e3a8a;
+
+  /* Center the logo perfectly */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.header-logo {
+  height: 42px;        /* Adjusted height (looks same as your Canva reference) */
+  width: auto;         /* Keeps proportions perfect */
+  display: block;
+}
+
+/* Mobile optimization */
+@media (max-width: 560px) {
+  .header-logo {
+    height: 36px;     /* Slightly smaller on mobile so header looks clean */
+  }
+}
+
 
         .headline {
             font-size: 28px;
@@ -297,9 +311,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-  <div class="div1" onclick="smoothScrollToTop(1000, 432)" style="cursor: pointer;">
-      <img src="./bur.png" alt="Policy Benefits" onclick="smoothScrollToTop(1000, 432)" style="cursor: pointer;width: 220px;height: auto;"  />
-    </div>
+<div class="div1" onclick="smoothScrollToTop(1000, 432)" style="cursor:pointer;">
+  <img src="./bur.png" alt="Policy Benefits" class="header-logo" />
+</div>
+
     <div class="article-container">
         <h1 class="headline">Her Husband's Funeral Wiped Out Her Life Savings in 3 Days. This Coverage Pays $15,000 in 24 Hours - Which Could Have Saved Her & Most Seniors Don't Know It Exists.</h1>
         
