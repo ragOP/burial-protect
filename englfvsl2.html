@@ -21,25 +21,26 @@
     <style>
       /* Turn the CTA into a full-width clickable anchor */
       .div22 {
-        display: block;               /* makes the whole area clickable */
+        display: block;
         width: 100%;
-        max-width: 520px;             /* adjust as you like */
+        max-width: 520px;
         margin: 12px auto;
-        background: #1bb06f;          /* green */
+        background: #1bb06f;
         color: #fff;
         text-align: center;
-        text-decoration: none;        /* remove underline */
+        text-decoration: none;
         font-weight: 800;
-        letter-spacing: .5px;
-        padding: 16px 22px;
-        border-radius: 999px;         /* pill shape like screenshot */
-        box-shadow: 0 10px 24px rgba(0,0,0,.15);
+        letter-spacing: 0.5px;
+        padding: 19px 26px; /* 20% bigger height */
+        border-radius: 999px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
         cursor: pointer;
-        transition: transform .06s ease, box-shadow .2s ease, filter .2s ease;
-        font-size: 15px;
+        transition: transform 0.06s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        font-size: 18px; /* 20% bigger font */
       }
+
       .div22:hover {
-        box-shadow: 0 16px 30px rgba(0,0,0,.18);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
         filter: brightness(1.03);
       }
       .div22:active {
@@ -51,23 +52,51 @@
         text-decoration: none;
       }
       /* Optional shimmer/glow helpers if you used them */
-      .glow { box-shadow: 0 0 0 rgba(27,176,111,0.5), 0 10px 24px rgba(0,0,0,.15); }
-      .shimmer {
-        position: relative; overflow: hidden; isolation: isolate;
+      .glow {
+        box-shadow: 0 0 0 rgba(27, 176, 111, 0.5), 0 10px 24px rgba(0, 0, 0, 0.15);
       }
-      .shimmer::after{
-        content:""; position:absolute; inset:0 -150% 0 0;
-        transform:skewX(-20deg); background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,.22) 50%, transparent 100%);
+      .shimmer {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+      }
+      .shimmer::after {
+        content: "";
+        position: absolute;
+        inset: 0 -150% 0 0;
+        transform: skewX(-20deg);
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.22) 50%,
+          transparent 100%
+        );
         animation: sh 2.2s infinite;
       }
-      @keyframes sh { 0%{transform:translateX(-100%) skewX(-20deg);} 100%{transform:translateX(100%) skewX(-20deg);} }
+      @keyframes sh {
+        0% {
+          transform: translateX(-100%) skewX(-20deg);
+        }
+        100% {
+          transform: translateX(100%) skewX(-20deg);
+        }
+      }
 
       /* Small chip used for NB verify */
       #nb-chip {
-        position: fixed; right: 12px; bottom: 12px; z-index: 99999;
-        padding: 8px 12px; font-size: 12px; font-weight: 700; border-radius: 999px;
-        background: rgba(20, 180, 90, 0.95); color: #fff; box-shadow: 0 6px 20px rgba(0,0,0,.2);
-        display: none; pointer-events: none;
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+        z-index: 99999;
+        padding: 8px 12px;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 999px;
+        background: rgba(20, 180, 90, 0.95);
+        color: #fff;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        display: none;
+        pointer-events: none;
       }
 
       /* ===================== NEW CONGRATS PAGE STYLES ===================== */
@@ -78,7 +107,7 @@
         background: #fdfdfd;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 16px 40px rgba(0,0,0,.12);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
         border: 1px solid #f3f4f6;
       }
 
@@ -158,7 +187,7 @@
         text-align: center;
         font-size: 12px;
         color: #4b5563;
-        box-shadow: 0 6px 16px rgba(0,0,0,.04);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
       }
       .congrats-stat-card-icon {
         font-size: 16px;
@@ -271,40 +300,108 @@
     <!-- Ringba helper: push AGE + console verify -->
     <script>
       window._rgba_tags = window._rgba_tags || [];
-      const RINGBA_AGE_KEY = 'age'; // change to exact key if needed, e.g., 'Age'
+      const RINGBA_AGE_KEY = "age"; // change to exact key if needed, e.g., 'Age'
       function rbAge(value) {
         try {
           const tag = {};
           tag[RINGBA_AGE_KEY] = value;
-          tag['newsbreak_cid'] = window.newsbreak_cid || '';
+          tag["newsbreak_cid"] = window.newsbreak_cid || "";
           window._rgba_tags.push(tag);
-          console.log('[Ringba] pushed age:', tag, '→ _rgba_tags:', window._rgba_tags);
-
-        } catch (e) { console.warn('[Ringba] age push failed', e); }
+          console.log(
+            "[Ringba] pushed age:",
+            tag,
+            "→ _rgba_tags:",
+            window._rgba_tags
+          );
+        } catch (e) {
+          console.warn("[Ringba] age push failed", e);
+        }
       }
     </script>
 
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KCQF5XNR');</script>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(
+        window,
+        document,
+        "script",
+        "dataLayer",
+        "GTM-KCQF5XNR"
+      );
+    </script>
     <!-- End Google Tag Manager -->
 
     <!-- TikTok Pixel -->
     <script>
-      !function (w, d, t) {
-        w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
-        ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],
-        ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
-        ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
-        ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};
-          n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;
-          e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)
-        };
-        ttq.load('CV0AU8BC77UBQA5N4G9G'); ttq.page();
-      }(window, document, 'ttq');
+      !(function (w, d, t) {
+        (w.TiktokAnalyticsObject = t);
+        var ttq = (w[t] = w[t] || []);
+        (ttq.methods = [
+          "page",
+          "track",
+          "identify",
+          "instances",
+          "debug",
+          "on",
+          "off",
+          "once",
+          "ready",
+          "alias",
+          "group",
+          "enableCookie",
+          "disableCookie",
+          "holdConsent",
+          "revokeConsent",
+          "grantConsent",
+        ]),
+          (ttq.setAndDefer = function (t, e) {
+            t[e] = function () {
+              t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+            };
+          });
+        for (var i = 0; i < ttq.methods.length; i++)
+          ttq.setAndDefer(ttq, ttq.methods[i]);
+        (ttq.instance = function (t) {
+          for (
+            var e = ttq._i[t] || [], n = 0;
+            n < ttq.methods.length;
+            n++
+          )
+            ttq.setAndDefer(e, ttq.methods[n]);
+          return e;
+        }),
+          (ttq.load = function (e, n) {
+            var r = "https://analytics.tiktok.com/i18n/pixel/events.js",
+              o = n && n.partner;
+            (ttq._i = ttq._i || {}),
+              (ttq._i[e] = []),
+              (ttq._i[e]._u = r),
+              (ttq._t = ttq._t || {}),
+              (ttq._t[e] = +new Date()),
+              (ttq._o = ttq._o || {}),
+              (ttq._o[e] = n || {});
+            n = d.createElement("script");
+            (n.type = "text/javascript"),
+              (n.async = !0),
+              (n.src = r + "?sdkid=" + e + "&lib=" + t);
+            e = d.getElementsByTagName("script")[0];
+            e.parentNode.insertBefore(n, e);
+          });
+        ttq.load("CV0AU8BC77UBQA5N4G9G");
+        ttq.page();
+      })(window, document, "ttq");
     </script>
 
     <!-- NB Pixel -->
@@ -319,12 +416,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }).queue = []),
           (p.t = +new Date()),
           ((a = n.createElement(t)).async = 1),
-          (a.src = 'https://static.newsbreak.com/business/tracking/nbpixel.js?t=' + 864e5 * Math.ceil(new Date() / 864e5)),
+          (a.src =
+            "https://static.newsbreak.com/business/tracking/nbpixel.js?t=" +
+            864e5 * Math.ceil(new Date() / 864e5)),
           (s = n.getElementsByTagName(t)[0]).parentNode.insertBefore(a, s));
-      })(window, document, 'script', 'nbpix');
+      })(window, document, "script", "nbpix");
 
       // ✅ Initialize Pixel ONLY (no event auto-fire)
-      nbpix('init', 'ID-1969942605923770369');
+      nbpix("init", "ID-1969942605923770369");
     </script>
     <!-- End NB Pixel Snippet -->
 
@@ -332,25 +431,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       // ---- NB RAW_CALL Event (fires only when call button clicked) ----
       function fireNbRawCall() {
         try {
-          if (typeof nbpix === 'function') {
-            nbpix('event', 'raw_call');
-            console.log('[NB Pixel] ✅ raw_call fired successfully');
+          if (typeof nbpix === "function") {
+            nbpix("event", "raw_call");
+            console.log("[NB Pixel] ✅ raw_call fired successfully");
           } else {
-            console.warn('[NB Pixel] nbpix not ready yet');
+            console.warn("[NB Pixel] nbpix not ready yet");
           }
         } catch (err) {
-          console.error('[NB Pixel] raw_call failed', err);
+          console.error("[NB Pixel] raw_call failed", err);
         }
       }
 
       // ---- Attach listener to your call button ----
-      window.addEventListener('DOMContentLoaded', function () {
-        const callButton = document.getElementById('callLink');
+      window.addEventListener("DOMContentLoaded", function () {
+        const callButton = document.getElementById("callLink");
         if (!callButton) return;
 
-        callButton.addEventListener('click', function () {
-          fireNbRawCall();
-        });
+        callButton.addEventListener(
+          "click",
+          function () {
+            fireNbRawCall();
+          },
+          { passive: true }
+        );
       });
     </script>
 
@@ -358,27 +461,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script>
       window.__nb_events = window.__nb_events || [];
       function showNbChip(text) {
-        var chip = document.getElementById('nb-chip'); if (!chip) return;
-        chip.textContent = text; chip.style.display = 'inline-block';
+        var chip = document.getElementById("nb-chip");
+        if (!chip) return;
+        chip.textContent = text;
+        chip.style.display = "inline-block";
         clearTimeout(window.__nb_chip_to);
-        window.__nb_chip_to = setTimeout(function(){ chip.style.display='none'; }, 2000);
+        window.__nb_chip_to = setTimeout(function () {
+          chip.style.display = "none";
+        }, 2000);
       }
       function fireNbRawCall() {
         try {
-          window.__nb_events.push({ event: 'raw_call', at: new Date().toISOString() });
-          console.log('[NB Pixel] Firing raw_call', window.__nb_events[window.__nb_events.length - 1]);
-          if (typeof nbpix === 'function') nbpix('event','raw_call');
+          window.__nb_events.push({
+            event: "raw_call",
+            at: new Date().toISOString(),
+          });
+          console.log(
+            "[NB Pixel] Firing raw_call",
+            window.__nb_events[window.__nb_events.length - 1]
+          );
+          if (typeof nbpix === "function") nbpix("event", "raw_call");
           else {
-            console.warn('[NB Pixel] nbpix not ready; queuing');
+            console.warn("[NB Pixel] nbpix not ready; queuing");
             window.__nb_fallback_queue = window.__nb_fallback_queue || [];
-            window.__nb_fallback_queue.push(['event','raw_call']);
+            window.__nb_fallback_queue.push(["event", "raw_call"]);
           }
-          showNbChip('NB: raw_call sent');
-        } catch(e){ console.warn('[NB Pixel] raw_call failed', e); }
+          showNbChip("NB: raw_call sent");
+        } catch (e) {
+          console.warn("[NB Pixel] raw_call failed", e);
+        }
       }
-      window.addEventListener('load', function(){
-        if (window.__nb_fallback_queue && typeof nbpix === 'function') {
-          window.__nb_fallback_queue.forEach(function(args){ try{ nbpix.apply(null,args);}catch(_){} });
+      window.addEventListener("load", function () {
+        if (window.__nb_fallback_queue && typeof nbpix === "function") {
+          window.__nb_fallback_queue.forEach(function (args) {
+            try {
+              nbpix.apply(null, args);
+            } catch (_) {}
+          });
           window.__nb_fallback_queue.length = 0;
         }
       });
@@ -388,40 +507,72 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <body>
     <!-- GTM noscript -->
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCQF5XNR"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KCQF5XNR"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- NB verify chip (optional – left commented) -->
     <!-- <div id="nb-chip">NB: raw_call sent</div> -->
 
-    <div class="div1" onclick="smoothScrollToTop(1000, 432)" style="cursor: pointer;">
-      <img src="./bur.png" alt="Policy Benefits" onclick="smoothScrollToTop(1000, 432)" style="cursor: pointer;" />
+    <div
+      class="div1"
+      onclick="smoothScrollToTop(1000, 432)"
+      style="cursor: pointer;"
+    >
+      <img
+        src="./bur.png"
+        alt="Policy Benefits"
+        onclick="smoothScrollToTop(1000, 432)"
+        style="cursor: pointer;"
+      />
     </div>
 
-    <div class="div2" onclick="smoothScrollToTop(1000, 432)" style="cursor: pointer;">
+    <div
+      class="div2"
+      onclick="smoothScrollToTop(1000, 432)"
+      style="cursor: pointer;"
+    >
       <img src="./live.png" alt="Live" />
-      <span><strong id="counter">22,563</strong> Seniors Enrolled In Last 24 Hours!</span>
+      <span
+        ><strong id="counter">22,563</strong> Seniors Enrolled In Last 24
+        Hours!</span
+      >
     </div>
 
     <div class="div6">
       <div class="div7">
-        <div class="div8" onclick="smoothScrollToTop(1000, 432)" style="cursor: pointer;">
+        <div
+          class="div8"
+          onclick="smoothScrollToTop(1000, 432)"
+          style="cursor: pointer;"
+        >
           You Just Heard The Story About David...
         </div>
-        <img class="div9" src="./ai.gif" alt="Money in hand" onclick="smoothScrollToTop(1000, 432)" style="cursor: pointer;" />
-       <p
-  style="
-    max-width: 460px;
-    margin: 16px auto 4px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #374151;
-  "
->
-  Now let's make sure your family never faces what his family faced.
-</p>
+        <img
+          class="div9"
+          src="./ai.gif"
+          alt="Money in hand"
+          onclick="smoothScrollToTop(1000, 432)"
+          style="cursor: pointer;"
+        />
+        <p
+          style="
+            max-width: 460px;
+            margin: 16px auto 4px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #374151;
+          "
+        >
+          Now let's make sure your family never faces what his family faced.
+        </p>
 
         <div class="div10">
           Checking your eligibility is very simple and takes just 60 seconds,
@@ -442,18 +593,57 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="div15" id="answerOptions">
           <div class="div16" onclick="handleQuizP('50-65')">50-65</div>
           <div class="div16" onclick="handleQuizN('65-80')">65-80</div>
-          <div class="div16" id="ageOption80Plus" onclick="handleQuizP('80+')">80+</div>
+          <div class="div16" id="ageOption80Plus" onclick="handleQuizP('80+')">
+            80+
+          </div>
         </div>
         <div class="div17">
           <div class="div18"></div>
-          <span><em><span id="claim">72</span> People Are Claiming Right Now!</em></span>
+          <span
+            ><em
+              ><span id="claim">72</span> People Are Claiming Right
+              Now!</em
+            ></span
+          >
         </div>
       </div>
     </div>
 
-    <div class="div4 div5" id="status">
-      <span id="statusMessage"></span>
-    </div>
+    <!-- ============ STATUS BOX WITH SHIMMER LOADER ============ -->
+  <div
+  class="div4 div5"
+  id="status"
+  style="
+    max-width: 520px;
+    margin: 18px auto 0;
+    padding: 20px 16px;
+    background: #eff6ff;
+    border-radius: 12px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  "
+>
+  <img
+    src="https://media.tenor.com/_JrggGLrtQUAAAAi/loading.gif"
+    alt="Checking eligibility..."
+    style="width: 52px; height: 52px; object-fit: contain;"
+  />
+  <span
+    id="statusMessage"
+    style="
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      text-align: center;
+    "
+  ></span>
+</div>
+
+    <!-- ======================================================== -->
 
     <!-- ===================== NEW CONGRATS LAYOUT ===================== -->
     <div class="div4 div5 congrats-section" id="congratulations">
@@ -464,15 +654,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <div class="congrats-content">
         <p class="congrats-body">
-          Your personal agent is standing by to help you understand your options, answer your questions,
-          and guide you through the simple process.
+          Your personal agent is standing by to help you understand your
+          options, answer your questions, and guide you through the simple
+          process.
         </p>
 
         <div class="congrats-note-card">
           <strong>This is not a sales pitch.</strong>
-        
-         
-          You'll speak with a licensed specialist who's helped hundreds of families secure their final expense coverage.
+
+          You'll speak with a licensed specialist who's helped hundreds of
+          families secure their final expense coverage.
         </div>
 
         <div class="congrats-cta-wrap">
@@ -482,8 +673,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             class="div22 glow shimmer"
             onpointerdown="fireNbRawCall()"
           >
-            <i class="fa-solid fa-phone" style="margin-right:6px;"></i>
-           CALL (321) 485-8035
+            <i class="fa-solid fa-phone" style="margin-right: 6px;"></i>
+            CALL (321) 485-8035
           </a>
           <p class="congrats-cta-subtext">
             Your call is 100% free and there’s no obligation.
@@ -529,12 +720,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             ★★★★★
           </div>
           <p class="congrats-testimonial-quote">
-            "After my husband passed, I was so grateful we had made this call. It saved my family from financial
-            heartbreak during the worst time of our lives."
+            "After my husband passed, I was so grateful we had made this call.
+            It saved my family from financial heartbreak during the worst time
+            of our lives."
           </p>
-          <p class="congrats-testimonial-name">
-            — Margaret S., Age 67
-          </p>
+          <p class="congrats-testimonial-name">— Margaret S., Age 67</p>
         </div>
 
         <div class="congrats-footer-text">
@@ -594,17 +784,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       // Redundant listener: fire again on click without blocking dialer
       (function attachCallHandler() {
-        const link = document.getElementById('callLink');
+        const link = document.getElementById("callLink");
         if (!link) return;
-        link.addEventListener('click', function () {
-          try { fireNbRawCall(); } catch (_) {}
-          // do not preventDefault; let tel: open immediately
-        }, { passive: true });
+        link.addEventListener(
+          "click",
+          function () {
+            try {
+              fireNbRawCall();
+            } catch (_) {}
+            // do not preventDefault; let tel: open immediately
+          },
+          { passive: true }
+        );
       })();
 
       setInterval(() => {
         if (counter) {
-          let previousNumber = parseInt(counter.innerText.replace(/,/g, ""));
+          let previousNumber = parseInt(
+            counter.innerText.replace(/,/g, "")
+          );
           if (previousNumber < maxCounterValue) {
             let randomIncrement = Math.floor(Math.random() * 3) + 1;
             let newNumber = previousNumber + randomIncrement;
@@ -666,7 +864,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           const timeElapsed = currentTime - startTime;
           const run = ease(timeElapsed, startPosition, distance, duration);
           window.scrollTo(0, run);
-          if (timeElapsed < duration) requestAnimationFrame(animation);
+          if (timeElapsed < duration)
+            requestAnimationFrame(animation);
         }
         function ease(t, b, c, d) {
           t /= d / 2;
@@ -706,8 +905,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         congratulationsDiv.classList.remove("div5");
         imageContainer.style.display = "block";
         startTimer();
-        setTimeout(() => { imageContainer.style.display = "none"; }, 2000);
-        setTimeout(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, 100);
+        setTimeout(() => {
+          imageContainer.style.display = "none";
+        }, 2000);
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
       }
 
       function startTimer() {
@@ -716,7 +919,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           const minutes = Math.floor(totalSeconds / 60);
           const seconds = totalSeconds % 60;
           minutesEl.textContent = minutes;
-          secondsEl.textContent = seconds < 10 ? "0" + seconds : seconds;
+          secondsEl.textContent =
+            seconds < 10 ? "0" + seconds : seconds;
           totalSeconds--;
           if (totalSeconds < 0) clearInterval(timer);
         }, 1000);
