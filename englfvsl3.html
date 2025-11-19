@@ -821,7 +821,80 @@
           transform: scale(1);
         }
       }
-      /* =================== END BCBNC CONGO STYLES =================== */
+
+      /* ============ STATUS SHIMMER ============ */
+      #status {
+        background: linear-gradient(
+          120deg,
+          #e5e7eb 0%,
+          #f9fafb 30%,
+          #e5e7eb 60%
+        );
+        background-size: 200% 100%;
+        animation: statusShimmer 1.4s linear infinite;
+      }
+
+      @keyframes statusShimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      @keyframes statusProgress {
+        0% {
+          transform: translateX(-110%);
+        }
+        50% {
+          transform: translateX(10%);
+        }
+        100% {
+          transform: translateX(120%);
+        }
+      }
+
+      /* -------- FIXES: Live Activity width + left-align list text -------- */
+      /* Make live activity card behave like a centred mobile card */
+      #congratulations .social-proof-ticker {
+        max-width: 480px;
+        margin: 0 auto 25px;
+      }
+
+      /* Stop the weird long scroll width – wrap nicely instead */
+      #congratulations .ticker-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        animation: none; /* remove marquee effect for a clean card look */
+      }
+
+      #congratulations .ticker-item {
+        flex: 0 1 auto;
+      }
+
+      /* Left-align the bullet list in the blue box */
+      #congratulations .reason-box {
+        text-align: left;
+      }
+
+      #congratulations .reason-title {
+        text-align: center; /* keep heading centred */
+      }
+
+      #congratulations .reason-list {
+        margin: 0;
+        padding: 0;
+        text-align: left;
+      }
+
+      #congratulations .reason-list li {
+        text-align: left;
+        align-items: flex-start;
+      }
+      /* -------- END FIXES -------- */
     </style>
 
     <!-- Ringba -->
@@ -1190,43 +1263,6 @@
         ></div>
       </div>
     </div>
-
-    <style>
-      /* Shimmer on the whole status div */
-      #status {
-        background: linear-gradient(
-          120deg,
-          #e5e7eb 0%,
-          #f9fafb 30%,
-          #e5e7eb 60%
-        );
-        background-size: 200% 100%;
-        animation: statusShimmer 1.4s linear infinite;
-      }
-
-      /* Shimmer animation */
-      @keyframes statusShimmer {
-        0% {
-          background-position: -200% 0;
-        }
-        100% {
-          background-position: 200% 0;
-        }
-      }
-
-      /* Progress bar movement */
-      @keyframes statusProgress {
-        0% {
-          transform: translateX(-110%);
-        }
-        50% {
-          transform: translateX(10%);
-        }
-        100% {
-          transform: translateX(120%);
-        }
-      }
-    </style>
 
     <!-- ===================== NEW BCBNC-STYLE CONGRATS LAYOUT ===================== -->
     <div class="div4 div5" id="congratulations">
