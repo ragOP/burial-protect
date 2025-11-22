@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TopDollar Law — PPC Eligibility Check</title>
+<meta name="description" content="Conversion-first PPC landing page. 2-step eligibility check → loader → rich congratulations page." />
+
+<style>
+  :root{
+    /* NEW light theme (not same as before) */
+    --bg:#fbf7f2;
+    --bg2:#ffffff;
+    --card:#ffffff;
+    --line:#efe3d7;
+    --text:#171618;
+    --muted:#6b645d;
+
+    --brand:#0f766e;     /* teal */
+    --brand2:#f97316;    /* orange */
+    --brand3:#16a34a;    /* green */
+    --gold:#f59e0b;
+    --rose:#fb7185;
+
+    --r-xl:22px;
+    --r-lg:16px;
+    --r-md:12px;
+
+    --shadow:0 14px 40px rgba(23,22,24,.08);
+    --shadow-soft:0 6px 18px rgba(23,22,24,.06);
+  }
+
+  *{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  body{
+    margin:0;color:var(--text);
+    background:
+      radial-gradient(1100px 520px at 90% -12%, rgba(249,115,22,.12), transparent 60%),
+      radial-gradient(900px 460px at 12% -14%, rgba(15,118,110,.12), transparent 60%),
+      var(--bg);
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{width:min(1040px,92vw);margin:0 auto}
+
+  /* ===== TOP PPC STRIP ===== */
+  .top-strip{
+    background:linear-gradient(90deg,#fff1e6,#e9fbf8);
+    border-bottom:1px solid var(--line);
+    font-size:12.5px;font-weight:900;color:#1f1c1a;
+  }
+  .top-strip .container{
+    padding:7px 0;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+  }
+  .pill{
+    background:white;border:1px dashed #f2cab0;padding:4px 9px;border-radius:999px;
+  }
+
+  /* ===== HEADER (LOGO CENTER) ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    padding:10px 0;gap:8px;
+  }
+  .nav-left,.nav-right{display:flex;align-items:center;gap:8px}
+  .nav-left{justify-content:flex-start}
+  .nav-right{justify-content:flex-end;flex-wrap:wrap}
+
+  .logo{
+    display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.3px;
+    justify-self:center;
+  }
+  .mark{
+    width:42px;height:42px;border-radius:14px;
+    background:conic-gradient(from 180deg, var(--brand), var(--brand2), var(--brand), #22c55e);
+    box-shadow:0 8px 20px rgba(15,118,110,.25);
+    position:relative;overflow:hidden;
+  }
+  .mark:after{
+    content:"";position:absolute;inset:-120% -40%;
+    background:linear-gradient(120deg, transparent 45%, rgba(255,255,255,.9) 50%, transparent 55%);
+    transform:translateX(-70%);
+    animation:shine 2.2s linear infinite;
+  }
+  @keyframes shine{to{transform:translateX(70%)}}
+
+  .phone{
+    font-weight:1000;color:#1f1c1a;background:#fff7ed;border:1px solid var(--line);
+    padding:8px 12px;border-radius:999px;white-space:nowrap;
+  }
+
+  .btn{
+    border:0;cursor:pointer;font-weight:1000;letter-spacing:.2px;
+    padding:12px 15px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;
+    transition:.2s transform,.2s opacity,.2s box-shadow;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{
+    background:linear-gradient(90deg,var(--brand),var(--brand2));
+    color:white;box-shadow:0 10px 22px rgba(15,118,110,.22);
+    position:relative;overflow:hidden;
+  }
+  .btn-primary:after{
+    content:"";position:absolute;inset:-120% -40%;
+    background:linear-gradient(120deg, transparent 45%, rgba(255,255,255,.8) 50%, transparent 55%);
+    transform:translateX(-70%);animation:shine 2.4s linear infinite;
+  }
+  .btn-ghost{
+    background:white;border:1px solid var(--line);color:var(--text);box-shadow:none;
+  }
+  .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+
+  /* ===== HERO LAYOUT ===== */
+  main{padding:14px 0 8px}
+  .hero{
+    display:grid;grid-template-columns:1.08fr .92fr;gap:12px;align-items:stretch;
+  }
+
+  .left{
+    display:grid;gap:10px;
+  }
+
+  .badges{display:flex;gap:8px;flex-wrap:wrap}
+  .badge{
+    font-size:12px;font-weight:1000;color:#1f1c1a;background:#ecfeff;border:1px solid #c7f9f0;
+    padding:5px 9px;border-radius:999px;
+  }
+
+  h1{
+    font-size:clamp(26px,3.2vw,40px);
+    margin:0;line-height:1.12;letter-spacing:.2px;
+  }
+  .sub{
+    color:var(--muted);font-size:clamp(14px,1.55vw,17px);
+    line-height:1.7;margin:0;
+  }
+
+  .value-row{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  }
+  .value{
+    background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:10px;
+    box-shadow:var(--shadow-soft);
+  }
+  .value .big{font-weight:1000;font-size:14.5px;display:flex;align-items:center;gap:6px}
+  .value .sm{font-size:12px;color:var(--muted);line-height:1.5;margin-top:2px}
+
+  .proof{
+    background:white;border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:var(--shadow-soft);
+    display:grid;gap:8px;
+  }
+  .proof-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .chip{
+    background:#fffaf5;border:1px solid var(--line);font-weight:1000;font-size:12px;padding:6px 8px;border-radius:10px;
+  }
+  .proof-mini{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:8px;
+  }
+  .mini-card{background:#fffdf9;border:1px solid var(--line);border-radius:12px;padding:8px}
+  .mini-card b{font-size:13px}
+  .mini-card div{font-size:12px;color:var(--muted);margin-top:2px}
+
+  .image-wrap{
+    background:white;border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:var(--shadow-soft);
+  }
+  .image-note{font-size:12px;color:var(--muted);margin-top:6px}
+
+  /* ===== FLOW CARD ===== */
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r-xl);
+    padding:12px;box-shadow:var(--shadow);
+    position:relative;overflow:hidden;
+  }
+  .card:before{
+    content:"";position:absolute;inset:-45% -35% auto auto;width:240px;height:240px;border-radius:999px;
+    background:radial-gradient(circle, rgba(249,115,22,.18), transparent 60%);
+  }
+
+  .card-head{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;
+  }
+  .card-head h2{margin:0;font-size:18px}
+  .mini-trust{
+    font-size:11px;font-weight:1000;color:#1f1c1a;background:#dcfce7;border:1px solid #bbf7d0;
+    padding:4px 7px;border-radius:999px;white-space:nowrap;
+  }
+
+  .progress{
+    display:flex;align-items:center;gap:6px;margin:4px 0 8px;
+  }
+  .bar{
+    flex:1;height:9px;background:#ffedd5;border-radius:999px;overflow:hidden;border:1px solid #f7d7b8;
+  }
+  .bar-fill{
+    height:100%;width:0%;background:linear-gradient(90deg,var(--brand),var(--brand2));
+    transition:width .35s ease;
+  }
+  .step-label{font-size:12px;font-weight:1000;color:var(--muted)}
+
+  .qwrap{display:grid;gap:10px}
+  .qtitle{font-weight:1000;font-size:15px}
+
+  .options{display:grid;gap:8px}
+
+  /* TILE OPTIONS (more intuitive) */
+  .tile{
+    background:#fff;border:1px solid var(--line);padding:12px;border-radius:14px;
+    font-weight:900;cursor:pointer;transition:.18s;border-left:5px solid transparent;
+    display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;
+  }
+  .tile:hover{border-color:#f8caa7;background:#fff7ed}
+  .tile .ico{
+    width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;
+    background:#fff1e6;border:1px solid #f5d0b3;
+  }
+  .tile .main{display:grid;gap:2px}
+  .tile .main b{font-size:14.5px}
+  .tile .main span{font-size:12px;color:var(--muted);line-height:1.5}
+  .tile .tag{
+    font-size:11px;font-weight:1000;background:#e9fbf8;color:#0f766e;border:1px solid #c9f3ec;
+    padding:5px 7px;border-radius:999px;white-space:nowrap;
+  }
+  .tile.selected{
+    border-color:var(--brand);background:#f0fdfa;border-left-color:var(--brand);
+    box-shadow:0 8px 18px rgba(15,118,110,.12);
+  }
+
+  .input{
+    width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);
+    background:#fffdf9;font-size:14px;outline:none;transition:.2s border,.2s box-shadow;
+  }
+  .input:focus{
+    border-color:rgba(15,118,110,.7);
+    box-shadow:0 0 0 4px rgba(15,118,110,.12);
+    background:white;
+  }
+  .field{
+    display:grid;gap:6px;
+  }
+  .field label{
+    font-size:12px;font-weight:1000;color:#1f1c1a;
+  }
+
+  .row{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  }
+
+  .help-note{
+    font-size:12px;color:var(--muted);line-height:1.5;
+    background:#fffaf5;border:1px dashed var(--line);padding:8px;border-radius:10px;
+  }
+
+  .actions{
+    display:flex;gap:8px;flex-wrap:wrap;margin-top:2px;
+  }
+  .actions .btn{flex:1;justify-content:center}
+
+  /* ===== LOADER OVERLAY ===== */
+  .loader{
+    display:none;position:relative;text-align:center;padding:26px 0;
+  }
+  .spinner{
+    width:58px;height:58px;border:7px solid #ffe7cf;border-top-color:var(--brand);
+    border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 12px;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .loader h3{margin:0 0 6px;font-size:18px;font-weight:1000}
+  .loader p{margin:0;color:var(--muted);font-size:14px}
+
+  .loader-steps{
+    margin-top:10px;display:grid;gap:6px;font-size:12.5px;color:var(--muted);font-weight:900;
+  }
+  .loader-line{
+    background:#fffaf5;border:1px solid var(--line);padding:7px 9px;border-radius:10px;
+  }
+
+  /* ===== CONGRATS ===== */
+  .congrats{
+    display:none;margin-top:12px;background:white;border:1px solid var(--line);
+    border-radius:20px;box-shadow:var(--shadow);overflow:hidden;position:relative;
+  }
+  .congrats-hero{
+    background:
+      radial-gradient(800px 280px at 5% -30%, rgba(15,118,110,.18), transparent 60%),
+      radial-gradient(700px 260px at 95% -25%, rgba(249,115,22,.18), transparent 60%),
+      linear-gradient(180deg,#ffffff,#fff7ed);
+    padding:18px 16px 14px;text-align:center;position:relative;
+  }
+  .shimmer-banner{
+    position:relative;margin:0 auto 10px;width:max-content;max-width:100%;
+    background:#1f1c1a;color:white;font-weight:1000;font-size:12px;letter-spacing:.7px;
+    padding:7px 10px;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.08);
+  }
+  .shimmer-banner:after{
+    content:"";position:absolute;inset:-120% -40%;
+    background:linear-gradient(120deg, transparent 45%, rgba(255,255,255,.95) 50%, transparent 55%);
+    transform:translateX(-70%);animation:shine 1.8s linear infinite;
+  }
+
+  .congrats-hero h2{
+    margin:4px 0 6px;font-size:28px;font-weight:1100;letter-spacing:.2px;
+  }
+  .congrats-hero p{
+    margin:0;color:var(--muted);font-size:15px;line-height:1.6;
+  }
+
+  /* sparkles */
+  .sparkle{
+    position:absolute;width:7px;height:7px;border-radius:999px;
+    background:radial-gradient(circle, #fff, transparent 60%);
+    opacity:.9;animation:floatUp 2.2s ease-in-out infinite;
+  }
+  @keyframes floatUp{
+    0%{transform:translateY(12px) scale(.8);opacity:.2}
+    50%{opacity:1}
+    100%{transform:translateY(-20px) scale(1.1);opacity:.2}
+  }
+
+  .good-news{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 14px;background:#fff;
+  }
+  .good-card{
+    background:#fffdf9;border:1px solid var(--line);border-radius:14px;padding:10px;text-align:left;
+    display:grid;gap:3px;position:relative;overflow:hidden;
+  }
+  .good-card .icon{font-size:18px}
+  .good-card b{font-size:14px}
+  .good-card span{font-size:12px;color:var(--muted);line-height:1.5}
+
+  .stats-row{
+    padding:0 14px 12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  }
+  .stat{
+    background:#f0fdfa;border:1px solid #c9f3ec;border-radius:14px;padding:10px;text-align:center;
+  }
+  .stat .num{font-size:20px;font-weight:1100;color:#0f766e}
+  .stat .lab{font-size:12px;color:var(--muted);font-weight:1000}
+
+  .next-steps{
+    padding:12px 14px;border-top:1px dashed var(--line);display:grid;gap:10px;
+  }
+  .step-row{
+    display:flex;gap:10px;align-items:flex-start;background:#ffffff;border:1px solid var(--line);
+    border-radius:14px;padding:10px;
+  }
+  .step-dot{
+    width:26px;height:26px;border-radius:999px;background:#fff1e6;color:#c2410c;font-weight:1000;
+    display:grid;place-items:center;flex:0 0 26px;font-size:13px;border:1px solid #f5d0b3;
+  }
+  .step-row b{font-size:14px}
+  .step-row div{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.5}
+
+  .testi-wrap{
+    padding:12px 14px;border-top:1px dashed var(--line);display:grid;gap:8px;
+  }
+  .testi{
+    background:#fff7ed;border:1px solid #f5d0b3;border-radius:14px;padding:10px;display:grid;gap:6px;
+  }
+  .stars{color:var(--gold);letter-spacing:1.5px;font-size:13px;font-weight:1000}
+  .testi p{margin:0;font-size:14.5px;line-height:1.7}
+  .who{font-size:12px;color:var(--muted);font-weight:1000}
+
+  .cta-zone{
+    padding:14px;border-top:1px dashed var(--line);
+    background:linear-gradient(135deg,#e9fbf8,#fff1e6);
+    display:grid;gap:10px;
+  }
+  .cta-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  }
+  .cta-big{
+    padding:14px;border-radius:16px;font-weight:1100;font-size:16px;justify-content:center;width:100%;
+  }
+  .cta-secondary{
+    background:#1f1c1a;color:white;box-shadow:0 8px 18px rgba(31,28,26,.2);
+  }
+
+  .fineprint{
+    font-size:12px;color:var(--muted);line-height:1.6;text-align:center;font-weight:900;
+  }
+
+  /* confetti canvas */
+  #confettiCanvas{
+    position:fixed;inset:0;pointer-events:none;z-index:999;display:none;
+  }
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(10px);transition:.5s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* sticky */
+  .sticky{
+    position:fixed;left:0;right:0;bottom:10px;z-index:60;display:none;
+  }
+  .sticky-inner{
+    width:min(980px,92vw);margin:0 auto;background:white;border:1px solid var(--line);
+    border-radius:999px;padding:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;
+    box-shadow:0 12px 30px rgba(23,22,24,.12);
+  }
+  .sticky-text{font-size:12px;color:var(--muted);font-weight:1000;padding-left:6px}
+
+  footer{
+    padding:12px 0;border-top:1px solid var(--line);color:var(--muted);
+    font-size:12.5px;margin-top:10px;font-weight:900;
+  }
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr}
+    .value-row{grid-template-columns:repeat(2,1fr)}
+    .good-news,.stats-row{grid-template-columns:1fr 1fr}
+    .cta-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    .value-row{grid-template-columns:1fr}
+    .row{grid-template-columns:1fr}
+    .good-news,.stats-row{grid-template-columns:1fr}
+    .sticky{display:block}
+    .nav{grid-template-columns:auto auto auto}
+    .nav-left{display:none}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="confettiCanvas"></canvas>
+
+<div class="top-strip">
+  <div class="container">
+    <div class="pill">Free Case Review</div>
+    <div class="pill">No Upfront Fees</div>
+    <div class="pill">Response in Minutes</div>
+    <div class="pill">All 50 States</div>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <div class="nav-left">
+      <div class="pill" style="border-style:solid;font-size:11px;">Trusted Injury Network</div>
+    </div>
+
+    <a class="logo" href="#top">
+      <div class="mark"></div>
+      <div>
+        <div>TopDollar Law</div>
+        <div style="font-size:11px;color:var(--muted);font-weight:1000;">Personal Injury Attorneys</div>
+      </div>
+    </a>
+
+    <div class="nav-right">
+      <a class="phone" href="tel:+18005551234">Call (800) 555-1234</a>
+      <a class="btn btn-primary" href="#flow">Start Check</a>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="container">
+  <div class="hero">
+
+    <!-- LEFT -->
+    <section class="left reveal">
+      <div class="badges">
+        <div class="badge">2-Minute Eligibility Check</div>
+        <div class="badge">No Win • No Fee</div>
+        <div class="badge">Trial-Ready Attorneys</div>
+      </div>
+
+      <h1>Check If You Qualify for Injury Compensation</h1>
+      <p class="sub">
+        Don’t guess. Answer two quick questions and we’ll instantly
+        estimate if your case may qualify for a settlement.
+      </p>
+
+      <div class="value-row">
+        <div class="value">
+          <div class="big">⚡ Fast Call-Back</div>
+          <div class="sm">Attorney reviews within minutes.</div>
+        </div>
+        <div class="value">
+          <div class="big">🩺 Medical Support</div>
+          <div class="sm">Guidance even if uninsured.</div>
+        </div>
+        <div class="value">
+          <div class="big">💰 Max Payout</div>
+          <div class="sm">We negotiate hard or go to trial.</div>
+        </div>
+      </div>
+
+      <div class="proof">
+        <div class="proof-row">
+          <div class="chip">★★★★★ 4.9/5 Client Reviews</div>
+          <div class="chip">$250M+ Recovered</div>
+          <div class="chip">24/7 Support</div>
+        </div>
+        <div class="proof-mini">
+          <div class="mini-card">
+            <b>Insurance handled for you</b>
+            <div>No confusing calls or paperwork.</div>
+          </div>
+          <div class="mini-card">
+            <b>We prepare every case for trial</b>
+            <div>That’s why offers go higher.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- image placeholder (keep local path as asked) -->
+      <div class="image-wrap">
+        <img src="/mnt/data/7baf3510-6f12-4455-8e22-b846850836cf.png" alt="Preview placeholder" style="border-radius:10px;">
+        <div class="image-note">Replace with your PPC creative if needed.</div>
+      </div>
+    </section>
+
+    <!-- RIGHT FLOW -->
+    <section class="card reveal" id="flow">
+      <div class="card-head">
+        <h2>Eligibility Check</h2>
+        <div class="mini-trust">Private & Secure</div>
+      </div>
+
+      <div class="progress">
+        <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+        <div class="step-label" id="stepLabel">Step 1 of 2</div>
+      </div>
+
+      <!-- Q1 -->
+      <div class="qwrap" id="q1">
+        <div class="qtitle">1) What best describes your accident?</div>
+
+        <div class="options" id="q1Options">
+          <div class="tile" data-q="1" data-val="Car Accident">
+            <div class="ico">🚗</div>
+            <div class="main">
+              <b>Car Accident</b>
+              <span>Rear-end, T-bone, highway crashes, hit-and-run.</span>
+            </div>
+            <div class="tag">Most common</div>
+          </div>
+
+          <div class="tile" data-q="1" data-val="Truck Accident">
+            <div class="ico">🚚</div>
+            <div class="main">
+              <b>Truck / Commercial Vehicle</b>
+              <span>Big-rigs, deliveries, company fleets.</span>
+            </div>
+            <div class="tag">High value</div>
+          </div>
+
+          <div class="tile" data-q="1" data-val="Slip & Fall">
+            <div class="ico">🧍</div>
+            <div class="main">
+              <b>Slip & Fall</b>
+              <span>Unsafe property, broken stairs, wet floors.</span>
+            </div>
+            <div class="tag">Premises</div>
+          </div>
+
+          <div class="tile" data-q="1" data-val="Workplace Injury">
+            <div class="ico">🏗️</div>
+            <div class="main">
+              <b>Workplace Injury</b>
+              <span>Construction, warehouse, on-the-job accidents.</span>
+            </div>
+            <div class="tag">Workers</div>
+          </div>
+
+          <div class="tile" data-q="1" data-val="Other">
+            <div class="ico">➕</div>
+            <div class="main">
+              <b>Other</b>
+              <span>Medical negligence, dog bite, etc.</span>
+            </div>
+            <div class="tag">We’ll route</div>
+          </div>
+        </div>
+
+        <div class="field" id="otherWrap" style="display:none;">
+          <label>If “Other”, briefly say what happened *</label>
+          <input id="otherInput" class="input" placeholder="Example: Dog bite at apartment" />
+        </div>
+
+        <div class="help-note">
+          Pick the closest category. We’ll confirm details in the free call.
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" id="nextBtn" disabled>Continue</button>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="qwrap" id="q2" style="display:none;">
+        <div class="qtitle">2) Tell us a bit more (takes 10 seconds)</div>
+
+        <div class="field">
+          <label>Were you injured or treated medically? *</label>
+          <div class="options" id="injuryOptions">
+            <div class="tile" data-q="2" data-val="Yes, injured">
+              <div class="ico">✅</div>
+              <div class="main">
+                <b>Yes, I was injured</b>
+                <span>ER, doctor visit, or ongoing pain.</span>
+              </div>
+              <div class="tag">Likely eligible</div>
+            </div>
+
+            <div class="tile" data-q="2" data-val="Not sure yet">
+              <div class="ico">🤔</div>
+              <div class="main">
+                <b>Not sure yet</b>
+                <span>Symptoms may appear later.</span>
+              </div>
+              <div class="tag">Still check</div>
+            </div>
+
+            <div class="tile" data-q="2" data-val="No injuries">
+              <div class="ico">❌</div>
+              <div class="main">
+                <b>No injuries</b>
+                <span>We’ll still review your situation.</span>
+              </div>
+              <div class="tag">Depends</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>When did the accident happen? *</label>
+            <input id="dateInput" class="input" type="date" />
+          </div>
+          <div class="field">
+            <label>ZIP Code *</label>
+            <input id="zipInput" class="input" inputmode="numeric" placeholder="e.g., 60601" maxlength="10"/>
+          </div>
+        </div>
+
+        <div class="help-note">
+          Deadlines vary by state. Recent cases are usually stronger.
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-ghost" id="backBtn">Back</button>
+          <button class="btn btn-primary" id="finishBtn" disabled>Check Eligibility</button>
+        </div>
+      </div>
+
+      <!-- Loader -->
+      <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <h3>Analyzing Your Answers…</h3>
+        <p>One moment while we match your case.</p>
+        <div class="loader-steps">
+          <div class="loader-line">✔ Verifying accident category</div>
+          <div class="loader-line">✔ Checking injury / treatment signals</div>
+          <div class="loader-line">✔ Estimating claim viability</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CONGRATS -->
+  <section class="congrats reveal" id="congrats">
+    <div class="congrats-hero">
+      <div class="shimmer-banner">GOOD NEWS — YOU MAY QUALIFY</div>
+      <h2>🎉 Congratulations!</h2>
+      <p>
+        Based on what you shared, your case looks like it may qualify for compensation.
+        A free attorney review will confirm your claim value.
+      </p>
+
+      <!-- sparkles -->
+      <div class="sparkle" style="left:8%;top:18%;animation-delay:0s"></div>
+      <div class="sparkle" style="left:18%;top:35%;animation-delay:.4s"></div>
+      <div class="sparkle" style="left:86%;top:22%;animation-delay:.2s"></div>
+      <div class="sparkle" style="left:74%;top:38%;animation-delay:.6s"></div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <div class="num" id="stat1">98%</div>
+        <div class="lab">Client Satisfaction</div>
+      </div>
+      <div class="stat">
+        <div class="num" id="stat2">$250M+</div>
+        <div class="lab">Recovered</div>
+      </div>
+      <div class="stat">
+        <div class="num" id="stat3">15+ yrs</div>
+        <div class="lab">Experience</div>
+      </div>
+    </div>
+
+    <div class="good-news">
+      <div class="good-card">
+        <div class="icon">💰</div>
+        <b>Settlement Potential</b>
+        <span>Includes medical bills, lost wages, and pain damages.</span>
+      </div>
+      <div class="good-card">
+        <div class="icon">🩺</div>
+        <b>Medical Options</b>
+        <span>We help you find treatment even if uninsured.</span>
+      </div>
+      <div class="good-card">
+        <div class="icon">🛡️</div>
+        <b>No Upfront Fees</b>
+        <span>You pay only if we win — zero risk to start.</span>
+      </div>
+    </div>
+
+    <div class="next-steps">
+      <div style="font-weight:1100;font-size:16px;">What happens next</div>
+
+      <div class="step-row">
+        <div class="step-dot">1</div>
+        <div>
+          <b>Complete your free case review</b>
+          <div>Share your contact info so we can call you quickly.</div>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-dot">2</div>
+        <div>
+          <b>Attorney confirms eligibility</b>
+          <div>We review fault, injuries, insurance, deadlines.</div>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-dot">3</div>
+        <div>
+          <b>We launch your claim</b>
+          <div>We handle insurers while you focus on recovery.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-wrap">
+      <div style="font-weight:1100;font-size:15px;">Recent client feedback</div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p>
+          “They moved fast, got me treatment, and fought the insurance.
+          I’m so glad I filled the form.”
+        </p>
+        <div class="who">— Verified Client</div>
+      </div>
+    </div>
+
+    <div class="cta-zone">
+      <div style="font-weight:1100;font-size:16px;text-align:center;">
+        Finish your free review now
+      </div>
+
+      <div class="cta-grid">
+        <a href="#formSection" class="btn btn-primary cta-big">Continue to Free Case Review</a>
+        <a href="tel:+18005551234" class="btn cta-big cta-secondary">Call an Attorney Now</a>
+      </div>
+
+      <div class="fineprint">
+        ⚠️ Claims have strict deadlines. Starting today protects your case.
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL FORM -->
+  <section id="formSection" class="card reveal" style="margin-top:12px;">
+    <div class="card-head">
+      <h2>Free Case Review Form</h2>
+      <div class="mini-trust">Takes 2 minutes</div>
+    </div>
+
+    <div id="formError" style="display:none;background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:7px 9px;border-radius:10px;font-size:13px;margin-bottom:6px;">
+      Please fill all required fields.
+    </div>
+
+    <form id="caseForm" novalidate style="display:grid;gap:8px;">
+      <div class="field">
+        <label>Full Name *</label>
+        <input name="name" class="input" required placeholder="Your name"/>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Phone *</label>
+          <input name="phone" class="input" required placeholder="(###) ###-####"/>
+        </div>
+        <div class="field">
+          <label>State *</label>
+          <select name="state" class="input" required>
+            <option value="">Select</option>
+            <option>California</option><option>Texas</option><option>Florida</option>
+            <option>New York</option><option>Illinois</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Email (optional)</label>
+        <input name="email" type="email" class="input" placeholder="you@email.com"/>
+      </div>
+
+      <div class="field">
+        <label>Short Description *</label>
+        <textarea name="message" class="input" required placeholder="What happened? When? Any injuries?"></textarea>
+      </div>
+
+      <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center;">
+        Submit My Free Review
+      </button>
+
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);font-weight:1000;">
+        <div style="width:18px;height:18px;border-radius:6px;background:#fff1e6;display:grid;place-items:center;font-size:12px;border:1px solid #f5d0b3;">🔒</div>
+        <div>No spam. 100% confidential. No obligation.</div>
+      </div>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+    <div>© <span id="year"></span> TopDollar Law.</div>
+    <div>Privacy • Terms • Disclaimer</div>
+  </div>
+</footer>
+
+<!-- sticky bar -->
+<div class="sticky">
+  <div class="sticky-inner">
+    <div class="sticky-text">Free review • No upfront fee</div>
+    <a href="tel:+18005551234" class="btn btn-ghost" style="padding:9px 12px;">Call</a>
+    <a href="#flow" class="btn btn-primary" style="padding:9px 14px;">Review</a>
+  </div>
+</div>
+
+<script>
+  // year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // reveal animation
+  const reveals = document.querySelectorAll(".reveal");
+  const onReveal = () => {
+    const trigger = window.innerHeight * 0.9;
+    reveals.forEach(el=>{
+      if(el.getBoundingClientRect().top < trigger) el.classList.add("in");
+    });
+  };
+  window.addEventListener("scroll", onReveal);
+  window.addEventListener("load", onReveal);
+
+  // ========= FLOW LOGIC =========
+  const q1 = document.getElementById("q1");
+  const q2 = document.getElementById("q2");
+  const loader = document.getElementById("loader");
+  const congrats = document.getElementById("congrats");
+  const barFill = document.getElementById("barFill");
+  const stepLabel = document.getElementById("stepLabel");
+
+  const nextBtn = document.getElementById("nextBtn");
+  const finishBtn = document.getElementById("finishBtn");
+  const backBtn = document.getElementById("backBtn");
+
+  const otherWrap = document.getElementById("otherWrap");
+  const otherInput = document.getElementById("otherInput");
+
+  const dateInput = document.getElementById("dateInput");
+  const zipInput = document.getElementById("zipInput");
+
+  let a1 = null, a2 = null;
+
+  function clearSelect(q){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(t=>t.classList.remove("selected"));
+  }
+
+  function selectTile(tile){
+    const q = tile.dataset.q;
+    const val = tile.dataset.val;
+
+    clearSelect(q);
+    tile.classList.add("selected");
+
+    if(q==="1"){
+      a1 = val;
+      // show "Other" text only if selected
+      if(val==="Other"){
+        otherWrap.style.display="grid";
+        otherInput.value="";
+      } else {
+        otherWrap.style.display="none";
+        otherInput.value="";
+      }
+      validateQ1();
+    }
+
+    if(q==="2"){
+      a2 = val;
+      validateQ2();
+    }
+  }
+
+  document.querySelectorAll(".tile").forEach(t=>{
+    t.addEventListener("click", ()=>selectTile(t));
+  });
+
+  function validateQ1(){
+    if(!a1) return nextBtn.disabled = true;
+    if(a1==="Other"){
+      nextBtn.disabled = otherInput.value.trim().length < 3;
+    } else {
+      nextBtn.disabled = false;
+    }
+  }
+  otherInput.addEventListener("input", validateQ1);
+
+  function validateQ2(){
+    const ok = !!a2 &&
+      !!dateInput.value &&
+      zipInput.value.trim().length >= 4;
+    finishBtn.disabled = !ok;
+  }
+  dateInput.addEventListener("input", validateQ2);
+  zipInput.addEventListener("input", validateQ2);
+
+  nextBtn.addEventListener("click", ()=>{
+    q1.style.display="none";
+    q2.style.display="grid";
+    barFill.style.width="100%";
+    stepLabel.textContent="Step 2 of 2";
+    window.scrollTo({top:0,behavior:"smooth"});
+    onReveal();
+  });
+
+  backBtn.addEventListener("click", ()=>{
+    q2.style.display="none";
+    q1.style.display="grid";
+    barFill.style.width="50%";
+    stepLabel.textContent="Step 1 of 2";
+    validateQ1();
+  });
+
+  finishBtn.addEventListener("click", ()=>{
+    q2.style.display="none";
+    loader.style.display="block";
+    window.scrollTo({top:0,behavior:"smooth"});
+
+    setTimeout(()=>{
+      loader.style.display="none";
+      congrats.style.display="block";
+      congrats.scrollIntoView({behavior:"smooth",block:"start"});
+      fireConfetti(1800);
+      onReveal();
+    }, 1700);
+  });
+
+  // ========= FINAL FORM =========
+  const caseForm = document.getElementById("caseForm");
+  const formError = document.getElementById("formError");
+  const phone = caseForm.querySelector('input[name="phone"]');
+
+  phone.addEventListener("input", () => {
+    let v = phone.value.replace(/\D/g,'').slice(0,10);
+    let out = v;
+    if(v.length>6) out = `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6)}`;
+    else if(v.length>3) out = `(${v.slice(0,3)}) ${v.slice(3)}`;
+    phone.value = out;
+  });
+
+  caseForm.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    formError.style.display="none";
+    const required = [...caseForm.querySelectorAll("[required]")];
+    const bad = required.some(el => !el.value.trim());
+    if(bad){
+      formError.style.display="block";
+      formError.scrollIntoView({behavior:"smooth",block:"center"});
+      return;
+    }
+    const btn = caseForm.querySelector("button[type=submit]");
+    const old = btn.textContent;
+    btn.textContent="Submitting...";
+    btn.disabled=true;
+
+    setTimeout(()=>{
+      btn.textContent="Submitted ✅";
+      caseForm.reset();
+      setTimeout(()=>{
+        btn.textContent=old;
+        btn.disabled=false;
+      },1400);
+    },700);
+  });
+
+  /* ========== Confetti (no library) ========== */
+  const canvas = document.getElementById("confettiCanvas");
+  const ctx = canvas.getContext("2d");
+  let confettiPieces = [];
+  let confettiActive = false;
+  let confettiTimer = null;
+
+  function resizeCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  function rand(min,max){ return Math.random()*(max-min)+min; }
+  function makePiece(){
+    const colors = ["#0f766e","#f97316","#22c55e","#f59e0b","#fb7185","#8b5cf6"];
+    return {
+      x: rand(0, canvas.width),
+      y: rand(-20, -canvas.height*0.2),
+      w: rand(6, 12),
+      h: rand(8, 16),
+      r: rand(0, Math.PI*2),
+      vx: rand(-2.2, 2.2),
+      vy: rand(2.5, 6.5),
+      vr: rand(-0.12, 0.12),
+      color: colors[Math.floor(rand(0, colors.length))]
+    };
+  }
+
+  function drawConfetti(){
+    if(!confettiActive) return;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    confettiPieces.forEach(p=>{
+      p.x += p.vx;
+      p.y += p.vy;
+      p.r += p.vr;
+      p.vy += 0.03;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.r);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+    });
+
+    confettiPieces = confettiPieces.filter(p => p.y < canvas.height + 40);
+    if(confettiPieces.length < 140){
+      for(let i=0;i<3;i++) confettiPieces.push(makePiece());
+    }
+    requestAnimationFrame(drawConfetti);
+  }
+
+  function fireConfetti(duration=1500){
+    confettiPieces = [];
+    for(let i=0;i<120;i++) confettiPieces.push(makePiece());
+    canvas.style.display="block";
+    confettiActive = true;
+    drawConfetti();
+
+    clearTimeout(confettiTimer);
+    confettiTimer = setTimeout(()=>{
+      confettiActive = false;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      canvas.style.display="none";
+    }, duration);
+  }
+</script>
+
+</body>
+</html>
+
