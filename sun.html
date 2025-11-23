@@ -3,8 +3,333 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AutoQuote Pilot </title>
-  <link rel="stylesheet" href="sun.css"/>
+  <title>AutoQuote Pilot</title>
+
+  <style>
+    :root{
+      --blue:#1f6fd6;
+      --blue-dark:#0f5fb3;
+      --bg:#4a3330;            /* outer brown like screenshot */
+      --page:#ffffff;
+      --text:#0d1117;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display:flex;
+      justify-content:center;
+      padding:18px 10px 40px;
+    }
+
+    .page{
+      width:100%;
+      max-width: 460px;
+      background: var(--page);
+      min-height: 100vh;
+      border-radius: 6px;
+      overflow:hidden;
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+
+    /* HERO */
+    .hero{
+      position: relative;
+      height: 610px; /* enough for image + overlap */
+      background:#000;
+    }
+    .hero-bg{
+      position:absolute; inset:0;
+      overflow:hidden;
+    }
+    .hero-img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      transform: scale(1.03);
+    }
+    .hero-overlay{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(to bottom,
+          rgba(0,0,0,.55) 0%,
+          rgba(0,0,0,.35) 35%,
+          rgba(0,0,0,.10) 55%,
+          rgba(255,255,255,1) 100%);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      padding:18px 18px 0;
+      text-align:center;
+      color:#fff;
+    }
+
+    /* top social proof line */
+    .social-proof{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      font-size:15px;
+      font-weight:600;
+      opacity:.98;
+      margin-top:6px;
+      text-shadow: 0 2px 10px rgba(0,0,0,.55);
+      flex-wrap:wrap;
+    }
+    .social-proof strong{font-weight:900}
+    .faces{
+      display:flex;
+      margin-left:6px;
+    }
+    .face{
+      width:22px; height:22px; border-radius:999px;
+      border:2px solid #fff;
+      background: #d1d5db;
+      margin-left:-7px;
+      box-shadow:0 2px 6px rgba(0,0,0,.35);
+    }
+
+    .hero-title{
+      margin: 22px 0 10px;
+      font-size: 36px;
+      line-height: 1.18;
+      font-weight: 900;
+      text-shadow:0 4px 14px rgba(0,0,0,.6);
+      letter-spacing:.2px;
+    }
+
+    .hero-sub{
+      margin:0 0 18px;
+      font-size: 18px;
+      font-weight:700;
+      opacity:.98;
+      text-shadow:0 3px 10px rgba(0,0,0,.55);
+    }
+
+    /* Question card overlap */
+    .question-wrap{
+      position:absolute;
+      left:0; right:0;
+      bottom: 22px;
+      display:flex;
+      justify-content:center;
+      padding:0 16px;
+      z-index:3;
+    }
+    .question-card{
+      width:100%;
+      max-width: 410px;
+      background: var(--page);
+      color: var(--text);
+      border-radius: 22px;
+      padding: 18px 16px 16px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      text-align:center;
+    }
+    .question-card h3{
+      margin: 4px 0 14px;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing:.2px;
+    }
+    .btn-row{
+      display:flex; gap:14px;
+    }
+    .btn{
+      border:3px solid var(--blue);
+      padding: 16px 0;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size:22px;
+      width:100%;
+      cursor:pointer;
+      background:#fff;
+      color:#000;
+      transition:.15s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: var(--blue-dark);
+      box-shadow: 0 8px 18px rgba(31,111,214,.18);
+    }
+
+    /* Logos strip (no boxed cards like screenshot) */
+    .logos{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin: 18px 12px 0;
+      text-align:center;
+      color:#0b1220;
+    }
+    .logo-item{
+      width:33.33%;
+      padding:6px 4px;
+    }
+    .logo-placeholder{
+      height:34px;
+      width:110px;
+      margin:0 auto 6px;
+      border-radius:6px;
+      background:#e5e7eb;
+    }
+    .logo-item p{
+      margin:0;
+      font-weight:800;
+      font-size:14px;
+      line-height:1.1;
+    }
+    .logo-item span{
+      display:block;
+      margin-top:4px;
+      color: var(--muted);
+      font-weight:600;
+      font-size:12px;
+    }
+
+    /* Sections */
+    .section{
+      padding: 18px 16px 8px;
+    }
+    .section-title{
+      margin: 8px 0 10px;
+      font-size: 30px;
+      font-weight: 900;
+      text-align:center;
+      color:#0b1220;
+      letter-spacing:.2px;
+    }
+    .section-sub{
+      margin: 0 auto 14px;
+      font-size: 14px;
+      color: var(--muted);
+      text-align:center;
+      max-width: 380px;
+      line-height:1.5;
+    }
+
+    /* Quotes table */
+    .table-card{
+      background:#fff;
+      border-radius: 14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow: 0 10px 22px rgba(0,0,0,.06);
+    }
+    .table-head{
+      display:grid;
+      grid-template-columns: 1.4fr 1fr .7fr .9fr;
+      background: #2f6fbf;
+      color:#fff;
+      font-weight:900;
+      font-size:14px;
+      padding:12px 12px;
+    }
+    .table-row{
+      display:grid;
+      grid-template-columns: 1.4fr 1fr .7fr .9fr;
+      padding:12px;
+      font-size:14px;
+      border-top:1px solid var(--line);
+      align-items:center;
+    }
+    .table-row:nth-child(even){ background:#fafafa; }
+    .blur{ filter: blur(3px); opacity:.75; }
+    .name{ font-weight:800; }
+
+    /* Reviews */
+    .review-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      margin: 12px 0;
+      box-shadow: 0 8px 18px rgba(0,0,0,.06);
+      text-align:center;
+    }
+    .reviewer{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-top:4px;
+    }
+    .avatar-placeholder{
+      width:56px;height:56px;border-radius:999px;background:#e5e7eb;
+    }
+    .phone-placeholder{
+      width:56px;height:56px;border-radius:12px;background:#e5e7eb;
+    }
+    .review-quote{
+      font-size: 14px;
+      line-height: 1.6;
+      color:#111827;
+      margin: 10px 0 8px;
+      font-style: italic;
+    }
+    .stars{
+      color:#fbbf24;
+      font-size: 18px;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+    .review-name{
+      font-size: 13px;
+      font-weight: 800;
+      color:#111827;
+      margin:0;
+    }
+
+    /* Footer */
+    .footer{
+      padding: 16px;
+      background:#f9fafb;
+      border-top:1px solid var(--line);
+      font-size:12px;
+      color:#374151;
+    }
+    .footnote{
+      text-align:center;
+      margin:0 0 8px;
+      color:#6b7280;
+      font-weight:600;
+    }
+    .disclaimer{
+      line-height: 1.55;
+      color:#6b7280;
+      margin:0 0 12px;
+    }
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      justify-content:center;
+      color:#6b7280;
+    }
+    .footer-links a{
+      color:#6b7280;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .footer-links a:hover{ text-decoration:underline; }
+
+    /* Desktop */
+    @media (min-width: 900px){
+      body{padding-top:26px;}
+      .page{max-width: 520px;}
+      .hero{height: 680px;}
+      .hero-title{font-size: 40px;}
+      .question-card h3{font-size:28px;}
+    }
+  </style>
 </head>
 <body>
   <main class="page">
@@ -12,7 +337,6 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-bg">
-        <!-- car image -->
         <img
           class="hero-img"
           src="https://autoquotepilot.com/ad2/newwww.png"
@@ -23,9 +347,8 @@
 
       <div class="hero-content">
         <div class="social-proof">
-          <span class="dot"></span>
-          <p><strong>85,211 Americans</strong> Saved on Auto Insurance</p>
-          <div class="faces">
+          <p><strong>86,245 Americans</strong> Saved on Auto Insurance</p>
+          <div class="faces" aria-hidden="true">
             <span class="face"></span>
             <span class="face"></span>
             <span class="face"></span>
@@ -40,31 +363,35 @@
           Your Auto Insurance
         </h1>
         <p class="hero-sub">Rates Starting At $1 Per Day In Delhi</p>
+      </div>
 
+      <!-- overlapped question card -->
+      <div class="question-wrap">
         <div class="question-card">
           <h3>Are You Currently Insured?</h3>
           <div class="btn-row">
-            <button class="btn btn-primary">YES</button>
-            <button class="btn btn-ghost">NO</button>
-          </div>
-        </div>
-
-        <div class="logos">
-          <div class="logo-item">
-            <div class="logo-placeholder"></div>
-            <p>Allstate<br/><span>Based On 22,000+ Reviews</span></p>
-          </div>
-          <div class="logo-item">
-            <div class="logo-placeholder"></div>
-            <p>USAA<br/><span>Based On 22,000+ Reviews</span></p>
-          </div>
-          <div class="logo-item">
-            <div class="logo-placeholder"></div>
-            <p>Google<br/><span>Based On 22,000+ Reviews</span></p>
+            <button class="btn">YES</button>
+            <button class="btn">NO</button>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Logos -->
+    <div class="logos">
+      <div class="logo-item">
+        <div class="logo-placeholder"></div>
+        <p>Google <span>Based On 22,000+ Reviews</span></p>
+      </div>
+      <div class="logo-item">
+        <div class="logo-placeholder"></div>
+        <p>Allstate <span>Based On 22,000+ Reviews</span></p>
+      </div>
+      <div class="logo-item">
+        <div class="logo-placeholder"></div>
+        <p>USAA <span>Based On 22,000+ Reviews</span></p>
+      </div>
+    </div>
 
     <!-- REAL-TIME QUOTES -->
     <section class="section quotes">
@@ -80,39 +407,27 @@
 
         <div class="table-row">
           <div class="blur name">John D.</div>
-          <div>Ford</div>
-          <div>FL</div>
-          <div>$28/mo</div>
+          <div>Ford</div><div>FL</div><div>$28/mo</div>
         </div>
         <div class="table-row">
           <div class="blur name">Mary S.</div>
-          <div>Volkswagen</div>
-          <div>AR</div>
-          <div>$67/mo</div>
+          <div>Volkswagen</div><div>AR</div><div>$67/mo</div>
         </div>
         <div class="table-row">
           <div class="blur name">Alex P.</div>
-          <div>Volkswagen</div>
-          <div>AR</div>
-          <div>$67/mo</div>
+          <div>Volkswagen</div><div>AR</div><div>$67/mo</div>
         </div>
         <div class="table-row">
           <div class="blur name">Ryan K.</div>
-          <div>Ford</div>
-          <div>IN</div>
-          <div>$49/mo</div>
+          <div>Ford</div><div>IN</div><div>$49/mo</div>
         </div>
         <div class="table-row">
           <div class="blur name">Sophia L.</div>
-          <div>Hyundai</div>
-          <div>SD</div>
-          <div>$74/mo</div>
+          <div>Hyundai</div><div>SD</div><div>$74/mo</div>
         </div>
         <div class="table-row">
           <div class="blur name">David W.</div>
-          <div>Volkswagen</div>
-          <div>IL</div>
-          <div>$70/mo</div>
+          <div>Volkswagen</div><div>IL</div><div>$70/mo</div>
         </div>
       </div>
     </section>
@@ -129,16 +444,12 @@
           <div class="avatar-placeholder"></div>
           <div class="phone-placeholder"></div>
         </div>
-
         <p class="review-quote">
           “I used to pay $217/month for car insurance. Now I only pay $67 with full coverage!
           I thought switching would be complicated, but the agent was clear, patient,
           and honest. I recommend calling right away!”
         </p>
-
-        <div class="stars">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
+        <div class="stars">★★★★★</div>
         <p class="review-name">Mariana Guzmán – Dallas, TX</p>
       </div>
 
@@ -146,16 +457,12 @@
         <div class="reviewer">
           <div class="avatar-placeholder"></div>
         </div>
-
         <p class="review-quote">
           “I was overpaying for years. They helped me save over $150 a month
           without changing my coverage. Everything was quick, easy,
           and no pressure. I called, and it was the best thing I ever did!”
         </p>
-
-        <div class="stars">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
+        <div class="stars">★★★★★</div>
         <p class="review-name">Carlos Martínez – Miami, FL</p>
       </div>
 
@@ -163,16 +470,12 @@
         <div class="reviewer">
           <div class="avatar-placeholder"></div>
         </div>
-
         <p class="review-quote">
           “I waited too long. When I finally called, they explained everything
           and helped me cut my premium nearly in half. If you’re thinking about it,
           do it now.”
         </p>
-
-        <div class="stars">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
+        <div class="stars">★★★★★</div>
         <p class="review-name">Daniela López – Phoenix, AZ</p>
       </div>
     </section>
@@ -181,12 +484,12 @@
     <footer class="footer">
       <p class="footnote">*Based on 2020-2025 Internal Reporting</p>
       <p class="disclaimer">
-        Disclaimer: autoquotepilot.com is a top savings referral service which enables
+        Disclaimer: policybenefit.org is a top savings referral service which enables
         consumers to quickly and easily request multiple competitive insurance quotes from
         optimally selected local insurance agents and companies using our proprietary consumer
         alignment technology. We do not provide insurance and we do not represent any specific
         insurance provider. Please note that lowest listed rates and potential savings may not
-        be representative or available from all companies. autoquotepilot.com matches users
+        be representative or available from all companies. policybenefit.org matches users
         to advertisers and insurance agents only after we've received certain information from you,
         and your actual rates and savings will vary based on your location, coverage limits,
         deductibles, driving records, type of vehicle, affiliations, and many other variables.
@@ -197,9 +500,9 @@
         <span>|</span>
         <a href="#">Terms Of Use</a>
         <span>|</span>
-        <a href="#">contact@autoquotepilot.com</a>
+        <a href="#">contact@policybenefit.org</a>
         <span>|</span>
-        <a href="#">autoquotepilot.com</a>
+        <a href="#">policybenefit.org</a>
         <span>|</span>
         <span>74 E Glenwood Ave Smyrna, DE 19977</span>
       </div>
