@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Official U.S. Settlement Alias Review</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  :root{
+    --blue:#0a3c86;
+    --blue-2:#0f56c4;
+    --red:#c81e1e;
+    --white:#ffffff;
+    --soft:#f6f8fb;
+    --line:#e5e7eb;
+    --text:#0f172a;
+    --muted:#64748b;
+    --radius:18px;
+    --max:720px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    background: var(--soft);
+    color: var(--text);
+  }
+
+  .page{
+    width:100%;
+    max-width:var(--max);
+    margin:0 auto;
+    background:#fff;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+    overflow:hidden;
+  }
+
+  .hidden{display:none !important;}
+
+  /* ===== Header ===== */
+  .header{
+    background: var(--blue);
+    padding:12px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-bottom:3px solid var(--red);
+  }
+  .header img{
+    height:36px;
+    width:auto;
+    object-fit:contain;
+  }
+
+  /* ===== Live Activity Bar ===== */
+  .livebar{
+    background: linear-gradient(90deg, var(--blue), var(--blue-2));
+    color:#fff;
+    font-size:13px;
+    padding:8px 10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-weight:700;
+  }
+  .live-dot{
+    width:9px;height:9px;border-radius:50%;
+    background:#22c55e; box-shadow:0 0 10px #22c55e;
+    animation:pulse 1s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%{transform:scale(1);opacity:1}
+    50%{transform:scale(1.15);opacity:.7}
+    100%{transform:scale(1);opacity:1}
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    background: radial-gradient(1100px 700px at -10% -30%, #1b60d6 0%, transparent 50%),
+                radial-gradient(900px 600px at 110% 0%, #0a3c86 0%, transparent 60%),
+                linear-gradient(180deg, #0a3c86, #0f56c4);
+    color:#fff;
+    text-align:center;
+    padding:22px 18px 18px;
+    position:relative;
+  }
+
+  .us-strip{
+    position:absolute;left:0;right:0;top:0;height:7px;
+    background: repeating-linear-gradient(90deg, var(--red) 0 22px, #fff 22px 44px);
+    opacity:.9;
+  }
+
+  .hero h1{
+    font-size:1.7rem;
+    font-weight:900;
+    line-height:1.25;
+    letter-spacing:.2px;
+  }
+  .hero p{
+    margin-top:8px;
+    font-size:1rem;
+    font-weight:600;
+    opacity:.95;
+  }
+
+  .hero-badges{
+    margin-top:14px;
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .badge{
+    background:#ffffff15;
+    border:1px solid #ffffff45;
+    padding:7px 11px;
+    border-radius:999px;
+    font-size:.82rem;
+    font-weight:800;
+    backdrop-filter: blur(4px);
+  }
+
+  .hero-banner{
+    margin-top:14px;
+    background:#fff;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid #ffffff40;
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+  }
+  .hero-banner img{
+    width:100%;
+    display:block;
+  }
+
+  /* ===== CTA ===== */
+  .cta-wrap{
+    padding:16px;
+    text-align:center;
+    background:#fff;
+  }
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:var(--red);
+    color:#fff;
+    padding:15px 22px;
+    border-radius:999px;
+    font-size:1.08rem;
+    font-weight:900;
+    text-decoration:none;
+    box-shadow:0 8px 0 #911313, 0 18px 30px rgba(200,30,30,.25);
+    transition:.12s ease;
+  }
+  .cta-btn:active{transform:translateY(2px);box-shadow:0 6px 0 #911313, 0 10px 20px rgba(200,30,30,.25);}
+
+  .cta-sub{
+    margin-top:8px;
+    color:var(--muted);
+    font-size:.9rem;
+    font-weight:700;
+  }
+
+  /* ===== Trust / Logos ===== */
+  .trust{
+    border-top:1px solid var(--line);
+    padding:14px 12px 18px;
+    background:#fff;
+    text-align:center;
+  }
+  .trust h3{
+    font-size:1rem;
+    font-weight:900;
+    color:var(--blue);
+  }
+  .trust-row{
+    margin-top:10px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .trust-logo{
+    height:44px;
+    min-width:90px;
+    padding:6px 10px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:.8rem;font-weight:800;color:#0f172a;
+    background:#f8fafc;
+    filter:grayscale(100%);
+    opacity:.9;
+  }
+
+  /* ===== Survey Card ===== */
+  .survey{
+    border-top:1px solid var(--line);
+    padding:16px;
+    background:#fff;
+  }
+  .qcard{
+    background:#eef3ff;
+    border-left:5px solid var(--blue-2);
+    padding:14px;
+    border-radius:14px;
+    font-weight:900;
+    font-size:1.05rem;
+  }
+  .answers{
+    margin-top:12px;
+    display:grid;
+    gap:10px;
+  }
+  .answer-btn{
+    border:2px solid var(--blue-2);
+    padding:14px 12px;
+    border-radius:14px;
+    text-align:center;
+    font-weight:900;
+    cursor:pointer;
+    background:#fff;
+    transition:.18s ease;
+  }
+  .answer-btn:hover{background:var(--blue-2);color:#fff;transform:translateY(-1px);}
+  .now-checking{
+    margin-top:12px;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    font-size:.92rem;font-weight:800;color:#0f172a;
+  }
+  .now-checking span{color:#22c55e}
+
+  /* ===== Status / Verification Steps ===== */
+  .status{
+    border-top:1px solid var(--line);
+    padding:22px 16px;
+    background:#fff;
+    text-align:center;
+  }
+  .spinner{
+    width:50px;height:50px;border-radius:50%;
+    border:5px solid #e5e7eb;
+    border-top-color:var(--blue-2);
+    margin:0 auto 12px;
+    animation:spin 1s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .status h2{
+    font-size:1.2rem;font-weight:900;color:var(--blue);
+  }
+  .status p{
+    margin-top:6px;font-size:1rem;font-weight:800;color:#111827;
+  }
+  .step-list{
+    margin-top:12px;
+    display:grid;gap:8px;
+    text-align:left;
+    max-width:420px;margin-left:auto;margin-right:auto;
+    font-weight:800;font-size:.95rem;
+  }
+  .step-item{
+    display:flex;align-items:center;gap:10px;
+    padding:10px 12px;border-radius:12px;background:#f8fafc;border:1px solid var(--line);
+  }
+  .step-item i{color:#94a3b8}
+  .step-item.active{border-color:#cfe0ff;background:#eef3ff}
+  .step-item.active i{color:var(--blue-2)}
+  .step-item.done i{color:#22c55e}
+
+  /* ===== Congratulations ===== */
+  .congrats{
+    border-top:1px solid var(--line);
+    padding:22px 16px;
+    background:#fff;
+    text-align:center;
+  }
+  .congrats-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:8px 12px;border-radius:999px;background:#eafff3;border:1px solid #bbf7d0;
+    font-weight:900;color:#0f5132;
+  }
+  .congrats h2{
+    margin-top:10px;font-size:1.5rem;font-weight:900;color:#0f172a;
+  }
+  .congrats p{
+    margin-top:6px;font-size:1rem;font-weight:700;color:#111827;
+  }
+  .spots{
+    margin:10px auto 0;
+    display:inline-block;
+    background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;
+    font-weight:900;font-size:.95rem;padding:6px 10px;border-radius:10px;
+  }
+  .call-cta{
+    margin-top:14px;
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    background:#16a34a;color:#fff;
+    padding:14px 18px;border-radius:999px;font-size:1.1rem;font-weight:900;text-decoration:none;
+    box-shadow:0 8px 0 #0f7a36, 0 16px 28px rgba(22,163,74,.25);
+  }
+  .call-cta:active{transform:translateY(2px);box-shadow:0 6px 0 #0f7a36, 0 10px 20px rgba(22,163,74,.25);}
+
+  .timer{
+    margin:14px auto 0;
+    display:flex;justify-content:center;gap:6px;
+    font-weight:900;
+  }
+  .tcell{
+    width:52px;height:52px;border-radius:12px;background:#0f172a;color:#fff;
+    display:grid;place-items:center;font-size:1.3rem;
+  }
+  .tcolon{display:grid;place-items:center;font-size:1.3rem;font-weight:900;color:#0f172a}
+
+  /* ===== Testimonials ===== */
+  .testimonials{
+    border-top:1px solid var(--line);
+    padding:20px 16px;
+    background:#f8fafc;
+  }
+  .testimonials h3{
+    text-align:center;font-size:1.25rem;font-weight:900;color:var(--blue);
+    margin-bottom:12px;
+  }
+  .test-grid{display:grid;gap:12px;}
+  .test-card{
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;
+    box-shadow:0 6px 18px rgba(0,0,0,.05);
+  }
+  .test-icon{
+    width:38px;height:38px;border-radius:10px;background:#eef3ff;border:1px solid #cfe0ff;
+    display:grid;place-items:center;color:var(--blue-2);font-size:18px;margin-bottom:8px;
+  }
+  .test-card p{font-size:.95rem;line-height:1.5;font-weight:700;color:#0f172a;}
+  .test-meta{
+    margin-top:8px;display:flex;justify-content:space-between;font-size:.85rem;font-weight:900;color:#475569;
+  }
+
+  /* ===== Footer ===== */
+  .footer{
+    border-top:1px solid var(--line);
+    padding:16px;font-size:.8rem;color:#6b7280;background:#fff;text-align:center;
+  }
+
+  /* ===== Desktop polish ===== */
+  @media(min-width:900px){
+    .hero{padding:30px 24px 22px}
+    .hero h1{font-size:2rem}
+    .page{margin:18px auto;border-radius:18px}
+  }
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- HEADER (use your real logo file here) -->
+  <header class="header">
+    <img src="./j.png" alt="Site Logo" />
+  </header>
+
+  <!-- LIVE BAR -->
+  <div class="livebar">
+    <div class="live-dot"></div>
+    <em><span id="counter">22,578</span> People Completed This Review In The Last 24 Hours</em>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="us-strip"></div>
+    <h1>Official U.S. Settlement Alias Eligibility Review</h1>
+    <p>Answer 2 quick questions to confirm whether you qualify today.</p>
+
+    <div class="hero-badges">
+      <div class="badge"><i class="fa-solid fa-lock"></i> Secure & Confidential</div>
+      <div class="badge"><i class="fa-solid fa-scale-balanced"></i> Attorney Reviewed</div>
+      <div class="badge"><i class="fa-solid fa-circle-check"></i> Free 60-Second Check</div>
+    </div>
+
+    <!-- Your generated hero banner -->
+    <div class="hero-banner">
+      <!-- local path provided by you -->
+      <img src="abc.png" alt="Eligibility Banner" />
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-wrap">
+    <a href="#survey" class="cta-btn">
+      Start Eligibility Check <i class="fa-solid fa-arrow-right"></i>
+    </a>
+    <div class="cta-sub">Takes under 60 seconds • No paperwork required</div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="trust">
+    <h3>Reviewed With Trusted U.S. Settlement & Legal Partners</h3>
+    <div class="trust-row">
+      <div class="trust-logo">U.S. Claims Bureau</div>
+      <div class="trust-logo">National Legal Review</div>
+      <div class="trust-logo">Federal Settlement Network</div>
+      <div class="trust-logo">Senior Benefits Counsel</div>
+      <div class="trust-logo">Verified Agents Group</div>
+    </div>
+  </section>
+
+  <!-- SURVEY -->
+  <section id="survey" class="survey">
+    <div class="qcard" id="questionText">1. Are you over the age of 55?</div>
+
+    <div class="answers" id="answers">
+      <div class="answer-btn" data-answer="yes">YES, I’M 55 OR OLDER</div>
+      <div class="answer-btn" data-answer="no">NO, I’M 54 OR YOUNGER</div>
+    </div>
+
+    <div class="now-checking">
+      <div class="live-dot"></div>
+      <em><span id="checkingNow">69</span> people are checking right now</em>
+    </div>
+  </section>
+
+  <!-- STATUS / VERIFICATION -->
+  <section id="status" class="status hidden">
+    <div class="spinner"></div>
+    <h2>Processing Your Answers</h2>
+    <p id="statusMsg">Reviewing your responses…</p>
+
+    <div class="step-list">
+      <div class="step-item active" id="s1"><i class="fa-solid fa-circle-notch fa-spin"></i> Reviewing Answers</div>
+      <div class="step-item" id="s2"><i class="fa-regular fa-circle"></i> Verifying Regional Rules</div>
+      <div class="step-item" id="s3"><i class="fa-regular fa-circle"></i> Checking Availability</div>
+      <div class="step-item" id="s4"><i class="fa-regular fa-circle"></i> Confirming Eligibility</div>
+    </div>
+  </section>
+
+  <!-- CONGRATS -->
+  <section id="congrats" class="congrats hidden">
+    <div class="congrats-badge">
+      <i class="fa-solid fa-circle-check"></i> Eligible
+    </div>
+    <h2>Congratulations — You Qualify</h2>
+    <p>Call now to confirm your Settlement Alias Benefit with a verified agent.</p>
+
+    <div class="spots" id="spots">Spots Remaining: 4</div>
+
+    <a class="call-cta" href="tel:+13214858035">
+      <i class="fa-solid fa-phone"></i> CALL (321) 485-8035
+    </a>
+
+    <p style="margin-top:10px;color:var(--muted);font-weight:800;">
+      Due to high call volume, your spot is held for only 3 minutes.
+    </p>
+
+    <div class="timer">
+      <div class="tcell" id="min">3</div>
+      <div class="tcolon">:</div>
+      <div class="tcell" id="sec">00</div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (law icons) -->
+  <section class="testimonials">
+    <h3>What Applicants Are Saying</h3>
+
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="test-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <p>“Very professional and official. Two questions and I was connected to a verified agent quickly.”</p>
+        <div class="test-meta"><span>— Karen M., FL</span><span>★★★★★</span></div>
+      </div>
+
+      <div class="test-card">
+        <div class="test-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <p>“This felt legit and secure. No confusing forms, just a clear eligibility review.”</p>
+        <div class="test-meta"><span>— Robert T., TX</span><span>★★★★★</span></div>
+      </div>
+
+      <div class="test-card">
+        <div class="test-icon"><i class="fa-solid fa-gavel"></i></div>
+        <p>“Fast, trustworthy, and easy. The representative explained everything in minutes.”</p>
+        <div class="test-meta"><span>— Linda G., CA</span><span>★★★★☆</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    Beware of fraudulent & similar-looking sites. This is the only official review page for this program.<br/><br/>
+    This website is not affiliated with any government agency. For informational purposes only.
+  </footer>
+
+</div>
+
+<script>
+  // ===== Live counters =====
+  const counterEl = document.getElementById("counter");
+  const checkingNowEl = document.getElementById("checkingNow");
+  const spotsEl = document.getElementById("spots");
+
+  setInterval(() => {
+    let n = parseInt(counterEl.innerText.replace(/,/g,'')) || 22578;
+    n += Math.floor(Math.random()*3)+1;
+    counterEl.innerText = n.toLocaleString();
+  }, 3000);
+
+  setInterval(() => {
+    let n = parseInt(checkingNowEl.innerText) || 69;
+    n += 1;
+    checkingNowEl.innerText = n;
+  }, 3500);
+
+  // ===== Quiz flow =====
+  let qStep = 1;
+  const questionText = document.getElementById("questionText");
+  const answersWrap = document.getElementById("answers");
+  const surveySection = document.getElementById("survey");
+  const statusSection = document.getElementById("status");
+  const congratsSection = document.getElementById("congrats");
+
+  const statusMsg = document.getElementById("statusMsg");
+  const s1=document.getElementById("s1");
+  const s2=document.getElementById("s2");
+  const s3=document.getElementById("s3");
+  const s4=document.getElementById("s4");
+
+  answersWrap.addEventListener("click", (e)=>{
+    const btn = e.target.closest(".answer-btn");
+    if(!btn) return;
+
+    if(qStep === 1){
+      qStep = 2;
+      questionText.textContent = "2. Do you currently live in the United States?";
+      answersWrap.innerHTML = `
+        <div class="answer-btn" data-answer="yes">YES</div>
+        <div class="answer-btn" data-answer="no">NO</div>
+      `;
+      window.scrollTo({top: surveySection.offsetTop-10, behavior:"smooth"});
+      return;
+    }
+
+    // step 2 answered -> verification animation
+    startVerification();
+  });
+
+  function startVerification(){
+    surveySection.classList.add("hidden");
+    statusSection.classList.remove("hidden");
+    window.scrollTo({top:0, behavior:"smooth"});
+
+    // reset classes
+    [s1,s2,s3,s4].forEach(x=>{
+      x.classList.remove("active","done");
+      x.querySelector("i").className="fa-regular fa-circle";
+    });
+
+    s1.classList.add("active");
+    s1.querySelector("i").className="fa-solid fa-circle-notch fa-spin";
+    statusMsg.textContent="Reviewing your responses…";
+
+    setTimeout(()=>{
+      markDone(s1); activate(s2);
+      statusMsg.textContent="Verifying regional rules…";
+      setTimeout(()=>{
+        markDone(s2); activate(s3);
+        statusMsg.textContent="Checking availability…";
+        setTimeout(()=>{
+          markDone(s3); activate(s4);
+          statusMsg.textContent="Confirming eligibility…";
+          setTimeout(()=>{
+            markDone(s4);
+            showCongrats();
+          }, 1400);
+        }, 1400);
+      }, 1400);
+    }, 1400);
+  }
+
+  function activate(stepEl){
+    stepEl.classList.add("active");
+    stepEl.querySelector("i").className="fa-solid fa-circle-notch fa-spin";
+  }
+  function markDone(stepEl){
+    stepEl.classList.remove("active");
+    stepEl.classList.add("done");
+    stepEl.querySelector("i").className="fa-solid fa-circle-check";
+  }
+
+  // ===== Congrats + countdown =====
+  const minEl=document.getElementById("min");
+  const secEl=document.getElementById("sec");
+
+  function showCongrats(){
+    statusSection.classList.add("hidden");
+    congratsSection.classList.remove("hidden");
+    window.scrollTo({top:0, behavior:"smooth"});
+
+    startCountdown(180);
+
+    // little urgency spots tick down randomly
+    let spots = 4;
+    setInterval(()=>{
+      if(spots>1 && Math.random()>.6){
+        spots--;
+        spotsEl.textContent="Spots Remaining: "+spots;
+      }
+    }, 7000);
+  }
+
+  function startCountdown(total){
+    let t = total;
+    const timer = setInterval(()=>{
+      const m = Math.floor(t/60);
+      const s = t%60;
+      minEl.textContent=m;
+      secEl.textContent = s<10 ? "0"+s : s;
+      t--;
+      if(t<0){ clearInterval(timer); }
+    }, 1000);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settlement Alias Benefits</title>
+
+  <!-- Keep your external CSS if you want -->
+  <link rel="stylesheet" href="./styles.css" />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    @media (min-width: 769px) {
+      .magic {
+        background-color: aqua;
+        max-width: 500px;
+        margin: 0 auto;
+        background: #ffffff;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+      .logoss { width: 10% !important; }
+      .paddu { padding: 30px 20px 30px 10px; }
+      .btns {
+        font-size: 1.5rem !important;
+        line-height: 1.5rem !important;
+        padding: 20px 10px !important;
+      }
+    }
+
+    .hidden { display: none; }
+
+    .pulse {
+      animation: pulse 1s ease-in-out infinite;
+      background-color: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #22c55e80;
+      height: 10px;
+      width: 10px;
+    }
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    #lofo { width: 30%; }
+    @media screen and (max-width: 768px) {
+      #lofo { width: 10%; }
+    }
+
+    #image-container {
+      position: absolute;
+      top: 30px;
+      z-index: 10000;
+      width: 100%;
+      display: none;
+    }
+    #image-container img { width: 100%; }
+
+    /* ====== NEW: Testimonials ====== */
+    .testimonials-wrap {
+      background: #f7fafc;
+      padding: 18px 16px 22px;
+      margin: 14px 0 0;
+      border-top: 1px solid #e5e7eb;
+    }
+    .testimonials-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .testimonial-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 14px 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+      margin: 10px 0;
+    }
+    .testimonial-quote {
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: #111827;
+      font-weight: 600;
+    }
+    .testimonial-meta {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #475569;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+    }
+    .stars { color: #f59e0b; font-size: 12px; letter-spacing: 1px; }
+
+    /* ====== NEW: FAQ (accordion) ====== */
+    .faq-wrap {
+      background: #ffffff;
+      padding: 18px 16px 12px;
+      border-top: 1px solid #e5e7eb;
+    }
+    .faq-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .faq-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      margin: 8px 0;
+      overflow: hidden;
+    }
+    .faq-q {
+      background: #f1f5f9;
+      padding: 12px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 14.5px;
+      color: #0f172a;
+    }
+    .faq-q i {
+      transition: transform .2s ease;
+      color: #03b55f;
+      font-size: 14px;
+    }
+    .faq-a {
+      padding: 12px 12px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: #111827;
+      background: #fff;
+      display: none;
+      font-weight: 600;
+    }
+    .faq-item.active .faq-a { display: block; }
+    .faq-item.active .faq-q i { transform: rotate(180deg); }
+  </style>
+</head>
+
+<body>
+  <div class="magic">
+    <div id="image-container">
+      <img src="baarish.GIF" alt="" style="width: 100%;" />
+    </div>
+
+    <div>
+      <!-- Header -->
+      <div style="font-family: Arial, Helvetica, sans-serif;" class="top-sticky-blue-test22" id="top">
+        <img class="logoss" id="lofo" src="./j.png" alt="" />
+      </div>
+
+      <!-- Live bar -->
+      <div
+        style="
+          margin-bottom: 4px;
+          font-family: Arial, Helvetica, sans-serif;
+          background-color:#03b55f;
+          text-align: center;
+          font-size: 13px;
+          padding: 8px 0;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;"
+      >
+        <!-- <img style="width: 10%; margin-right: 5px;" src="./live.png" alt="" /> -->
+        <em><span id="counter" style="font-weight: 800;">22,578</span> People Completed This Check In Last 24 Hours!</em>
+      </div>
+
+      <!-- Step messages -->
+      <div class="checking hidden" style="font-weight: 700;" id="status">
+        <span id="statusMessage"></span>
+      </div>
+
+      <!-- Main content -->
+      <div class="main-container-5" id="mainContent">
+        <div class="main-descrition-5-5">
+          <div class="main-des-title-6-7 paddu">
+            <b>
+              Quick Settlement Alias Eligibility Check — Confirm If You Can Claim Your
+              <span style="color: #03b55f;">Settlement Alias Benefit</span> Now
+            </b>
+          </div>
+
+          <img
+            style="width: 83%; margin-left: 0%; border-radius: 7px;"
+            class="topic-img-middle-z"
+            src="./abc.png"
+            alt="head"
+          />
+
+          <div
+            style="
+              margin-top: 10px;
+              text-align: center;
+              font-size: 16px;
+              font-weight: 900;
+              line-height: 20px;
+              margin-bottom: 0;"
+            class="main-des-5 paddu"
+          >
+            Checking your eligibility is very simple and takes about 60 seconds.
+            Answer the questions below to see if you qualify for a Settlement Alias today.
+            <br /><br />
+          </div>
+
+          <div style="margin-bottom: 20px; margin-top: -10px;">
+            <i style="font-size: 24px;" class="fa-solid fa-angle-down"></i>
+          </div>
+
+          <div style="background-color: #f1f1f1; height: 60px;" class="paddu">
+            <div
+              class="paddu"
+              style="
+                background-color: #045ab6;
+                font-size: 14px;
+                padding: 15px 5px;
+                border-radius: 15px;
+                color: #fff;
+                box-shadow: 0px 5px 0px #03b55f;
+                margin-bottom: 5px;"
+            >
+              Answer The Question Below To Proceed:
+            </div>
+          </div>
+        </div>
+
+        <!-- Survey -->
+        <div
+          class="survey"
+          style="
+            background-color: #f1f1f1;
+            padding: 3px 20px 1px 20px;
+            border-radius: 0px 0px 10px 10px;"
+        >
+          <div class="quiz-5" id="btn" style="text-align: center;">
+            <span id="quizQuestion">1. Are you over 55?</span>
+          </div>
+
+          <div class="answer" id="answerOptions">
+            <div
+              style="border-radius: 25px; font-size: 22px;"
+              class="answer-btn-5 btns"
+              onclick="handleQuizP()"
+            >
+              YES, I’M 55 OR OLDER
+            </div>
+            <div
+              style="border-radius: 25px; font-size: 22px;"
+              class="answer-btn-5 btns"
+              onclick="handleQuizN()"
+            >
+              NO, I’M 54 AND YOUNGER
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: center; align-items: center; margin-top: 10px;">
+            <div class="pulse"></div>
+            <em style="margin-left:10px;">
+              <span id="claim" style="color: #22c55e;">69</span> People Are Checking Right Now!
+            </em>
+          </div>
+        </div>
+
+        <!-- ===== NEW: Testimonials Section ===== -->
+        <section class="testimonials-wrap">
+          <div class="testimonials-title">What People Are Saying</div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">
+              “I didn’t know what a settlement alias was until this.
+              The check was super quick and I got connected to an agent in minutes.”
+            </div>
+            <div class="testimonial-meta">
+              <span>— Karen M., Florida</span>
+              <span class="stars">★★★★★</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">
+              “Very clear, no confusing forms. Two questions and I was done.
+              The representative explained everything fast.”
+            </div>
+            <div class="testimonial-meta">
+              <span>— Robert T., Texas</span>
+              <span class="stars">★★★★★</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">
+              “I was skeptical, but it felt legit and straightforward.
+              Helped me understand if I qualify without any hassle.”
+            </div>
+            <div class="testimonial-meta">
+              <span>— Linda G., California</span>
+              <span class="stars">★★★★☆</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== NEW: FAQ Section ===== -->
+        <section class="faq-wrap" id="faq">
+          <div class="faq-title">Frequently Asked Questions</div>
+
+          <div class="faq-item">
+            <div class="faq-q">
+              What is a Settlement Alias?
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-a">
+              A settlement alias is a short name/code that represents settlement
+              instructions or an account, making it easier to track and process benefits
+              without entering long banking details each time.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">
+              Why do you ask my age and location?
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-a">
+              Eligibility rules can vary by age group and region. These two questions
+              help confirm if you’re in a qualifying bracket before connecting you to an agent.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">
+              How long does the eligibility check take?
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-a">
+              Usually under 60 seconds. After the two questions, your responses are verified
+              and you’ll see the next step immediately.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">
+              Is this check free?
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-a">
+              Yes. This eligibility check is completely free and only determines whether you
+              can claim a Settlement Alias benefit.
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Congratulations block -->
+      <div class="checking hidden" id="congratulations">
+        <div class="congrats">Congratulations, You Qualify 🎉</div>
+        <div class="top-description-5">
+          Make a <b>Quick Call</b> to confirm your <b>Settlement Alias Benefit</b> now!
+        </div>
+        <div class="spots-count">Spots remaining: 4</div>
+
+        <div class="call-btn" onclick="handleCall()">
+          <a href="tel:+13214858035">
+            <div class="call-btn">CALL (321) 485-8035</div>
+          </a>
+        </div>
+
+        <div class="sub-description">
+          Due to high call volume, your official agent is waiting for only <b>3 minutes</b>,
+          then your spot will not be reserved.
+        </div>
+
+        <div class="timer">
+          <div class="timer-cell" id="minutes">3</div>
+          <div class="timer-cell">:</div>
+          <div class="timer-cell" id="seconds">00</div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer2" style="margin-top: 25vh;">
+        Beware of other fraudulent & similar-looking websites that might look exactly like ours,
+        we have no affiliation with them. This is the only official website to claim your benefit
+        with the domain name policybenefits.org.
+
+        <div class="terms2">
+          <a href="/terms.html">Terms & Conditions</a> |
+          <a href="/privacy.html">Privacy Policy</a>
+        </div>
+        <div style="width: 100%; height: 0.2px; background-color: black; margin-top: 15px;"></div>
+
+        <div class="copyright"></div>
+      </div>
+    </div>
+
+    <script>
+      let step = "process";
+
+      // ✅ Keep your questions, but align JS with UI
+      let quizQuestion = "1. Are you over 55?";
+
+      const statusDiv = document.getElementById("status");
+      const statusMessage = document.getElementById("statusMessage");
+      const congratulationsDiv = document.getElementById("congratulations");
+      const quizText = document.getElementById("quizQuestion");
+      const answerOptions = document.getElementById("answerOptions");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+      const counter = document.getElementById("counter");
+      const claim = document.getElementById("claim");
+      const imageContainer = document.getElementById("image-container");
+
+      // Live counters
+      setInterval(() => {
+        if (counter) {
+          let previousNumber = parseInt(counter.innerText.replace(/,/g, ""));
+          let randomIncrement = Math.floor(Math.random() * 3) + 1;
+          let newNumber = previousNumber + randomIncrement;
+          counter.innerText = newNumber.toLocaleString();
+        }
+      }, 3000);
+
+      setInterval(() => {
+        if (claim) {
+          let previousNumber = parseInt(claim.innerText);
+          let randomIncrement = Math.floor(Math.random() * 1) + 1;
+          claim.innerText = previousNumber + randomIncrement;
+        }
+      }, 3000);
+
+      function handleQuizP() {
+        if (quizQuestion === "1. Are you over 55?") {
+          quizQuestion = "2. Do you live in the United States?";
+          quizText.textContent = quizQuestion;
+          setYesNoOptions();
+          smoothScrollToTop(900, 420);
+        } else {
+          stepProcess("yes");
+        }
+      }
+
+      function handleQuizN() {
+        if (quizQuestion === "1. Are you over 55?") {
+          quizQuestion = "2. Do you live in the United States?";
+          quizText.textContent = quizQuestion;
+          setYesNoOptions();
+          smoothScrollToTop(900, 520);
+        } else {
+          stepProcess("no");
+        }
+      }
+
+      function setYesNoOptions() {
+        answerOptions.innerHTML = `
+          <div style="border-radius: 20px; font-size: 22px;" class="answer-btn-5" onclick="stepProcess('yes')">YES</div>
+          <div style="border-radius: 20px; font-size: 22px;" class="answer-btn-5" onclick="stepProcess('no')">NO</div>
+        `;
+      }
+
+      function smoothScrollToTop(duration, targetPosition = 0) {
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
+
+        function animation(currentTime) {
+          if (startTime === null) startTime = currentTime;
+          const timeElapsed = currentTime - startTime;
+          const run = ease(timeElapsed, startPosition, distance, duration);
+          window.scrollTo(0, run);
+          if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        function ease(t, b, c, d) {
+          t /= d / 2;
+          if (t < 1) return (c / 2) * t * t + b;
+          t--;
+          return (-c / 2) * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
+      }
+
+      const stepProcess = (answer) => {
+        smoothScrollToTop(1000);
+
+        const mainContent = document.getElementById("mainContent");
+        mainContent.classList.add("hidden");
+
+        statusDiv.classList.remove("hidden");
+        statusMessage.textContent = "Reviewing Your Answers...";
+
+        setTimeout(() => {
+          statusMessage.textContent = "Verifying Availability...";
+          setTimeout(() => {
+            statusMessage.textContent = "Confirming Eligibility...";
+            setTimeout(() => {
+              setStep("completed");
+            }, 1500);
+          }, 1500);
+        }, 1500);
+      };
+
+      function setStep(newStep) {
+        step = newStep;
+        if (step === "completed") {
+          showCongratulations();
+        }
+      }
+
+      function showCongratulations() {
+        statusDiv.classList.add("hidden");
+        congratulationsDiv.classList.remove("hidden");
+
+        imageContainer.style.display = "block";
+        startTimer();
+
+        setTimeout(() => {
+          imageContainer.style.display = "none";
+        }, 2000);
+
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
+      }
+
+      function startTimer() {
+        let totalSeconds = 180;
+        const timer = setInterval(() => {
+          const minutes = Math.floor(totalSeconds / 60);
+          const seconds = totalSeconds % 60;
+          minutesEl.textContent = minutes;
+          secondsEl.textContent = seconds < 10 ? "0" + seconds : seconds;
+          totalSeconds--;
+
+          if (totalSeconds < 0) {
+            clearInterval(timer);
+          }
+        }, 1000);
+      }
+
+      function handleCall() {
+        // keep for extra call analytics if needed
+      }
+
+      // ✅ NEW: FAQ accordion toggle
+      document.querySelectorAll(".faq-q").forEach((q) => {
+        q.addEventListener("click", () => {
+          const item = q.closest(".faq-item");
+          item.classList.toggle("active");
+        });
+      });
+    </script>
+  </div>
+</body>
+</html>
