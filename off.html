@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Affordable MVA Help – Get Your Free Case Review</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --primary: #026f48;      /* green */
+      --primary-dark: #015338;
+      --accent: #f8971d;       /* orange bar */
+      --bg: #f2f5f9;
+      --text-dark: #102133;
+      --text-muted: #6b7280;
+      --card-bg: #ffffff;
+      --border: #d1d5db;
+      --cta: #00b157;
+      --cta-dark: #009247;
+      --danger: #e11d48;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 430px;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.06);
+    }
+
+    .bar-top {
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .bar-top span {
+      font-weight: 600;
+    }
+
+    .bar-top small {
+      opacity: 0.9;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #01422a, #027a4f);
+      padding: 16px 16px 20px;
+      color: #fff;
+    }
+
+    .hero-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .hero-logo {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .hero-phone {
+      text-align: right;
+      font-size: 11px;
+    }
+
+    .hero-phone b {
+      display: block;
+      font-size: 13px;
+    }
+
+    .hero-main {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      padding: 12px 12px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .hero-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .hero-subtitle {
+      font-size: 12px;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle strong {
+      font-weight: 700;
+    }
+
+    .form {
+      background: #fff;
+      border-radius: 6px;
+      padding: 12px;
+      color: var(--text-dark);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+    }
+
+    .form-row {
+      margin-bottom: 8px;
+    }
+
+    .form-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid #d1d5db;
+      padding: 7px 8px;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.5);
+    }
+
+    .form-cta {
+      margin-top: 6px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      border: none;
+      border-radius: 4px;
+      padding: 9px 10px;
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--cta);
+      color: #fff;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary:hover {
+      background: var(--cta-dark);
+    }
+
+    .form-note {
+      margin-top: 6px;
+      font-size: 9px;
+      color: #4b5563;
+    }
+
+    /* SECTION GENERIC */
+
+    .section {
+      padding: 16px 16px 18px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      color: var(--text-dark);
+    }
+
+    .section-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      font-size: 11px;
+      color: #374151;
+    }
+
+    .btn-outline {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--primary);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      background: #ecfdf5;
+      text-decoration: none;
+    }
+
+    /* SECTION: INTRO */
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .intro-img-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 7px 18px rgba(15, 23, 42, 0.25);
+    }
+
+    /* SECTION: 3 STEPS */
+
+    .steps {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .step-card {
+      border-radius: 8px;
+      background: #f9fafb;
+      padding: 9px 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .step-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e0f2fe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #0369a1;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .step-text {
+      font-size: 10px;
+      color: #4b5563;
+    }
+
+    /* SECTION: HASSLE FREE */
+
+    .box-muted {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .box-muted p {
+      font-size: 11px;
+    }
+
+    /* SECTION: PLAN TYPES */
+
+    .plan-types {
+      background: #111827;
+      background-image: linear-gradient(
+          135deg,
+          rgba(15, 118, 110, 0.3),
+          transparent
+        ),
+        url("https://via.placeholder.com/430x220?text=MVA+Background");
+      background-size: cover;
+      background-position: center;
+      color: #f9fafb;
+    }
+
+    .plan-types-overlay {
+      backdrop-filter: blur(3px);
+      background: rgba(15, 23, 42, 0.82);
+      padding: 16px;
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .plan-card {
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 10px 8px;
+      text-align: center;
+    }
+
+    .plan-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      margin: 0 auto 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, #bbf7d0, #22c55e);
+      color: #064e3b;
+      font-size: 16px;
+      box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.9);
+    }
+
+    .plan-label {
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* SECTION: ACHIEVEMENTS */
+
+    .achievements {
+      padding-top: 14px;
+      padding-bottom: 16px;
+    }
+
+    .badge-row {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+
+    .badge-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 2px solid #16a34a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #16a34a;
+      flex-shrink: 0;
+    }
+
+    .badge-text {
+      font-size: 10px;
+      color: #374151;
+    }
+
+    .badge-text strong {
+      display: block;
+      font-size: 11px;
+    }
+
+    /* SECTION: TIPS */
+
+    .tips-section {
+      padding-top: 16px;
+      padding-bottom: 18px;
+    }
+
+    .tips-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .tip-card {
+      background: #f9fafb;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+    }
+
+    .tip-title {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .tip-text {
+      font-size: 10px;
+      color: #4b5563;
+    }
+
+    /* FINAL CTA */
+
+    .final-cta {
+      background: #064e3b;
+      color: #f9fafb;
+      text-align: center;
+      padding: 16px 18px;
+    }
+
+    .final-cta h2 {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .final-cta p {
+      font-size: 11px;
+      margin-bottom: 10px;
+      color: #d1fae5;
+    }
+
+    .btn-final {
+      border-radius: 4px;
+      border: none;
+      background: var(--cta);
+      padding: 9px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-final:hover {
+      background: var(--cta-dark);
+    }
+
+    .footer {
+      background: #020617;
+      color: #9ca3af;
+      padding: 10px 14px 14px;
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .footer-links {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .footer-links a {
+      color: #e5e7eb;
+      text-decoration: underline;
+    }
+
+    @media (min-width: 640px) {
+      body {
+        background: radial-gradient(
+            circle at top,
+            rgba(34, 197, 94, 0.12),
+            transparent 60%
+          ),
+          #e5e7eb;
+        padding: 22px 0;
+      }
+      .page {
+        border-radius: 10px;
+        overflow: hidden;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- TOP BAR -->
+    <div class="bar-top">
+      <span>Recent Motor Vehicle Accident?</span>
+      <small>Free case review · No upfront fees</small>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-header">
+        <div class="hero-logo">MVA Relief Network</div>
+        <div class="hero-phone">
+          <span>24/7 Claim Helpline</span>
+          <b>1-800-555-0215</b>
+        </div>
+      </div>
+
+      <div class="hero-main">
+        <h1 class="hero-title">
+          Affordable Help After a Motor Vehicle Accident.
+        </h1>
+        <p class="hero-subtitle">
+          Get connected with licensed attorneys and claim specialists who can
+          review your <strong>MVA injury, medical bills, and lost wages</strong>
+          and help you understand the compensation you may qualify for.
+        </p>
+
+        <form class="form">
+          <div class="form-row">
+            <label class="form-label" for="name">Full Name</label>
+            <input
+              id="name"
+              class="form-input"
+              type="text"
+              placeholder="Enter your full name"
+            />
+          </div>
+
+          <div class="form-row">
+            <label class="form-label" for="state">State</label>
+            <select id="state" class="form-select">
+              <option value="">Select your state</option>
+              <option>Alabama</option>
+              <option>Arizona</option>
+              <option>California</option>
+              <option>Florida</option>
+              <option>New York</option>
+              <option>Texas</option>
+              <!-- add all states as needed -->
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label class="form-label" for="phone">Phone Number</label>
+            <input
+              id="phone"
+              class="form-input"
+              type="tel"
+              placeholder="Best number to reach you"
+            />
+          </div>
+
+          <div class="form-row">
+            <label class="form-label" for="time">When did the MVA happen?</label>
+            <select id="time" class="form-select">
+              <option value="">Select one</option>
+              <option>Within the last 24 hours</option>
+              <option>Within the last 7 days</option>
+              <option>Within the last 30 days</option>
+              <option>Over 30 days ago</option>
+            </select>
+          </div>
+
+          <div class="form-cta">
+            <button type="button" class="btn-primary">
+              Get My Free MVA Case Review
+            </button>
+          </div>
+
+          <p class="form-note">
+            By clicking “Get My Free MVA Case Review”, you agree to be contacted
+            by a legal or claims professional regarding your motor vehicle
+            accident. This is not legal advice and does not create an
+            attorney-client relationship.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- INTRO SECTION -->
+    <section class="section">
+      <h2 class="section-title">
+        Support After an Accident Should Be Available to Everyone
+      </h2>
+      <p class="section-subtitle">
+        We help drivers, passengers, and pedestrians get guidance after a Motor
+        Vehicle Accident – even if they are unsure who is at fault.
+      </p>
+
+      <div class="intro-grid">
+        <div>
+          <p>
+            A sudden MVA can leave you with medical bills, car repairs, and time
+            away from work. Many people accept low settlements because they
+            don’t know their rights or what their claim may truly be worth.
+          </p>
+          <p style="margin-top:6px;">
+            Our network connects you with professionals who can review your
+            accident, evaluate your injuries, and explain potential options for
+            compensation – at no upfront cost.
+          </p>
+          <a href="#form" class="btn-outline">See if your MVA qualifies</a>
+        </div>
+        <div class="intro-img-wrap">
+          <!-- replace with real MVA/accident image -->
+          <img
+            src="https://via.placeholder.com/260x220?text=Accident+Review"
+            alt="Professional reviewing accident documents"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 STEPS -->
+    <section class="section">
+      <h2 class="section-title">3 Easy Steps to Get MVA Help</h2>
+      <p class="section-subtitle">
+        Start with a free, no-obligation review and let qualified professionals
+        guide you through the process.
+      </p>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-icon">1</div>
+          <div>
+            <div class="step-title">Share the basics of your crash</div>
+            <div class="step-text">
+              Tell us when and where the MVA happened, the type of vehicles
+              involved, and who was injured.
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-icon">2</div>
+          <div>
+            <div class="step-title">Get matched with a claims professional</div>
+            <div class="step-text">
+              We connect you with experienced MVA attorneys or claim specialists
+              who focus on auto-injury cases in your state.
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-icon">3</div>
+          <div>
+            <div class="step-title">Review your options for compensation</div>
+            <div class="step-text">
+              Learn about possible coverage for medical bills, pain and
+              suffering, lost wages, rehab costs, and more.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HASSLE FREE -->
+    <section class="section">
+      <h2 class="section-title">
+        Start a Hassle-Free Motor Vehicle Accident Review
+      </h2>
+      <p class="section-subtitle">
+        One simple form. No confusing paperwork. No chasing multiple offices.
+      </p>
+
+      <div class="box-muted">
+        <p>
+          After a crash, you should be focused on healing – not arguing with
+          insurance adjusters. Our team helps gather the details of your MVA and
+          routes them to professionals who know how to handle complex auto
+          claims.
+        </p>
+        <p style="margin-top:6px;">
+          If your accident qualifies, you may receive a call to go over what
+          happened, your injuries, and any offers you have already received.
+          You decide whether to move forward – there is no obligation.
+        </p>
+      </div>
+    </section>
+
+    <!-- PLAN TYPES (RENAMED FOR MVA TYPES) -->
+    <section class="plan-types">
+      <div class="plan-types-overlay">
+        <h2 class="section-title" style="color:#e5e7eb;">
+          Find the Right Type of MVA Help for You
+        </h2>
+        <p class="section-subtitle" style="color:#cbd5f5;">
+          Different crashes require different strategies. We help match your
+          situation with professionals who understand it.
+        </p>
+
+        <div class="plan-grid">
+          <div class="plan-card">
+            <div class="plan-icon">🚗</div>
+            <div class="plan-label">Car-to-Car Collisions</div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-icon">🚙</div>
+            <div class="plan-label">Rideshare & Taxi Crashes</div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-icon">🏍️</div>
+            <div class="plan-label">Motorcycle Accidents</div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-icon">🚶</div>
+            <div class="plan-label">Pedestrian / Cyclist Hits</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="section achievements">
+      <h2 class="section-title">Why Drivers Choose Our MVA Network</h2>
+      <p class="section-subtitle">
+        Real support for real people hurt in real crashes.
+      </p>
+
+      <div class="badge-row">
+        <div class="badge">
+          <div class="badge-icon">✓</div>
+          <div class="badge-text">
+            <strong>Thousands of MVA calls handled</strong>
+            From fender-benders to severe highway crashes.
+          </div>
+        </div>
+
+        <div class="badge">
+          <div class="badge-icon">⚖️</div>
+          <div class="badge-text">
+            <strong>Licensed professionals only</strong>
+            We connect you with law firms & claim specialists that focus on
+            accident cases.
+          </div>
+        </div>
+
+        <div class="badge">
+          <div class="badge-icon">💬</div>
+          <div class="badge-text">
+            <strong>Free, no-obligation review</strong>
+            You decide if you want to proceed after hearing your options.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIPS -->
+    <section class="section tips-section">
+      <h2 class="section-title">
+        Tips to Protect Your Rights After a Motor Vehicle Accident
+      </h2>
+      <p class="section-subtitle">
+        Simple steps that can make a big difference in your MVA claim.
+      </p>
+
+      <div class="tips-list">
+        <article class="tip-card">
+          <h3 class="tip-title">1. Don’t Ignore Your Symptoms</h3>
+          <p class="tip-text">
+            Even minor soreness can turn into serious neck, back, or brain
+            injuries days after a crash. Always get checked by a doctor and keep
+            copies of your records.
+          </p>
+        </article>
+
+        <article class="tip-card">
+          <h3 class="tip-title">2. Be Careful With Early Offers</h3>
+          <p class="tip-text">
+            Some insurers push quick, low settlements before the full impact of
+            your MVA is known. Once you sign, you may not be able to ask for
+            more – even if new medical issues appear.
+          </p>
+        </article>
+
+        <article class="tip-card">
+          <h3 class="tip-title">3. Document Everything</h3>
+          <p class="tip-text">
+            Photos, police reports, repair estimates, time off work, and pain
+            journals all help paint a clear picture of how the accident affected
+            you.
+          </p>
+        </article>
+
+        <article class="tip-card">
+          <h3 class="tip-title">4. Talk to an MVA Professional Early</h3>
+          <p class="tip-text">
+            The sooner you understand your options, the easier it is to avoid
+            mistakes that can weaken your claim. A free review can show you
+            where you stand.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <h2>The Right Help After an MVA – At the Right Time</h2>
+      <p>
+        If you’ve been hurt in a Motor Vehicle Accident, you don’t have to guess
+        what your case might be worth. Get a fast, free review from people who
+        handle MVA claims every day.
+      </p>
+      <button class="btn-final">
+        Get My Free MVA Case Review
+      </button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>
+        MVA Relief Network is a matching service that connects individuals
+        involved in motor vehicle accidents with law firms or claim
+        professionals. We do not provide legal advice, and no
+        attorney-client relationship is formed by using this site. Results are
+        not guaranteed and may vary.
+      </p>
+      <div class="footer-links">
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Do Not Sell My Info</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
