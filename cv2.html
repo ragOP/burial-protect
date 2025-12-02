@@ -62,20 +62,55 @@ body{
   background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65));
   border-bottom:1px solid rgba(0,0,0,.06);
 }
-.nav{display:flex;gap:28px;align-items:center;justify-content:space-between;padding:14px 0}
-.brand{display:flex;align-items:center;gap:12px;letter-spacing:.2px;font-weight:800;color:var(--brand)}
-.brand i{width:28px;height:28px;display:inline-block;border-radius:50%;
+.nav{
+  display:flex;
+  gap:28px;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  letter-spacing:.2px;
+  font-weight:800;
+  color:var(--brand);
+}
+.brand i{
+  width:28px;height:28px;display:inline-block;border-radius:50%;
   background:conic-gradient(from 220deg at 50% 50%, var(--brand), #3f95ff, var(--brand), #3f95ff);
-  box-shadow:0 0 24px var(--brand-28)}
-.nav a{color:var(--ink);text-decoration:none;font-weight:700;opacity:.9}
-.nav a:hover{color:var(--brand)}
+  box-shadow:0 0 24px var(--brand-28)
+}
+
+/* NEW: nav-links for even gaps */
+.nav-links{
+  display:flex;
+  gap:28px;
+  align-items:center;
+}
+.nav-links a{
+  color:var(--ink);
+  text-decoration:none;
+  font-weight:700;
+  opacity:.9;
+}
+.nav-links a:hover{color:var(--brand)}
 
 /* ---------- Hero ---------- */
-.hero{position:relative;padding:88px 0 64px;overflow:hidden}
+.hero{
+  position:relative;
+  padding:88px 0 64px;
+  overflow:hidden;
+}
 .hero-surface{
-  position:relative;border-radius:32px;padding:64px;
+  position:relative;
+  border-radius:32px;
+  padding:64px;
   background:linear-gradient(135deg, rgba(0,123,255,.06), rgba(0,123,255,.02));
-  border:1px solid var(--brand-12); box-shadow:var(--shadow-lg); isolation:isolate;
+  border:1px solid var(--brand-12);
+  box-shadow:var(--shadow-lg);
+  isolation:isolate;
 }
 .hero-surface::after{
   content:""; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none;
@@ -94,7 +129,12 @@ body{
 }
 @keyframes shimmer{0%{background-position:0% 0}100%{background-position:200% 0}}
 
-.hero p{max-width:680px;color:var(--ink-soft);font-size:18px;margin:18px 0 28px}
+.hero p{
+  max-width:680px;
+  color:var(--ink-soft);
+  font-size:18px;
+  margin:18px 0 28px;
+}
 
 /* CTA */
 .btn{
@@ -117,9 +157,17 @@ body{
 .lead{color:var(--ink-soft)}
 
 /* grid cards */
-.grid{display:grid;gap:22px;grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:980px){.grid{grid-template-columns:1fr 1fr}}
-@media (max-width:640px){.grid{grid-template-columns:1fr}}
+.grid{
+  display:grid;
+  gap:22px;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+@media (max-width:980px){
+  .grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .grid{grid-template-columns:1fr}
+}
 .card{
   position:relative;border-radius:18px;padding:24px;background:var(--surface);
   box-shadow:var(--shadow-sm);overflow:hidden;isolation:isolate;border:1px solid rgba(0,0,0,.06);
@@ -176,7 +224,9 @@ body{
     linear-gradient(180deg,#ffffff,#f8fbff);
   border:1px solid var(--brand-12); box-shadow:var(--shadow-lg);
 }
-@media (max-width:980px){.focus-surface{grid-template-columns:1fr;padding:28px}}
+@media (max-width:980px){
+  .focus-surface{grid-template-columns:1fr;padding:28px}
+}
 .focus-title{font-size:clamp(26px,3.2vw,40px);margin:0 0 10px;font-weight:900;letter-spacing:-.02em;color:var(--brand)}
 .focus-sub{max-width:54ch;color:var(--ink-soft)}
 .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
@@ -222,7 +272,13 @@ body{
 .chip:hover{transform:translateY(-1px); border-color:var(--brand)}
 .chip.is-active{color:#fff;background:var(--brand);border-color:var(--brand)}
 
-.prod-grid{--cols:3;display:grid;gap:18px;grid-template-columns:repeat(var(--cols),minmax(0,1fr));margin-top:18px}
+.prod-grid{
+  --cols:3;
+  display:grid;
+  gap:18px;
+  grid-template-columns:repeat(var(--cols),minmax(0,1fr));
+  margin-top:18px;
+}
 @media (max-width:980px){.prod-grid{--cols:2}}
 @media (max-width:640px){.prod-grid{--cols:1}}
 
@@ -259,6 +315,69 @@ body{
 /* Simple responsive logo sizing */
 .brand img{height:28px;width:auto}
 @media (max-width:640px){.brand img{height:24px}}
+
+/* ---------- RESPONSIVE TUNING ---------- */
+@media (max-width:980px){
+  .hero{
+    padding:72px 0 48px;
+  }
+  .hero-surface{
+    padding:40px 32px;
+  }
+}
+
+@media (max-width:768px){
+  .nav{
+    flex-wrap:wrap;
+    row-gap:8px;
+  }
+  .nav-links{
+    width:100%;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+    gap:20px; /* nice small-screen spacing */
+    font-size:0.95rem;
+  }
+  .hero{
+    padding:64px 0 40px;
+  }
+  .hero-surface{
+    padding:32px 22px;
+  }
+  .hero p{
+    font-size:16px;
+  }
+  .badges{
+    gap:8px;
+  }
+  .cta{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+
+@media (max-width:480px){
+  .nav{
+    padding:10px 0;
+  }
+  .nav-links{
+    justify-content:flex-start;
+    gap:16px;
+  }
+  .hero{
+    padding:56px 0 36px;
+  }
+  .hero-surface{
+    padding:26px 18px;
+    border-radius:24px;
+  }
+  .section{
+    margin:36px 0;
+  }
+  .footer{
+    margin:32px 0 40px;
+  }
+}
 </style>
 </head>
 
@@ -272,10 +391,9 @@ body{
 <header class="header">
   <div class="container nav">
     <div class="brand">
-      <!-- If you can provide a PNG/SVG with transparent bg, just swap the src -->
       <img src="https://clickkk-git-main-marketcall.vercel.app/images/biglogo.jpg" alt="Click Venture Logo" width="128" height="28"/>
     </div>
-    <nav>
+    <nav class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#products">Products</a>
@@ -362,7 +480,7 @@ body{
   </section>
 
   <!-- INTEGRATED GROWTH -->
-  <section class="section reveal">
+  <section id="services" class="section reveal">
     <h2 class="m0">Integrated Growth Framework</h2>
     <div class="grid mt16">
       <article class="card"><div class="icon">⚡</div><h3 class="m0">Drive Impact with Integrated Strategy</h3><p class="mt8">Experience a seamless marketing process from planning to execution and analysis. Our integrative strategies ensure maximum growth potential for your brand.</p></article>
