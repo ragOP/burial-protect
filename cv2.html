@@ -68,7 +68,7 @@ body{
 /* ---------- App shell ---------- */
 .container{width:min(1200px,92vw);margin:0 auto}
 .header{
-  position:sticky; top:0; z-index:10; backdrop-filter:blur(10px);
+  position:sticky; top:0; z-index:20; backdrop-filter:blur(10px);
   background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7));
   border-bottom:1px solid rgba(0,0,0,.06);
 }
@@ -125,25 +125,58 @@ body{
   width:100%;
 }
 
+/* ---------- Scroll progress bar ---------- */
+.scroll-bar{
+  position:fixed;
+  inset:0 0 auto 0;
+  height:3px;
+  z-index:30;
+  pointer-events:none;
+}
+.scroll-bar::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  width:var(--progress,0%);
+  background:linear-gradient(90deg,#22c1ff,#007bff,#4f46e5);
+  box-shadow:0 0 18px rgba(37,99,235,.75);
+  border-radius:0 999px 999px 0;
+}
+
 /* ---------- Floating scroll “tour” indicator ---------- */
 .tour-indicator{
   position:fixed;
   right:24px;
   top:50%;
   transform:translateY(-50%) translateX(40px);
-  z-index:20;
+  z-index:25;
   padding:8px 14px;
   border-radius:999px;
   display:flex;
   align-items:center;
   gap:10px;
-  background:rgba(15,23,42,.88);
+  background:rgba(15,23,42,.9);
   color:#e5e7eb;
   backdrop-filter:blur(18px) saturate(1.4);
-  box-shadow:0 18px 60px rgba(15,23,42,.65);
+  box-shadow:0 18px 60px rgba(15,23,42,.7);
   opacity:0;
   pointer-events:none;
   transition:opacity .4s ease, transform .4s ease;
+}
+.tour-indicator::before{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:inherit;
+  border:1px solid rgba(59,130,246,.45);
+  box-shadow:0 0 24px rgba(59,130,246,.6);
+  opacity:.8;
+  animation:tourPulse 2.4s ease-in-out infinite;
+}
+@keyframes tourPulse{
+  0%{opacity:.2;transform:scale(.98)}
+  50%{opacity:.9;transform:scale(1.03)}
+  100%{opacity:.2;transform:scale(.98)}
 }
 .tour-indicator.is-visible{
   opacity:1;
@@ -176,7 +209,7 @@ body{
   .tour-indicator{display:none;}
 }
 
-/* ---------- Hero (unchanged structure, but animated) ---------- */
+/* ---------- Hero (keep content, add subtle depth) ---------- */
 .hero{
   position:relative;
   padding:88px 0 64px;
@@ -198,6 +231,12 @@ body{
   background-size:200% 100%; animation:sweep 6s ease-in-out infinite;
   -webkit-mask:linear-gradient(#000,#000) content-box, linear-gradient(#000,#000);
   -webkit-mask-composite:xor; mask-composite:exclude;
+}
+.hero:hover .hero-surface,
+.hero.is-active-tour .hero-surface{
+  transform:translateY(-4px);
+  box-shadow:0 26px 70px rgba(15,23,42,.26);
+  filter:saturate(1.04);
 }
 @keyframes sweep{0%{background-position:120% 0}50%{background-position:-60% 0}100%{background-position:-60% 0}}
 
@@ -230,7 +269,7 @@ body{
 }
 @keyframes btnshine{15%{transform:translateX(-100%)}45%{transform:translateX(120%)}100%{transform:translateX(120%)}}
 .btn:hover{
-  transform:translateY(-1px) scale(1.02);
+  transform:translateY(-1px) scale(1.03);
   box-shadow:0 14px 32px rgba(37,99,235,.45);
   filter:saturate(1.1);
 }
@@ -293,6 +332,16 @@ body{
   box-shadow:0 14px 40px rgba(0,0,0,.06); border:1px solid rgba(0,0,0,.06);
   transition:transform .3s cubic-bezier(.22,.8,.25,1), box-shadow .3s cubic-bezier(.22,.8,.25,1), filter .3s ease;
 }
+.cta::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.5) 50%,transparent 80%);
+  opacity:.3;
+  pointer-events:none;
+  mix-blend-mode:soft-light;
+}
 .cta:hover{
   transform:translateY(-4px);
   box-shadow:0 20px 60px rgba(15,23,42,.18);
@@ -312,9 +361,32 @@ body{
 }
 .footer a{color:var(--brand);text-decoration:none;font-weight:700}
 
-/* reveal */
-.reveal{opacity:0;transform:translateY(22px) scale(.98);transition:.9s cubic-bezier(.2,.8,.2,1)}
-.reveal.show{opacity:1;transform:none}
+/* reveal: stronger, more cinematic */
+.reveal{
+  opacity:0;
+  transform:translateY(40px) scale(.96) rotateX(4deg);
+  filter:blur(12px);
+}
+.reveal.show{
+  animation:revealUp .9s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes revealUp{
+  0%{
+    opacity:0;
+    transform:translateY(40px) scale(.96) rotateX(6deg);
+    filter:blur(12px);
+  }
+  60%{
+    opacity:1;
+    transform:translateY(-4px) scale(1.01) rotateX(0deg);
+    filter:blur(0);
+  }
+  100%{
+    opacity:1;
+    transform:translateY(0) scale(1) rotateX(0deg);
+    filter:blur(0);
+  }
+}
 
 /* tour-active halo */
 [data-tour].is-active-tour{
@@ -325,7 +397,7 @@ body{
   position:absolute;
   inset:-40px -12px;
   background:radial-gradient(700px 260px at 0% 0%,var(--brand-8),transparent 70%);
-  opacity:.7;
+  opacity:.75;
   filter:blur(22px);
   pointer-events:none;
   z-index:-1;
@@ -468,10 +540,16 @@ body{
   position:absolute;
   inset:-1px;
   border-radius:inherit;
-  background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.3) 50%,transparent 80%);
+  background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.5) 50%,transparent 80%);
   opacity:.45;
   mix-blend-mode:soft-light;
   pointer-events:none;
+  animation:lightSweep 6.5s ease-in-out infinite;
+}
+@keyframes lightSweep{
+  0%{transform:translateX(-40%)}
+  50%{transform:translateX(40%)}
+  100%{transform:translateX(-40%)}
 }
 .snap-row--reverse .snap-copy{order:2;}
 .snap-row--reverse .snap-media{order:1;}
@@ -766,12 +844,19 @@ body{
   gap:18px;
   flex-wrap:wrap;
   backdrop-filter:blur(10px);
-  transition:transform .3s cubic-bezier(.22,.8,.25,1), box-shadow .3s cubic-bezier(.22,.8,.25,1), filter .3s ease;
+  position:relative;
+  overflow:hidden;
 }
-.metric-strip:hover{
-  transform:translateY(-4px);
-  box-shadow:0 22px 60px rgba(15,23,42,.2);
-  filter:saturate(1.04);
+.metric-strip::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.7) 50%,transparent 80%);
+  opacity:.4;
+  pointer-events:none;
+  mix-blend-mode:soft-light;
+  animation:lightSweep 7s ease-in-out infinite;
 }
 .metric-pill{
   display:flex;
@@ -806,12 +891,17 @@ body{
   background:linear-gradient(135deg,#ffffff,#f5f8ff);
   border:1px solid var(--brand-12);
   box-shadow:0 14px 40px rgba(15,23,42,.09);
-  transition:transform .3s cubic-bezier(.22,.8,.25,1), box-shadow .3s cubic-bezier(.22,.8,.25,1), filter .3s ease;
+  position:relative;
+  overflow:hidden;
 }
-.vertical-band:hover{
-  transform:translateY(-4px);
-  box-shadow:0 22px 60px rgba(15,23,42,.2);
-  filter:saturate(1.03);
+.vertical-band::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:radial-gradient(700px 260px at 0% 0%,var(--brand-8),transparent 70%);
+  opacity:.5;
+  filter:blur(20px);
+  pointer-events:none;
 }
 .vertical-band-top{
   display:flex;
@@ -875,12 +965,19 @@ body{
   background:linear-gradient(180deg,#ffffff,#f6f9ff);
   border:1px solid var(--brand-12);
   box-shadow:0 16px 44px rgba(15,23,42,.1);
-  transition:transform .35s cubic-bezier(.22,.8,.25,1), box-shadow .35s cubic-bezier(.22,.8,.25,1), filter .35s ease;
+  position:relative;
+  overflow:hidden;
 }
-.timeline:hover{
-  transform:translateY(-4px);
-  box-shadow:0 26px 70px rgba(15,23,42,.22);
-  filter:saturate(1.03);
+.timeline::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:15%;
+  width:2px;
+  height:100%;
+  background:linear-gradient(180deg,var(--brand-22),transparent);
+  opacity:.5;
+  pointer-events:none;
 }
 .timeline-head{
   display:flex;
@@ -964,12 +1061,17 @@ body{
     #ffffff;
   border:1px solid var(--brand-12);
   box-shadow:0 18px 44px rgba(15,23,42,.12);
-  transition:transform .35s cubic-bezier(.22,.8,.25,1), box-shadow .35s cubic-bezier(.22,.8,.25,1), filter .35s ease;
+  position:relative;
+  overflow:hidden;
 }
-.faq:hover{
-  transform:translateY(-4px);
-  box-shadow:0 24px 70px rgba(15,23,42,.22);
-  filter:saturate(1.03);
+.faq::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:radial-gradient(700px 260px at 0% 0%,var(--brand-8),transparent 70%);
+  opacity:.5;
+  filter:blur(20px);
+  pointer-events:none;
 }
 .faq-head{
   display:flex;
@@ -1122,6 +1224,9 @@ body{
     </nav>
   </div>
 </header>
+
+<!-- Scroll progress bar -->
+<div class="scroll-bar" id="scrollBar"></div>
 
 <!-- Scroll tour indicator -->
 <div class="tour-indicator" id="tourIndicator">
@@ -1608,7 +1713,12 @@ body{
 <script>
 /* reveal */
 const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('show');
+      io.unobserve(e.target);
+    }
+  });
 },{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
@@ -1672,7 +1782,7 @@ document.querySelectorAll('.faq-item button').forEach(btn=>{
   });
 });
 
-/* Scroll tour guide */
+/* Scroll tour guide + section highlight */
 const tourSections = Array.from(document.querySelectorAll('[data-tour]'));
 const tourIndicator = document.getElementById('tourIndicator');
 const tourTitleEl = document.getElementById('tourTitle');
@@ -1704,8 +1814,26 @@ function updateTour(){
   }
 }
 
-window.addEventListener('scroll', ()=>{ window.requestAnimationFrame(updateTour); });
-window.addEventListener('load', updateTour);
+/* Scroll progress bar */
+const scrollBar = document.getElementById('scrollBar');
+function updateScrollBar(){
+  const doc = document.documentElement;
+  const max = doc.scrollHeight - doc.clientHeight;
+  const val = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+  scrollBar.style.setProperty('--progress', val + '%');
+}
+
+window.addEventListener('scroll', ()=>{
+  window.requestAnimationFrame(()=>{
+    updateTour();
+    updateScrollBar();
+  });
+});
+
+window.addEventListener('load', ()=>{
+  updateTour();
+  updateScrollBar();
+});
 </script>
 </body>
 </html>
