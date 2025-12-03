@@ -260,7 +260,7 @@ body{
 .tick i{width:18px;height:18px;border-radius:6px;background:linear-gradient(180deg,#22a5ff,var(--brand));display:inline-block;box-shadow:0 8px 18px var(--brand-28)}
 .tick span{flex:1;color:var(--ink)}
 
-/* ---------- PERFORMANCE SNAPSHOTS SECTION ---------- */
+/* ---------- PERFORMANCE SNAPSHOTS SECTION (LEFT–RIGHT COMBOS + BANNER) ---------- */
 .snaps{
   margin:32px 0 56px;
 }
@@ -277,45 +277,234 @@ body{
   font-size:0.98rem;
   color:var(--ink-soft);
 }
-.snap-grid{
-  display:grid;
-  gap:18px;
-  grid-template-columns:repeat(5,minmax(0,1fr));
-}
-@media (max-width:1180px){
-  .snap-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-}
-@media (max-width:780px){
-  .snap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width:520px){
-  .snap-grid{grid-template-columns:1fr}
-}
-.snap-card{
-  border-radius:24px;
-  padding:10px;
-  background:radial-gradient(600px 260px at 0% 0%, var(--brand-6), transparent 65%), #ffffff;
-  border:1px solid var(--brand-12);
-  box-shadow:0 16px 40px rgba(15,23,42,.12);
+
+.snap-rows{
   display:flex;
   flex-direction:column;
+  gap:22px;
+}
+
+/* main left–right rows */
+.snap-row{
+  position:relative;
+  display:flex;
+  align-items:stretch;
+  gap:22px;
+  padding:22px 22px 22px 22px;
+  border-radius:26px;
+  background:
+    radial-gradient(600px 220px at 0% 0%, var(--brand-8), transparent 65%),
+    radial-gradient(700px 260px at 100% 100%, var(--brand-6), transparent 70%),
+    linear-gradient(180deg,#ffffff,#f6f9ff);
+  border:1px solid var(--brand-12);
+  box-shadow:0 18px 46px rgba(15,23,42,.14);
+  overflow:hidden;
+}
+.snap-row::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.3) 50%,transparent 80%);
+  opacity:.45;
+  mix-blend-mode:soft-light;
+  pointer-events:none;
+}
+.snap-row--reverse .snap-copy{order:2;}
+.snap-row--reverse .snap-media{order:1;}
+
+.snap-copy{
+  flex:1.15;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
   gap:8px;
 }
-.snap-img-wrap{
-  border-radius:18px;
-  overflow:hidden;
-  background:#0f172a;
+.snap-kicker{
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--brand);
+  opacity:.9;
 }
-.snap-img{
+.snap-title{
+  font-size:1.15rem;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:var(--ink);
+}
+.snap-body{
+  font-size:.95rem;
+  color:var(--ink-soft);
+}
+.snap-metrics{
+  margin-top:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.snap-pill{
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:.78rem;
+  font-weight:700;
+  background:rgba(255,255,255,.9);
+  border:1px solid var(--brand-12);
+  color:var(--ink);
+  box-shadow:0 6px 18px rgba(15,23,42,.06);
+}
+
+/* image side */
+.snap-media{
+  flex:1;
+  min-width:0;
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
+  background:#020617;
+  box-shadow:0 18px 40px rgba(15,23,42,.5);
+}
+.snap-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(600px 260px at 10% 0%,rgba(0,123,255,.25),transparent 60%);
+  mix-blend-mode:soft-light;
+  pointer-events:none;
+}
+.snap-img-main{
   display:block;
   width:100%;
   height:100%;
   object-fit:cover;
 }
-.snap-caption{
-  font-size:0.8rem;
-  color:var(--ink-soft);
-  font-weight:600;
+.snap-media-stack{
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  width:40%;
+  max-width:180px;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(148,163,184,.5);
+  box-shadow:0 14px 30px rgba(15,23,42,.7);
+}
+.snap-media-stack img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* city banner inside snaps */
+.snap-banner{
+  position:relative;
+  margin-top:4px;
+  border-radius:26px;
+  overflow:hidden;
+  height:210px;
+  background:#020617;
+  box-shadow:0 18px 46px rgba(15,23,42,.22);
+}
+.snap-banner-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.snap-banner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(120deg,rgba(15,23,42,.88),rgba(15,23,42,.55),rgba(15,23,42,.9)),
+    radial-gradient(600px 260px at 10% 0%,rgba(0,123,255,.32),transparent 70%);
+}
+.snap-banner-inner{
+  position:absolute;
+  inset:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  color:#e5f0ff;
+}
+.snap-banner-copy{
+  max-width:420px;
+}
+.snap-banner-kicker{
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-weight:700;
+  opacity:.82;
+}
+.snap-banner-title{
+  font-size:1.15rem;
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+.snap-banner-body{
+  font-size:.9rem;
+  opacity:.9;
+}
+.snap-banner-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.snap-banner-pill{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(226,232,240,.5);
+  font-size:.78rem;
+  font-weight:700;
+}
+.snap-banner-stat{
+  text-align:right;
+  font-size:.8rem;
+}
+.snap-banner-stat b{
+  display:block;
+  font-size:1.25rem;
+  color:#facc15;
+}
+
+/* mobile responsive for snaps */
+@media (max-width:900px){
+  .snap-row{
+    flex-direction:column;
+    padding:18px;
+  }
+  .snap-row--reverse .snap-copy{order:1;}
+  .snap-row--reverse .snap-media{order:2;}
+  .snap-media{
+    height:230px;
+  }
+  .snap-media-stack{
+    display:none;
+  }
+  .snap-banner{
+    height:220px;
+  }
+  .snap-banner-inner{
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-end;
+  }
+  .snap-banner-stat{
+    text-align:left;
+  }
+}
+@media (max-width:540px){
+  .snap-row{
+    border-radius:22px;
+  }
+  .snap-banner{
+    border-radius:22px;
+  }
 }
 
 /* ---------- “Our Core Products” ---------- */
@@ -472,49 +661,105 @@ body{
     </div>
   </section>
 
-  <!-- PERFORMANCE SNAPSHOTS (new dedicated section using all 5 images) -->
+  <!-- PERFORMANCE SNAPSHOTS (left/right combos + banner) -->
   <section class="section snaps reveal">
     <h2 class="snap-headline">Performance Snapshots</h2>
     <p class="snap-sub">
-      A few of the dashboards and charts we monitor daily to keep campaigns scaling
+      A live view into the command centers, charts, and attribution we monitor daily to keep campaigns scaling
       while protecting efficiency across channels.
     </p>
 
-    <div class="snap-grid">
-      <article class="snap-card">
-        <div class="snap-img-wrap">
-          <img class="snap-img" src="https://www.clickvs.com/images/lap.png" alt="Campaign overview dashboard placeholder">
+    <div class="snap-rows">
+      <!-- Row 1: Command Center (text left, image right) -->
+      <article class="snap-row">
+        <div class="snap-copy">
+          <div class="snap-kicker">Command Center</div>
+          <div class="snap-title">Cross-channel control room for every dollar spent.</div>
+          <p class="snap-body">
+            Our media team works out of real-time dashboards that blend platform data, first-party signals,
+            and call outcomes. Every morning starts here, aligning budget, pacing, and profit.
+          </p>
+          <div class="snap-metrics">
+            <span class="snap-pill">Live pacing views</span>
+            <span class="snap-pill">By-vertical rollups</span>
+            <span class="snap-pill">Spend / CPL guardrails</span>
+          </div>
         </div>
-        <div class="snap-caption">High-level campaign overview across accounts.</div>
+        <div class="snap-media">
+          <img class="snap-img-main" src="https://www.clickvs.com/images/lap.png" alt="Campaign overview dashboard">
+        </div>
       </article>
 
-      <article class="snap-card">
-        <div class="snap-img-wrap">
-          <img class="snap-img" src="https://www.clickvs.com/images/chart.png" alt="Channel breakdown chart placeholder">
+      <!-- Row 2: Channel & Creative Analytics (image left, text right) -->
+      <article class="snap-row snap-row--reverse">
+        <div class="snap-copy">
+          <div class="snap-kicker">Analytics & Iteration</div>
+          <div class="snap-title">Channel-level performance and creative winners at a glance.</div>
+          <p class="snap-body">
+            We break down performance by funnel, offer, and audience to decide which creatives scale and which
+            get replaced. The goal: compound learnings and protect margin while we grow volume.
+          </p>
+          <div class="snap-metrics">
+            <span class="snap-pill">Channel breakdowns</span>
+            <span class="snap-pill">Creative leaderboards</span>
+            <span class="snap-pill">Automatic alerts</span>
+          </div>
         </div>
-        <div class="snap-caption">Channel-by-channel performance and spend.</div>
+        <div class="snap-media">
+          <img class="snap-img-main" src="https://www.clickvs.com/images/chart.png" alt="Channel breakdown chart">
+          <div class="snap-media-stack">
+            <img src="https://www.clickvs.com/images/scaler.png" alt="Scaling performance snapshot" />
+          </div>
+        </div>
       </article>
 
-      <article class="snap-card">
-        <div class="snap-img-wrap">
-          <img class="snap-img" src="https://www.clickvs.com/images/scaler.png" alt="Scaling performance visual placeholder">
+      <!-- Row 3: Measurement Lab (text left, layered image right) -->
+      <article class="snap-row">
+        <div class="snap-copy">
+          <div class="snap-kicker">Measurement Lab</div>
+          <div class="snap-title">Deeper attribution to keep CPL and CPA on target.</div>
+          <p class="snap-body">
+            Behind the dashboards is a measurement stack that connects click to call, and call to revenue.
+            This lets us push into new geos, offers, and languages without losing sight of profitability.
+          </p>
+          <div class="snap-metrics">
+            <span class="snap-pill">CPL / CPA scorecards</span>
+            <span class="snap-pill">Call & lead quality</span>
+            <span class="snap-pill">Bid strategy feedback</span>
+          </div>
         </div>
-        <div class="snap-caption">Week-over-week scaling and lift snapshots.</div>
+        <div class="snap-media">
+          <img class="snap-img-main" src="https://www.clickvs.com/images/measure.png" alt="Measurement dashboard view">
+          <div class="snap-media-stack">
+            <img src="https://www.clickvs.com/images/scaler.png" alt="Scaling chart overlay" />
+          </div>
+        </div>
       </article>
 
-      <article class="snap-card">
-        <div class="snap-img-wrap">
-          <img class="snap-img" src="https://www.clickvs.com/images/ny.png" alt="Media environment city placeholder">
+      <!-- City banner (beautiful wide band later in the section) -->
+      <div class="snap-banner">
+        <img class="snap-banner-img" src="https://www.clickvs.com/images/ny.png" alt="City media environment">
+        <div class="snap-banner-inner">
+          <div class="snap-banner-copy">
+            <div class="snap-banner-kicker">Real-world Reach</div>
+            <div class="snap-banner-title">From dashboards to real people in real markets.</div>
+            <p class="snap-banner-body">
+              Our funnels are designed to perform in the wild — across major metros, suburban pockets,
+              and niche zip codes — for both English and Spanish-speaking audiences.
+            </p>
+            <div class="snap-banner-pills">
+              <span class="snap-banner-pill">Major US metros</span>
+              <span class="snap-banner-pill">EN &amp; ES funnels</span>
+              <span class="snap-banner-pill">Multi-vertical expansion</span>
+            </div>
+          </div>
+          <div class="snap-banner-stat">
+            <span>Tracked across verticals</span>
+            <b>9+ Figures</b>
+            <span>in attributable client revenue</span>
+          </div>
         </div>
-        <div class="snap-caption">Real-world media impact across major markets.</div>
-      </article>
-
-      <article class="snap-card">
-        <div class="snap-img-wrap">
-          <img class="snap-img" src="https://www.clickvs.com/images/measure.png" alt="Measurement dashboards placeholder">
-        </div>
-        <div class="snap-caption">Deep measurement to keep CPL and CPA on target.</div>
-      </article>
+      </div>
     </div>
   </section>
 
