@@ -18,11 +18,11 @@
   --brand-22: rgba(0,123,255,.22);
   --brand-28: rgba(0,123,255,.28);
   --brand-35: rgba(0,123,255,.35);
-  --ink:#1f2937;         /* neutral for readability */
-  --ink-soft:#475569;    /* neutral captions */
-  --bg:#ffffff;          /* light theme */
+  --ink:#1f2937;
+  --ink-soft:#475569;
+  --bg:#ffffff;
   --surface:#ffffff;
-  --muted:#64748b;       /* neutral supporting text */
+  --muted:#64748b;
   --radius-xl: 28px;
   --radius: 16px;
   --blur: 16px;
@@ -83,7 +83,7 @@ body{
   box-shadow:0 0 24px var(--brand-28)
 }
 
-/* NEW: nav-links for even gaps */
+/* nav-links */
 .nav-links{
   display:flex;
   gap:28px;
@@ -97,7 +97,7 @@ body{
 }
 .nav-links a:hover{color:var(--brand)}
 
-/* ---------- Hero ---------- */
+/* ---------- Hero (unchanged) ---------- */
 .hero{
   position:relative;
   padding:88px 0 64px;
@@ -213,7 +213,7 @@ body{
 .m0{margin:0}.mt8{margin-top:8px}.mt16{margin-top:16px}.mt24{margin-top:24px}
 .small{opacity:.95;font-size:.95rem;color:var(--ink-soft)}
 
-/* ---------- “Our Focus” (light, brand) ---------- */
+/* ---------- “Our Focus” ---------- */
 .focus{position:relative;overflow:hidden;border-radius:24px;padding:0}
 .focus-surface{
   position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;
@@ -260,7 +260,65 @@ body{
 .tick i{width:18px;height:18px;border-radius:6px;background:linear-gradient(180deg,#22a5ff,var(--brand));display:inline-block;box-shadow:0 8px 18px var(--brand-28)}
 .tick span{flex:1;color:var(--ink)}
 
-/* ---------- “Our Core Products” (light, brand) ---------- */
+/* ---------- PERFORMANCE SNAPSHOTS SECTION ---------- */
+.snaps{
+  margin:32px 0 56px;
+}
+.snap-headline{
+  font-size:clamp(28px,3.3vw,40px);
+  font-weight:900;
+  letter-spacing:-.02em;
+  color:var(--brand);
+  margin:0 0 6px;
+}
+.snap-sub{
+  margin:0 0 22px;
+  max-width:620px;
+  font-size:0.98rem;
+  color:var(--ink-soft);
+}
+.snap-grid{
+  display:grid;
+  gap:18px;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+}
+@media (max-width:1180px){
+  .snap-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:780px){
+  .snap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:520px){
+  .snap-grid{grid-template-columns:1fr}
+}
+.snap-card{
+  border-radius:24px;
+  padding:10px;
+  background:radial-gradient(600px 260px at 0% 0%, var(--brand-6), transparent 65%), #ffffff;
+  border:1px solid var(--brand-12);
+  box-shadow:0 16px 40px rgba(15,23,42,.12);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.snap-img-wrap{
+  border-radius:18px;
+  overflow:hidden;
+  background:#0f172a;
+}
+.snap-img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.snap-caption{
+  font-size:0.8rem;
+  color:var(--ink-soft);
+  font-weight:600;
+}
+
+/* ---------- “Our Core Products” ---------- */
 .products{position:relative;overflow:hidden}
 .prod-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
 .prod-title{margin:0;font-size:clamp(26px,3.2vw,40px);font-weight:900;letter-spacing:-.02em;color:var(--brand)}
@@ -318,12 +376,8 @@ body{
 
 /* ---------- RESPONSIVE TUNING ---------- */
 @media (max-width:980px){
-  .hero{
-    padding:72px 0 48px;
-  }
-  .hero-surface{
-    padding:40px 32px;
-  }
+  .hero{padding:72px 0 48px;}
+  .hero-surface{padding:40px 32px;}
 }
 
 @media (max-width:768px){
@@ -335,7 +389,7 @@ body{
     width:100%;
     justify-content:flex-end;
     flex-wrap:wrap;
-    gap:20px; /* nice small-screen spacing */
+    gap:20px;
     font-size:0.95rem;
   }
   .hero{
@@ -357,9 +411,7 @@ body{
 }
 
 @media (max-width:480px){
-  .nav{
-    padding:10px 0;
-  }
+  .nav{padding:10px 0;}
   .nav-links{
     justify-content:flex-start;
     gap:16px;
@@ -403,7 +455,7 @@ body{
 </header>
 
 <main class="container">
-  <!-- HERO -->
+  <!-- HERO (unchanged) -->
   <section class="hero">
     <div class="hero-surface reveal show">
       <h1 class="shimmer m0">Digital Marketing<br/>Experts</h1>
@@ -417,6 +469,52 @@ body{
         <span class="badge">40+ Team Members</span>
       </div>
       <button class="btn" style="margin-top:20px">Get Started</button>
+    </div>
+  </section>
+
+  <!-- PERFORMANCE SNAPSHOTS (new dedicated section using all 5 images) -->
+  <section class="section snaps reveal">
+    <h2 class="snap-headline">Performance Snapshots</h2>
+    <p class="snap-sub">
+      A few of the dashboards and charts we monitor daily to keep campaigns scaling
+      while protecting efficiency across channels.
+    </p>
+
+    <div class="snap-grid">
+      <article class="snap-card">
+        <div class="snap-img-wrap">
+          <img class="snap-img" src="https://www.clickvs.com/images/lap.png" alt="Campaign overview dashboard placeholder">
+        </div>
+        <div class="snap-caption">High-level campaign overview across accounts.</div>
+      </article>
+
+      <article class="snap-card">
+        <div class="snap-img-wrap">
+          <img class="snap-img" src="https://www.clickvs.com/images/chart.png" alt="Channel breakdown chart placeholder">
+        </div>
+        <div class="snap-caption">Channel-by-channel performance and spend.</div>
+      </article>
+
+      <article class="snap-card">
+        <div class="snap-img-wrap">
+          <img class="snap-img" src="https://www.clickvs.com/images/scaler.png" alt="Scaling performance visual placeholder">
+        </div>
+        <div class="snap-caption">Week-over-week scaling and lift snapshots.</div>
+      </article>
+
+      <article class="snap-card">
+        <div class="snap-img-wrap">
+          <img class="snap-img" src="https://www.clickvs.com/images/ny.png" alt="Media environment city placeholder">
+        </div>
+        <div class="snap-caption">Real-world media impact across major markets.</div>
+      </article>
+
+      <article class="snap-card">
+        <div class="snap-img-wrap">
+          <img class="snap-img" src="https://www.clickvs.com/images/measure.png" alt="Measurement dashboards placeholder">
+        </div>
+        <div class="snap-caption">Deep measurement to keep CPL and CPA on target.</div>
+      </article>
     </div>
   </section>
 
