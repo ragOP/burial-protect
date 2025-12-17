@@ -1,590 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Contact – Click Venture</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact – Click Venture</title>
 
-<style>
-/* ---------- Tokens (Brand: #007bff only) ---------- */
-:root{
-  --brand:#007bff;
-  --brand-4: rgba(0,123,255,.04);
-  --brand-6: rgba(0,123,255,.06);
-  --brand-8: rgba(0,123,255,.08);
-  --brand-12: rgba(0,123,255,.12);
-  --brand-16: rgba(0,123,255,.16);
-  --brand-22: rgba(0,123,255,.22);
-  --brand-28: rgba(0,123,255,.28);
-  --brand-35: rgba(0,123,255,.35);
-  --ink:#1f2937;
-  --ink-soft:#475569;
-  --bg:#ffffff;
-  --surface:#ffffff;
-  --muted:#64748b;
-  --radius-xl: 28px;
-  --radius: 16px;
-  --blur: 16px;
-  --shadow-lg: 0 10px 40px rgba(0,0,0,.08);
-  --shadow-sm: 0 8px 24px rgba(0,0,0,.06);
-}
-*,*::before,*::after{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  color:var(--ink);
-  background:var(--bg);
-  overflow-x:hidden;
-}
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-/* ---------- Very subtle brand background ---------- */
-.bg-wrap{
-  position:fixed; inset:0; z-index:-2; overflow:hidden;
-  background:
-    radial-gradient(1200px 600px at 120% -10%, var(--brand-6) 0%, transparent 60%),
-    radial-gradient(900px 500px at -20% 10%, var(--brand-4) 0%, transparent 60%),
-    radial-gradient(800px 480px at 40% 120%, var(--brand-6) 0%, transparent 70%),
-    linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
-}
-.blob{position:absolute;filter:blur(40px);opacity:.35;mix-blend:screen;animation:float 28s ease-in-out infinite}
-.blob.b1{width:600px;height:600px;left:-120px;top:-120px;background:radial-gradient(circle at 30% 30%, var(--brand-16) 0%, var(--brand-8) 40%, transparent 70%)}
-.blob.b2{width:520px;height:520px;right:-140px;top:60px;background:radial-gradient(circle at 70% 40%, var(--brand-16) 0%, var(--brand-8) 45%, transparent 75%);animation-delay:-7s}
-.blob.b3{width:700px;height:700px;left:40%;bottom:-220px;background:radial-gradient(circle at 50% 50%, var(--brand-16) 0%, var(--brand-8) 45%, transparent 75%);animation-delay:-14s}
-@keyframes float{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-40px,0) scale(1.05)}100%{transform:translate3d(0,0,0) scale(1)}}
+  <style>
+    :root{
+      --brand:#007bff;
+      --ink:#0f172a;
+      --muted:#475569;
+      --line:rgba(15,23,42,.10);
+      --bg:#ffffff;
+      --card:#ffffff;
+      --shadow: 0 12px 40px rgba(2,6,23,.08);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit}
 
-/* ---------- App shell ---------- */
-.container{width:min(1200px,92vw);margin:0 auto}
-.header{
-  position:sticky; top:0; z-index:10; backdrop-filter:blur(10px);
-  background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7));
-  border-bottom:1px solid rgba(0,0,0,.06);
-}
-.nav{
-  display:flex;
-  gap:28px;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 0;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  letter-spacing:.2px;
-  font-weight:800;
-  color:var(--brand);
-}
-.brand img{height:28px;width:auto}
-@media (max-width:640px){.brand img{height:24px}}
+    .bg-wrap{
+      position:fixed; inset:0; z-index:-1; overflow:hidden;
+      background:
+        radial-gradient(1100px 600px at 110% -10%, rgba(0,123,255,.08) 0%, transparent 60%),
+        radial-gradient(900px 520px at -20% 10%, rgba(0,123,255,.06) 0%, transparent 60%),
+        radial-gradient(900px 520px at 40% 120%, rgba(0,123,255,.08) 0%, transparent 70%),
+        linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+    }
 
-.nav-links{
-  display:flex;
-  gap:28px;
-  align-items:center;
-}
-.nav-links a{
-  color:var(--ink);
-  text-decoration:none;
-  font-weight:700;
-  opacity:.9;
-}
-.nav-links a:hover{color:var(--brand)}
-.nav-links a.is-active{color:var(--brand)}
+    .container{ width:min(1120px, 92vw); margin:0 auto; }
 
-/* ---------- Contact hero / layout ---------- */
-.main-wrap{
-  padding:72px 0 56px;
-}
-@media (max-width:768px){
-  .main-wrap{padding:60px 0 40px}
-}
-.page-title{
-  font-size:clamp(32px,4vw,44px);
-  font-weight:900;
-  letter-spacing:-.03em;
-  margin:0 0 12px;
-}
-.page-sub{
-  margin:0;
-  max-width:640px;
-  color:var(--ink-soft);
-  font-size:1rem;
-}
+    .header{
+      position:sticky; top:0; z-index:10;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(2,6,23,.06);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:12px 0;
+    }
+    .brand img{height:26px; width:auto}
+    .nav-links{display:flex; gap:18px; flex-wrap:wrap; justify-content:flex-end;}
+    .nav-links a{
+      text-decoration:none; font-weight:800; color:rgba(15,23,42,.82); font-size:.95rem;
+    }
+    .nav-links a:hover{color:var(--brand)}
+    .nav-links a.is-active{color:var(--brand)}
+    @media (max-width:520px){
+      .nav{align-items:flex-start; flex-direction:column}
+      .nav-links{justify-content:flex-start}
+    }
 
-/* layout */
-.contact-grid{
-  margin-top:32px;
-  display:grid;
-  grid-template-columns: minmax(0,1.1fr) minmax(0,1fr);
-  gap:32px;
-  align-items:flex-start;
-}
-@media (max-width:900px){
-  .contact-grid{
-    grid-template-columns:1fr;
-  }
-}
+    .main-wrap{padding:44px 0 40px}
+    .title{
+      margin:0 0 10px;
+      font-size: clamp(28px, 5vw, 44px);
+      letter-spacing:-.03em;
+      font-weight:900;
+    }
+    .sub{
+      margin:0;
+      max-width: 62ch;
+      color:var(--muted);
+      font-size: 1rem;
+      line-height:1.55;
+    }
 
-/* left info card */
-.info-card{
-  border-radius:24px;
-  padding:28px 26px;
-  background:
-    radial-gradient(700px 260px at 0% 0%, var(--brand-8), transparent 60%),
-    linear-gradient(180deg,#ffffff,#f7faff);
-  border:1px solid var(--brand-12);
-  box-shadow:var(--shadow-lg);
-}
-.info-card h2{
-  margin:0 0 8px;
-  font-size:1.25rem;
-  color:var(--brand);
-}
-.info-card p{
-  margin:0 0 16px;
-  color:var(--ink-soft);
-}
-.info-row{
-  display:flex;
-  gap:14px;
-  align-items:flex-start;
-  margin-top:10px;
-}
-.info-dot{
-  width:28px;height:28px;border-radius:10px;
-  display:grid;place-items:center;
-  background:linear-gradient(180deg,#3f95ff,var(--brand));
-  color:#fff;font-size:16px;
-  box-shadow:0 8px 20px var(--brand-28);
-}
-.info-text{color:var(--ink);font-size:.96rem}
-.info-label{font-weight:700}
-.info-small{color:var(--ink-soft);font-size:.9rem}
+    .grid{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1.05fr);
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width:980px){ .grid{grid-template-columns:1fr} }
 
-/* ---------- Form card ---------- */
-.form-card{
-  border-radius:24px;
-  padding:26px 24px 24px;
-  background:#ffffff;
-  border:1px solid rgba(15,23,42,.08);
-  box-shadow:var(--shadow-lg);
-}
-.form-title{
-  margin:0 0 4px;
-  font-size:1.1rem;
-  font-weight:800;
-}
-.form-hint{
-  margin:0 0 18px;
-  color:var(--ink-soft);
-  font-size:.92rem;
-}
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px 16px;
-}
-@media (max-width:700px){
-  .form-grid{grid-template-columns:1fr}
-}
-.field{
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-}
-.field label{
-  font-size:.86rem;
-  font-weight:600;
-  color:var(--ink);
-}
-.required::after{
-  content:"*";
-  color:#ef4444;
-  margin-left:3px;
-}
-.input,
-.select,
-.textarea{
-  border-radius:12px;
-  border:1px solid rgba(15,23,42,.1);
-  padding:10px 11px;
-  font:inherit;
-  color:var(--ink);
-  background:rgba(255,255,255,.95);
-  outline:none;
-  transition:border-color .15s, box-shadow .15s, background .15s;
-}
-.input::placeholder,
-.textarea::placeholder{color:#9ca3af;font-size:.9rem}
-.input:focus,
-.select:focus,
-.textarea:focus{
-  border-color:var(--brand);
-  box-shadow:0 0 0 1px var(--brand-16),0 0 0 4px rgba(0,123,255,.12);
-  background:#fff;
-}
-.textarea{
-  min-height:110px;
-  resize:vertical;
-}
-.full-row{grid-column:1 / -1}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card-pad{padding:18px}
 
-/* service tags */
-.service-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:4px;
-}
-.service-tag{
-  border-radius:999px;
-  padding:6px 10px;
-  font-size:.82rem;
-  border:1px solid rgba(15,23,42,.12);
-  background:#f9fafb;
-  cursor:pointer;
-  user-select:none;
-}
-.service-tag.is-selected{
-  background:var(--brand);
-  color:#fff;
-  border-color:var(--brand);
-}
+    .kicker{
+      color:var(--brand);
+      font-weight:900;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-size:.75rem;
+    }
+    .h2{
+      margin:8px 0 6px;
+      font-size:1.15rem;
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+    .p{ margin:0; color:var(--muted); line-height:1.55; font-size:.95rem; }
 
-/* button */
-.btn{
-  appearance:none; border:none; cursor:pointer; font-weight:800; padding:12px 20px; border-radius:14px; color:#fff;
-  background:linear-gradient(#0e7bff,#0069e6);
-  box-shadow:0 8px 24px var(--brand-35);
-  position:relative; overflow:hidden; transition:transform .15s ease, opacity .15s ease;
-  display:inline-flex; align-items:center; gap:8px;
-}
-.btn::before{
-  content:""; position:absolute; inset:0; border-radius:inherit;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
-  transform:translateX(-110%); animation:btnshine 3.3s ease-in-out infinite;
-}
-@keyframes btnshine{15%{transform:translateX(-110%)}45%{transform:translateX(120%)}100%{transform:translateX(120%)}}
-.btn:hover{transform:translateY(-1px)}
-.btn[disabled]{opacity:.65;cursor:not-allowed;transform:none}
+    .row{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px; border-radius:16px;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+      border:1px solid rgba(0,123,255,.12);
+      margin-top:10px;
+    }
+    .dot{
+      flex:0 0 auto;
+      width:30px; height:30px;
+      border-radius:12px;
+      display:grid; place-items:center;
+      background: linear-gradient(180deg, #3f95ff, var(--brand));
+      color:#fff;
+      font-weight:900;
+      box-shadow: 0 10px 22px rgba(0,123,255,.22);
+    }
+    .row b{display:block; font-size:.95rem}
+    .row small{display:block; color:var(--muted); margin-top:2px; line-height:1.4}
 
-.status{
-  margin-top:10px;
-  font-size:.86rem;
-}
-.status.ok{color:#15803d}
-.status.err{color:#b91c1c}
+    .emailbox{
+      margin-top:14px; padding-top:12px;
+      border-top:1px solid rgba(2,6,23,.08);
+      color:var(--muted); font-size:.93rem; line-height:1.5;
+      word-break:break-word;
+    }
+    .emailbox span{color:var(--ink); font-weight:800}
 
-/* footer */
-.footer{
-  margin:40px 0 60px;
-  padding:20px 18px;
-  border-radius:16px;
-  color:var(--ink-soft);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  border:1px solid rgba(0,0,0,.06);
-  background:#ffffff;
-  box-shadow:0 8px 24px rgba(0,0,0,.04);
-}
-.footer a{color:var(--brand);text-decoration:none;font-weight:700}
+    .form-title{margin:0 0 6px; font-size:1.1rem; font-weight:900}
+    .hint{margin:0 0 14px; color:var(--muted); font-size:.9rem}
 
-/* responsive tweaks */
-@media (max-width:768px){
-  .nav{
-    flex-wrap:wrap;
-    row-gap:8px;
-  }
-  .nav-links{
-    width:100%;
-    justify-content:flex-end;
-    flex-wrap:wrap;
-    gap:20px;
-    font-size:.95rem;
-  }
-}
-@media (max-width:500px){
-  .nav{padding:10px 0}
-  .nav-links{
-    justify-content:flex-start;
-    gap:16px;
-  }
-  .footer{
-    margin:30px 0 40px;
-  }
-}
-</style>
+    .form-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:12px;
+    }
+    @media (max-width:720px){ .form-grid{grid-template-columns:1fr} }
+
+    .field{display:flex; flex-direction:column; gap:6px; min-width:0}
+    label{font-size:.86rem; font-weight:800}
+    .req::after{content:" *"; color:#ef4444; font-weight:900}
+
+    input, textarea{
+      width:100%; min-width:0;
+      padding:10px 11px;
+      border-radius:12px;
+      border:1px solid rgba(2,6,23,.14);
+      background:#fff;
+      font:inherit;
+      outline:none;
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+    input:focus, textarea:focus{
+      border-color: var(--brand);
+      box-shadow: 0 0 0 1px rgba(0,123,255,.18), 0 0 0 4px rgba(0,123,255,.12);
+    }
+    textarea{min-height:120px; resize:vertical}
+    .full{grid-column:1 / -1}
+
+    /* 2 options only */
+    .services{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:2px;
+    }
+    .service{
+      border:1px solid rgba(2,6,23,.14);
+      background:#f8fafc;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.84rem;
+      font-weight:900;
+      cursor:pointer;
+      user-select:none;
+    }
+    .service.is-selected{
+      background:var(--brand);
+      color:#fff;
+      border-color:var(--brand);
+    }
+
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      font-weight:900;
+      padding:12px 16px;
+      border-radius:14px;
+      color:#fff;
+      background: linear-gradient(#0e7bff,#0069e6);
+      box-shadow: 0 10px 26px rgba(0,123,255,.35);
+      display:inline-flex; align-items:center; gap:10px;
+      position:relative; overflow:hidden;
+      transform: translateZ(0);
+      margin-top:14px;
+    }
+    .btn::before{
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+      transform: translateX(-120%);
+      animation: shine 3.2s ease-in-out infinite;
+    }
+    @keyframes shine{
+      15%{transform: translateX(-120%)}
+      45%{transform: translateX(120%)}
+      100%{transform: translateX(120%)}
+    }
+    .btn[disabled]{opacity:.65; cursor:not-allowed}
+
+    .status{margin-top:10px; font-size:.9rem; line-height:1.4;}
+    .status.ok{color:#15803d}
+    .status.err{color:#b91c1c}
+
+    .footer{
+      margin:26px 0 44px;
+      padding:16px 14px;
+      border-radius:16px;
+      border:1px solid rgba(2,6,23,.06);
+      background:#fff;
+      box-shadow: 0 10px 26px rgba(2,6,23,.06);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:.93rem;
+    }
+    .footer a{color:var(--brand); text-decoration:none; font-weight:900}
+  </style>
 </head>
 
 <body>
-<!-- Subtle brand background -->
-<div class="bg-wrap">
-  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-</div>
+  <div class="bg-wrap" aria-hidden="true"></div>
 
-<!-- Header -->
-<header class="header">
-  <div class="container nav">
-    <div class="brand">
-      <img src="https://clickkk-git-main-marketcall.vercel.app/images/biglogo.jpg" alt="Click Venture Logo" />
+  <header class="header">
+    <div class="container nav">
+      <div class="brand">
+        <img src="https://clickkk-git-main-marketcall.vercel.app/images/biglogo.jpg" alt="Click Venture Logo">
+      </div>
+      <nav class="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#products">Products</a>
+        <a href="contact.html" class="is-active">Contact</a>
+      </nav>
     </div>
-    <nav class="nav-links">
-      <!-- link back to main page sections -->
-      <a href="index.html#about">About</a>
-      <a href="index.html#services">Services</a>
-      <a href="index.html#products">Products</a>
-      <a href="contact.html" class="is-active">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<main class="container main-wrap">
-  <header>
-    <h1 class="page-title">Let’s talk about growth.</h1>
-    <p class="page-sub">
-      Share a bit about your brand, channels, and goals. Our team will review your details and follow up with next
-      steps, usually within one business day.
-    </p>
   </header>
 
-  <section class="contact-grid" aria-label="Contact Click Venture">
-    <!-- left side: info / expectations -->
-    <aside class="info-card">
-      <h2>What to expect</h2>
-      <p>We’re best suited for teams that are already spending on media and want a partner to help them scale profitably.</p>
+  <main class="container main-wrap">
+    <header>
+      <h1 class="title">Let’s talk.</h1>
+      <p class="sub">Just the essentials — we’ll get back quickly.</p>
+    </header>
 
-      <div class="info-row">
-        <div class="info-dot">1</div>
-        <div class="info-text">
-          <div class="info-label">Discovery & fit</div>
-          <div class="info-small">We’ll review your verticals, current funnels, and targets to see if there’s a mutual fit.</div>
-        </div>
-      </div>
+    <section class="grid" aria-label="Contact Click Venture">
+      <aside class="card">
+        <div class="card-pad">
+          <div class="kicker">Quick process</div>
+          <div class="h2">We read every message.</div>
+          <p class="p">Send your name, number, and a short description. Choose one service (max two) so we route it correctly.</p>
 
-      <div class="info-row">
-        <div class="info-dot">2</div>
-        <div class="info-text">
-          <div class="info-label">Deep-dive on performance</div>
-          <div class="info-small">If we proceed, we’ll request access to existing data so we can map quick wins and long-term upside.</div>
-        </div>
-      </div>
-
-      <div class="info-row">
-        <div class="info-dot">3</div>
-        <div class="info-text">
-          <div class="info-label">Roadmap & next steps</div>
-          <div class="info-small">You’ll receive a clear view of how we’d structure creative, funnels, and reporting for your brand.</div>
-        </div>
-      </div>
-
-      <div style="margin-top:18px;border-top:1px solid rgba(15,23,42,.08);padding-top:14px;font-size:.9rem;color:var(--ink-soft)">
-        Prefer email? Reach us at <span style="color:var(--ink);font-weight:600">team@clickventure.com</span>.
-      </div>
-    </aside>
-
-    <!-- right side: form -->
-    <section class="form-card">
-      <h2 class="form-title">Share your details</h2>
-      <p class="form-hint">Fields with <span style="color:#ef4444">*</span> are required.</p>
-
-      <form id="contactForm" novalidate>
-        <div class="form-grid">
-          <div class="field">
-            <label for="fullName" class="required">Full name</label>
-            <input id="fullName" name="fullName" class="input" placeholder="Jane Doe" required />
+          <div class="row">
+            <div class="dot">1</div>
+            <div>
+              <b>Send details</b>
+              <small>Name + number + short description</small>
+            </div>
           </div>
-
-          <div class="field">
-            <label for="email" class="required">Work email</label>
-            <input id="email" name="email" type="email" class="input" placeholder="you@company.com" required />
-          </div>
-
-          <div class="field">
-            <label for="company" class="required">Company / Brand</label>
-            <input id="company" name="company" class="input" placeholder="Brand name" required />
-          </div>
-
-          <div class="field">
-            <label for="website">Website</label>
-            <input id="website" name="website" class="input" placeholder="https://your-site.com" />
-          </div>
-
-          <div class="field">
-            <label for="role">Role</label>
-            <input id="role" name="role" class="input" placeholder="e.g. CMO, Founder, Media Buyer" />
-          </div>
-
-          <div class="field">
-            <label for="phone">Phone (optional)</label>
-            <input id="phone" name="phone" class="input" placeholder="+1 (555) 555-5555" />
-          </div>
-
-          <div class="field full-row">
-            <label class="required">Which services are you interested in?</label>
-            <div class="service-tags" id="serviceTags">
-              <button type="button" class="service-tag" data-value="paid_media">Paid Media</button>
-              <button type="button" class="service-tag" data-value="creative">Creative & Content</button>
-              <button type="button" class="service-tag" data-value="funnels">Landing Pages / CRO</button>
-              <button type="button" class="service-tag" data-value="email_lifecycle">Email & Lifecycle</button>
-              <button type="button" class="service-tag" data-value="strategy_only">Strategy / Audit Only</button>
+          <div class="row">
+            <div class="dot">2</div>
+            <div>
+              <b>We respond</b>
+              <small>Fast reply with next steps</small>
             </div>
           </div>
 
-          <div class="field">
-            <label for="monthlySpend" class="required">Approx. monthly ad spend</label>
-            <select id="monthlySpend" name="monthlySpend" class="select" required>
-              <option value="">Select range</option>
-              <option value="under_25k">Under $25k</option>
-              <option value="25k_75k">$25k – $75k</option>
-              <option value="75k_250k">$75k – $250k</option>
-              <option value="250k_500k">$250k – $500k</option>
-              <option value="500k_plus">$500k+</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="vertical" class="required">Primary vertical</label>
-            <select id="vertical" name="vertical" class="select" required>
-              <option value="">Select vertical</option>
-              <option value="insurance">Insurance</option>
-              <option value="legal">Legal</option>
-              <option value="finance">Finance</option>
-              <option value="home_services">Home Services</option>
-              <option value="commerce">E-commerce</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="field full-row">
-            <label for="goals" class="required">What are your goals for the next 6–12 months?</label>
-            <textarea id="goals" name="goals" class="textarea" placeholder="Tell us about your targets, current performance, and what success looks like." required></textarea>
-          </div>
-
-          <div class="field full-row">
-            <label for="message">Anything else we should know?</label>
-            <textarea id="message" name="message" class="textarea" placeholder="Optional context: markets, languages, CRM, current partners, or timelines."></textarea>
+          <div class="emailbox">
+            Emails go to <span>najmi.raghib@gmail.com</span> via EmailJS template.
           </div>
         </div>
+      </aside>
 
-        <input type="hidden" id="servicesField" name="services" value="" />
+      <section class="card">
+        <div class="card-pad">
+          <h2 class="form-title">Send inquiry</h2>
+          <p class="hint">Required fields: <span style="color:#ef4444;font-weight:900">*</span></p>
 
-        <button id="submitBtn" class="btn" type="submit">
-          <span class="btn-text">Submit inquiry</span>
-        </button>
-        <div id="status" class="status" aria-live="polite"></div>
-      </form>
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label class="req" for="name">Name</label>
+                <input id="name" name="name" required placeholder="Your name" />
+              </div>
+
+              <div class="field">
+                <label class="req" for="number">Phone number</label>
+                <input id="number" name="number" required placeholder="+91 9xxxx xxxxx" inputmode="tel" />
+              </div>
+
+              <div class="field full">
+                <label class="req">Service (choose 1–2)</label>
+                <div class="services" id="serviceTags">
+                  <span class="service" data-value="Paid Media">Paid Media</span>
+                  <span class="service" data-value="Landing Pages / CRO">Landing Pages / CRO</span>
+                </div>
+                <input type="hidden" id="services" name="services" value="" required />
+              </div>
+
+              <div class="field full">
+                <label class="req" for="description">Description</label>
+                <textarea id="description" name="description" required placeholder="Briefly describe what you need..."></textarea>
+              </div>
+            </div>
+
+            <button id="submitBtn" class="btn" type="submit">
+              <span class="btn-text">Send</span>
+            </button>
+
+            <div id="status" class="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
     </section>
-  </section>
-</main>
+  </main>
 
-<footer class="container footer">
-  <div>© 2025 Click Venture. All Rights Reserved.</div>
-  <div style="display:flex;gap:16px;flex-wrap:wrap">
-    <a href="index.html#about">About</a>
-    <a href="index.html#services">Services</a>
-    <a href="index.html#products">Products</a>
-    <a href="contact.html">Contact</a>
-  </div>
-</footer>
+  <footer class="container footer">
+    <div>© 2025 Click Venture. All Rights Reserved.</div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#products">Products</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
 
-<script>
-/* CONFIG – replace later */
-const CONTACT_ENDPOINT = "https://example.com/api/contact"; // <-- replace with your backend URL
-const SOURCE_KEY = "click_venture_site";                    // identifier for your side
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-/* simple blob parallax */
-const blobs=document.querySelectorAll('.blob');
-window.addEventListener('pointermove',e=>{
-  const {innerWidth:w,innerHeight:h}=window;
-  const rx=(e.clientX-w/2)/w, ry=(e.clientY-h/2)/h;
-  blobs.forEach((b,i)=>{const s=(i+1)*6; b.style.transform=`translate(${rx*s}px,${ry*s}px)`;});
-});
+  <script>
+    /***************
+     * EmailJS CONFIG
+     ***************/
+    const EMAILJS_PUBLIC_KEY = "rCR1osUbWUq8sXGSw"; // <-- paste EmailJS Public Key
+    const EMAILJS_SERVICE_ID = "service_gwl057a";
+    const EMAILJS_TEMPLATE_ID = "template_veddfs8";
 
-/* service tag toggle */
-const serviceTags = document.querySelectorAll('#serviceTags .service-tag');
-const servicesField = document.getElementById('servicesField');
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
-serviceTags.forEach(tag=>{
-  tag.addEventListener('click',()=>{
-    tag.classList.toggle('is-selected');
-    const selected = Array.from(serviceTags)
-      .filter(t=>t.classList.contains('is-selected'))
-      .map(t=>t.dataset.value);
-    servicesField.value = selected.join(',');
-  });
-});
+    /***************
+     * Services selection: max 2
+     ***************/
+    const serviceEls = Array.from(document.querySelectorAll("#serviceTags .service"));
+    const servicesField = document.getElementById("services");
 
-/* form submit */
-const form = document.getElementById('contactForm');
-const statusEl = document.getElementById('status');
-const submitBtn = document.getElementById('submitBtn');
-const btnText = submitBtn.querySelector('.btn-text');
+    function syncServices(){
+      const selected = serviceEls.filter(el => el.classList.contains("is-selected")).map(el => el.dataset.value);
 
-form.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  statusEl.textContent = "";
-  statusEl.className = "status";
+      // enforce max 2
+      if(selected.length > 2){
+        // remove the last toggled selection (simple: remove newest -> handled in click handler below)
+      }
 
-  if (!form.reportValidity()) {
-    return;
-  }
+      servicesField.value = selected.join(", ");
 
-  const formData = new FormData(form);
-  const payload = {
-    source: SOURCE_KEY,
-    page: "contact",
-    submitted_at: new Date().toISOString(),
-    full_name: formData.get("fullName") || "",
-    email: formData.get("email") || "",
-    company: formData.get("company") || "",
-    website: formData.get("website") || "",
-    role: formData.get("role") || "",
-    phone: formData.get("phone") || "",
-    primary_vertical: formData.get("vertical") || "",
-    monthly_ad_spend: formData.get("monthlySpend") || "",
-    goals_6_12_months: formData.get("goals") || "",
-    extra_message: formData.get("message") || "",
-    services_interested: (formData.get("services") || "").split(",").filter(Boolean),
-    // you can add / rename keys here later as needed
-    meta: {
-      user_agent: navigator.userAgent,
-      language: navigator.language || "",
-      url: window.location.href
+      if(selected.length === 0){
+        servicesField.setCustomValidity("Please select at least one service.");
+      } else {
+        servicesField.setCustomValidity("");
+      }
     }
-  };
 
-  submitBtn.disabled = true;
-  btnText.textContent = "Sending...";
-  try{
-    const res = await fetch(CONTACT_ENDPOINT,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(payload)
+    serviceEls.forEach(el => {
+      el.addEventListener("click", () => {
+        const already = el.classList.contains("is-selected");
+        if(already){
+          el.classList.remove("is-selected");
+          syncServices();
+          return;
+        }
+
+        const selectedNow = serviceEls.filter(x => x.classList.contains("is-selected"));
+        if(selectedNow.length >= 2){
+          // block selecting more than 2
+          return;
+        }
+
+        el.classList.add("is-selected");
+        syncServices();
+      });
     });
 
-    if(!res.ok){
-      throw new Error("Request failed with status " + res.status);
-    }
+    syncServices();
 
-    statusEl.textContent = "Thank you. Your details have been submitted — we’ll follow up shortly.";
-    statusEl.classList.add("ok");
-    form.reset();
-    servicesField.value = "";
-    serviceTags.forEach(t=>t.classList.remove("is-selected"));
-  }catch(err){
-    console.error(err);
-    statusEl.textContent = "Something went wrong while sending your message. Please try again.";
-    statusEl.classList.add("err");
-  }finally{
-    submitBtn.disabled = false;
-    btnText.textContent = "Submit inquiry";
-  }
-});
-</script>
+    /***************
+     * Submit
+     ***************/
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("status");
+    const submitBtn = document.getElementById("submitBtn");
+    const btnText = submitBtn.querySelector(".btn-text");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusEl.textContent = "";
+      statusEl.className = "status";
+
+      syncServices();
+
+      if(!form.reportValidity()) return;
+
+      submitBtn.disabled = true;
+      btnText.textContent = "Sending...";
+
+      const payload = {
+        name: document.getElementById("name").value.trim(),
+        number: document.getElementById("number").value.trim(),
+        description: document.getElementById("description").value.trim(),
+        services: servicesField.value,
+        time: new Date().toLocaleString(),
+      };
+
+      try{
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, payload);
+
+        statusEl.textContent = "Sent successfully. We’ll contact you soon.";
+        statusEl.classList.add("ok");
+
+        form.reset();
+        serviceEls.forEach(x => x.classList.remove("is-selected"));
+        syncServices();
+      }catch(err){
+        console.error(err);
+        statusEl.textContent = "Failed to send. Please try again.";
+        statusEl.classList.add("err");
+      }finally{
+        submitBtn.disabled = false;
+        btnText.textContent = "Send";
+      }
+    });
+  </script>
 </body>
 </html>
