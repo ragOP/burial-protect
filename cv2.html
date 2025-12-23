@@ -1558,8 +1558,60 @@
                 <span class="snap-pill">Spend / CPL guardrails</span>
               </div>
             </div>
+            <style>
+/* SNAP MEDIA CONTAINER */
+.snap-media{
+  position: relative;
+  aspect-ratio: 16 / 10;
+  min-height: 260px;
+
+  display: flex;
+  align-items: flex-end;   /* 👈 key fix */
+  justify-content: center;
+
+  overflow: hidden;
+  background: transparent;
+}
+
+/* LAPTOP IMAGE FIX */
+.snap-img-main{
+  width: 100%;
+  height: auto;            /* 👈 critical */
+  max-height: 100%;
+
+  object-fit: contain;     /* 👈 NOT cover */
+  object-position: bottom center;
+
+  display: block;
+
+  /* visually fill the card */
+  transform: scale(1.15) translateY(6%);
+}
+
+/* Mobile */
+@media (max-width: 900px){
+  .snap-media{
+    min-height: 220px;
+    aspect-ratio: 16 / 11;
+  }
+  .snap-img-main{
+    transform: scale(1.18) translateY(8%);
+  }
+}
+
+/* Small phones */
+@media (max-width: 420px){
+  .snap-media{
+    min-height: 200px;
+  }
+  .snap-img-main{
+    transform: scale(1.62) translateY(10%);
+  }
+}
+</style>
+
             <div class="snap-media">
-              <img class="snap-img-main" src="https://www.clickvs.com/images/lap.png" alt="Campaign overview dashboard" />
+              <img class="snap-img-main"  src="https://www.clickvs.com/images/lap.png" alt="Campaign overview dashboard" />
             </div>
           </article>
 
