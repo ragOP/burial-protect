@@ -1363,6 +1363,42 @@
       margin: 32px 0 40px;
     }
   }
+  /* =========================
+   ICON / EMOJI CENTER FIX
+   ✅ Centers your icon images horizontally (perfect for vertical/mobile)
+   ✅ Overrides inline styles like display:inline-flex
+   ========================= */
+
+/* Services cards: your icon images are direct children of .card */
+.card > img {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 14px !important;
+}
+
+/* Product cards: your icon images are direct children of .prod */
+.prod > img {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 12px !important;
+}
+
+/* Keep icons visually consistent */
+.card > img,
+.prod > img {
+  object-fit: contain !important;
+}
+
+/* Optional: if any icon ever appears inside other wrappers later */
+.card img[alt="Icon"],
+.prod img[alt="Icon"] {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 </style>
 
 
